@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Ad 04 · Build or Tap</title>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <style>
   .ad{background:var(--ink)}
@@ -15,7 +15,7 @@
     background-image:radial-gradient(rgba(182,242,74,.16) 1.6px,transparent 1.6px);background-size:26px 26px}
   .seam{position:absolute;left:50%;top:-20px;width:14px;height:1400px;background:var(--sun);transform:translateX(-50%) rotate(10.2deg)}
 
-  .p1{position:absolute;left:64px;top:64px;color:#fff;font-family:'Pixelify Sans';font-weight:700;font-size:30px;letter-spacing:.1em}
+  .p1{position:absolute;left:64px;top:64px;color:#fff;font-family:'Archivo';font-weight:700;font-size:30px;letter-spacing:.1em}
   .p1 b{background:var(--sun);color:var(--navy);padding:4px 12px;margin-right:12px}
   .p2{position:absolute;right:64px;top:64px;color:#fff;font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.02em;text-align:right}
   .p2 b{background:var(--acid);color:var(--ink);padding:4px 12px;margin-left:12px}
@@ -27,7 +27,7 @@
   .big.r span{color:var(--acid)}
 
   .ldesc{position:absolute;left:64px;top:550px;width:380px;color:#dfe5ff;font-size:25px;line-height:1.4;font-weight:500}
-  .ldesc b{color:#fff;display:block;font-family:'Pixelify Sans';font-size:36px;margin-bottom:8px;line-height:1.05}
+  .ldesc b{color:#fff;display:block;font-family:'Archivo';font-size:36px;margin-bottom:8px;line-height:1.05}
   .rdesc{position:absolute;right:64px;top:520px;width:380px;color:#c9ccd3;font-size:25px;line-height:1.4;text-align:right}
   .rdesc b{color:#fff;display:block;font-family:'JetBrains Mono';font-size:30px;margin-bottom:10px;line-height:1.15}
 
@@ -39,14 +39,17 @@
   .vs{position:absolute;left:50%;top:675px;transform:translate(-50%,-50%) rotate(-8deg);background:var(--tomato);color:#fff;
     font-family:'Archivo';font-stretch:62%;font-weight:900;font-size:110px;line-height:1;padding:10px 26px 4px;
     box-shadow:10px 10px 0 var(--navy)}
-  .vs small{position:absolute;left:0;right:0;bottom:-40px;text-align:center;font-family:'Pixelify Sans';font-size:24px;font-weight:600;
+  .vs small{position:absolute;left:0;right:0;bottom:-40px;text-align:center;font-family:'Archivo';font-size:24px;font-weight:600;
     background:var(--sun);color:var(--navy);padding:4px}
 
   .bar{position:absolute;left:0;right:0;bottom:0;height:150px;background:var(--sun);display:flex;align-items:center;justify-content:space-between;padding:0 64px;color:var(--navy)}
-  .bar .h{font-family:'Pixelify Sans';font-weight:700;font-size:42px;line-height:1.05}
+  .bar .h{font-family:'Archivo';font-weight:700;font-size:42px;line-height:1.05}
   .bar .h small{display:block;font-family:'Figtree';font-weight:600;font-size:21px;margin-top:6px}
-  .bar .who{display:flex;align-items:center;gap:14px;font-family:'Pixelify Sans';font-weight:700;font-size:28px}
+  .bar .who{display:flex;align-items:center;gap:14px;font-family:'Archivo';font-weight:700;font-size:28px}
   .bar .who img{width:62px;height:62px}
+  .svc4{position:absolute;left:64px;top:860px;display:grid;grid-template-columns:170px 170px;gap:14px}
+  .svc4 div{height:120px;border:2px solid rgba(255,255,255,.4);border-radius:12px;padding:16px;color:#fff;font-weight:700;font-size:19px;display:flex;flex-direction:column;justify-content:space-between}
+  .svc4 i{color:var(--sun)}
 </style>
 </head>
 <body>
@@ -57,8 +60,7 @@
 
   <div class="big l">Build<br><span>it.</span></div>
   <div class="ldesc"><b>Custom software, made for you.</b>Appointments, finances, HR, POS, records. Shaped around your workflow, not a template.</div>
-  <div class="s1 spr" data-sprite="scheduler" data-px="12"></div>
-  <div class="s2 spr" data-sprite="merchant" data-px="9"></div>
+  <div class="svc4"><div><i data-icon="calendar" data-size="44"></i>Appointments</div><div><i data-icon="money" data-size="44"></i>Finance</div><div><i data-icon="team" data-size="44"></i>HR</div><div><i data-icon="box" data-size="44"></i>POS &amp; stock</div></div>
 
   <i class="tnmark" data-tn-mark></i>
   <div class="rdesc"><b>Already built.<br>Already tapping.</b>Membership, points, stamps and check-ins for gyms, cafés, shops and libraries.</div>

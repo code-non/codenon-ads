@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Ad 02 · The chore receipt</title>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Archivo:wdth,wght@62..125,500..900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css">
 <style>
   .ad{background:var(--cobalt);
     background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px);
     background-size:54px 54px}
-  .kicker{position:absolute;left:64px;top:70px;font-family:'Pixelify Sans';font-size:28px;color:var(--sun);letter-spacing:.08em}
-  h1{position:absolute;left:64px;top:118px;width:470px;font-family:'Pixelify Sans';font-weight:700;color:#fff;
+  .kicker{position:absolute;left:64px;top:74px;font-family:'Archivo';font-weight:700;font-size:21px;color:var(--sun);letter-spacing:.1em}
+  h1{position:absolute;left:64px;top:118px;width:470px;font-family:'Archivo';font-weight:700;color:#fff;
     font-size:104px;line-height:.95}
   h1 b{color:var(--sun);font-weight:700}
   .lede{position:absolute;left:64px;top:560px;width:400px;color:#dfe5ff;font-size:27px;line-height:1.4;font-weight:500}
@@ -47,12 +47,16 @@
   .barcode{height:64px;margin:22px 10px 8px;background:repeating-linear-gradient(90deg,#1a1a1a 0 3px,transparent 3px 5px,#1a1a1a 5px 6px,transparent 6px 10px,#1a1a1a 10px 14px,transparent 14px 16px)}
   .thanks{font-size:16px;color:#555;line-height:1.5}
   .stamp{position:absolute;right:60px;top:1100px;transform:rotate(-10deg);border:5px solid var(--tomato);color:var(--tomato);
-    font-family:'Pixelify Sans';font-weight:700;font-size:46px;padding:4px 18px;letter-spacing:.08em;opacity:.88;mix-blend-mode:multiply}
+    font-family:'Archivo';font-weight:700;font-size:46px;padding:4px 18px;letter-spacing:.08em;opacity:.88;mix-blend-mode:multiply}
   .npc{position:absolute;left:64px;top:830px;display:flex;align-items:flex-end;gap:22px}
   .bub{background:#fff;color:var(--navy);font-size:30px;line-height:1.1;padding:16px 20px;margin-bottom:120px;position:relative;order:2}
   .bub::after{content:"";position:absolute;left:-18px;bottom:14px;border:10px solid transparent;border-right:10px solid #fff;border-bottom:10px solid #fff}
   .tnb{display:flex!important;align-items:center;gap:8px}
   .tnb i{width:30px;height:30px;display:block}
+  .svc{position:absolute;left:64px;top:830px;width:400px;color:#fff}
+  .svc p{font-family:"Archivo";font-weight:700;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);margin-bottom:16px}
+  .svc li{display:flex;align-items:center;gap:16px;font-size:24px;font-weight:600;padding:9px 0;border-top:1.5px solid rgba(255,255,255,.22);list-style:none}
+  .svc li i{color:var(--sun)}
 </style>
 </head>
 <body>
@@ -60,7 +64,7 @@
   <div class="kicker">RECEIPT #000 · YOUR OFFICE</div>
   <h1>Nothing is the <b>end state.</b></h1>
   <p class="lede">Every chore on this list costs your team hours, every single week. <strong>We void them.</strong> Build it custom with us, or start tapping with TYPE: NODES.</p>
-  <div class="npc"><div class="bub pix">VOID. VOID.<br>VOID. Next!</div><div data-sprite="treasurer" data-px="13"></div></div>
+  <div class="svc"><p>We build systems for</p><ul><li><i data-icon="calendar" data-size="34"></i>Appointments &amp; bookings</li><li><i data-icon="money" data-size="34"></i>Income, expenses &amp; budgets</li><li><i data-icon="team" data-size="34"></i>HR, attendance &amp; leave</li><li><i data-icon="box" data-size="34"></i>POS &amp; inventory</li><li><i data-icon="tap" data-size="34"></i>NFC member cards</li></ul></div>
   <div class="brand"><img src="assets/codenon-logo.png" alt=""><div><span class="pix">CODE: NON</span><small>@codenon.io · Message us</small></div></div>
 
   <div class="receipt">
