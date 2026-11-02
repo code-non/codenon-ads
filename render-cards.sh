@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 BROWSER="/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 [ -x "$BROWSER" ] || BROWSER="/c/Program Files/Google/Chrome/Application/chrome.exe"
 mkdir -p png/cards
-for id in $(grep -oE 'id="d[0-9]+-(front|back)"' cards.html | cut -d'"' -f2 | grep "^${1:-d}"); do
+for id in $(grep -oE 'id="d[0-9]+[a-z]?-(front|back)"' cards.html | cut -d'"' -f2 | grep "^${1:-d}"); do
   size=1011,638; grep -q "id=\"$id\" data-portrait" cards.html && size=638,1011
   "$BROWSER" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
     --default-background-color=00000000 --virtual-time-budget=6000 --window-size=$size \
