@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TYPE: NODES · NFC cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* NFC cards, CR80 (85.6 x 54 mm). Faces are 1011x638 = 300 dpi at trim size, no bleed.
+     cards.html          -> preview sheet of every design, front + back
+     cards.html#d1-front -> that face alone at full size (render-cards.sh screenshots these) */
+  html,body{width:auto;background:#1b1c1f}
+  body{padding:48px 40px;color:#c9ccd3}
+  .sheet-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;max-width:1100px;margin:0 auto 36px}
+  .sheet-h h1{font-family:'JetBrains Mono';font-size:26px;color:#fff}
+  .sheet-h p{font-size:15px;color:#8b8f98;max-width:520px;line-height:1.5}
+  .set{max-width:1100px;margin:0 auto 44px}
+  .set h2{font-family:'JetBrains Mono';font-size:16px;font-weight:500;color:#fff;margin-bottom:4px}
+  .set h2 b{color:var(--acid);margin-right:10px}
+  .set > p{font-size:14px;color:#8b8f98;margin-bottom:14px}
+  .pair{display:flex;gap:28px;flex-wrap:wrap}
+  .slot{zoom:.5}
+  .slot .face{box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .tag{font-family:'JetBrains Mono';font-size:13px;color:#5b5e66;margin-top:8px;letter-spacing:.08em}
+
+  html:has(body.solo),body.solo{padding:0;background:transparent}
+  body.solo .sheet-h,body.solo .set > h2,body.solo .set > p,body.solo .tag,body.solo .cats,body.solo .cat-h,body.solo .tierlabel{display:none}
+  body.solo .set,body.solo .pair,body.solo .cat{margin:0;display:block}
+  body.solo .slot{zoom:1;display:none}
+  body.solo .slot.on{display:block}
+  body.solo .face{box-shadow:none}
+
+  /* ---------- shared face bits ---------- */
+  .face{position:relative;width:1011px;height:638px;border-radius:38px;overflow:hidden;font-family:'Figtree',system-ui,sans-serif}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
+  .cond{font-family:'Archivo',system-ui,sans-serif;font-stretch:68%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.88}
+  .abs{position:absolute}
+  .brandline{display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono';font-weight:700;font-size:28px}
+  .brandline small{display:block;font-weight:400;font-size:20px;opacity:.6;margin-top:2px}
+  .brandline [data-tn-mark]{display:block}
+  .qr{display:block;border-radius:20px}
+  .qr svg{display:block;width:100%;height:100%}
+  .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1.6px,transparent 1.6px);background-size:26px 26px}
+  .rings{position:absolute;width:0;height:0}
+  .rings i{position:absolute;border:3px solid currentColor;border-radius:50%;transform:translate(-50%,-50%)}
+
+  /* ---------- 01 INK ---------- */
+  .d1{background:linear-gradient(135deg,#1a1c20,#0e0f11 65%);color:#fff}
+  .d1 .rings{left:820px;top:250px;color:var(--acid)}
+  .d1 .rings i:nth-child(1){width:150px;height:150px;opacity:.9}
+  .d1 .rings i:nth-child(2){width:290px;height:290px;opacity:.45}
+  .d1 .rings i:nth-child(3){width:450px;height:450px;opacity:.22}
+  .d1 .rings i:nth-child(4){width:630px;height:630px;opacity:.1}
+  .d1 .core{position:absolute;left:792px;top:222px;width:56px;height:56px;border-radius:50%;background:var(--acid)}
+  .d1 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:40px}
+  .d1 .nm small{display:block;font-weight:400;font-size:22px;color:#8b8f98;margin-top:8px;letter-spacing:.06em}
+  .d1 .tap{right:56px;bottom:52px;color:#8b8f98}
+  .d1b{background:#0e0f11;color:#fff}
+  .d1b .qr{left:60px;top:60px;width:330px;height:330px;background:#fff;color:var(--ink)}
+  .d1b .txt{left:440px;top:66px;right:56px}
+  .d1b .txt .cond{font-size:84px}
+  .d1b .txt .cond span{color:var(--acid)}
+  .d1b .txt p{font-size:24px;line-height:1.4;color:#c9ccd3;margin-top:20px}
+  .d1b .txt .u{font-family:'JetBrains Mono';font-weight:700;font-size:24px;color:var(--acid);margin-top:20px}
+  .d1b .wm{left:56px;right:56px;bottom:44px;width:899px;opacity:.28}
+
+  /* ---------- 02 NODES ---------- */
+  .d2,.d2b{background:#0e0f11;color:#fff}
+  .d2 svg.net,.d2b svg.net{position:absolute;inset:0}
+  .d2 .brandline{left:60px;top:56px}
+  .d2 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:36px}
+  .d2 .nm small{display:block;font-weight:400;font-size:22px;color:#8b8f98;margin-top:8px}
+  .d2 .hint{right:60px;bottom:60px;font-family:'JetBrains Mono';font-size:22px;color:var(--acid)}
+  .d2b .qr{left:60px;top:154px;width:330px;height:330px;background:#fff;color:var(--ink);box-shadow:0 0 0 10px #0e0f11,0 0 0 13px var(--acid)}
+  .d2b::before{content:"";position:absolute;right:0;top:0;bottom:0;width:560px;z-index:1;
+    background:radial-gradient(ellipse at 70% 45%,#0e0f11 45%,rgba(14,15,17,0) 75%)}
+  .d2b .txt{right:60px;top:170px;width:470px;text-align:right;z-index:2}
+  .d2b .txt .cond{font-size:80px}
+  .d2b .txt .cond span{color:var(--acid)}
+  .d2b .txt p{font-family:'JetBrains Mono';font-size:22px;color:#8b8f98;margin-top:22px;line-height:1.6}
+  .d2b .txt p b{color:#fff;font-weight:700}
+
+  /* ---------- 03 PAPER ---------- */
+  .d3,.d3b{color:var(--ink)}
+  .d3{background:#fff}
+  .d3b{background:var(--paper2)}
+  .band{position:absolute;top:0;bottom:0;width:78px;background:var(--acid);overflow:hidden}
+  .band span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;
+    font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.3em}
+  .d3 .band{left:0}
+  .d3b .band{right:0}
+  .d3 .brandline{left:132px;top:56px;font-size:26px}
+  .d3 .lbl{right:60px;top:70px;font-family:'JetBrains Mono';font-size:22px;color:var(--muted);letter-spacing:.2em}
+  .d3 .tap{right:52px;top:170px}
+  .d3 .nm{left:132px;bottom:56px}
+  .d3 .nm .cond{font-size:76px}
+  .d3 .nm small{display:block;font-family:'JetBrains Mono';font-size:22px;color:var(--muted);margin-top:14px}
+  .d3b .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--ink);box-shadow:0 0 0 2px var(--line)}
+  .d3b ol{left:410px;top:72px;right:140px;list-style:none;font-size:30px;font-weight:700}
+  .d3b ol li{display:flex;gap:18px;align-items:baseline;margin-bottom:22px}
+  .d3b ol li span{font-family:'JetBrains Mono';font-size:22px;font-weight:500;color:var(--muted)}
+  .d3b ol li small{display:block;font-weight:500;font-size:22px;color:var(--muted);margin-top:4px}
+  .d3b .ft{left:60px;right:140px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    border-top:2px solid var(--line);padding-top:24px;font-family:'JetBrains Mono';font-size:22px;color:var(--muted)}
+  .d3b .ft b{color:var(--ink)}
+
+  /* ---------- 04 TERMINAL ---------- */
+  .d4{background:#0b0c0e;color:#d7dbe2}
+  .d4::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 2px,transparent 2px 5px)}
+  .d4 .bar{left:0;right:0;top:0;height:74px;border-bottom:2px solid #22252b;display:flex;align-items:center;justify-content:space-between;
+    padding:0 56px;font-family:'JetBrains Mono';font-size:22px;color:#5b5e66}
+  .d4 pre{left:56px;top:118px;font-family:'JetBrains Mono';font-size:34px;line-height:1.55}
+  .d4 pre .p{color:var(--acid)}
+  .d4 pre .k{color:#5b5e66}
+  .d4 pre .ok{color:var(--acid)}
+  .d4 pre .cur{display:inline-block;width:20px;height:38px;background:var(--acid);vertical-align:-6px}
+  .d4 [data-tn-mark]{position:absolute;right:56px;bottom:56px;width:120px;height:120px}
+  .d4b{background:var(--acid);color:var(--ink)}
+  .d4b .qr{right:60px;top:60px;width:340px;height:340px;color:var(--ink)}
+  .d4b pre{left:60px;top:70px;font-family:'JetBrains Mono';font-size:30px;line-height:1.6;font-weight:500}
+  .d4b pre b{font-weight:800}
+  .d4b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-weight:700;font-size:22px}
+
+  /* ---------- 05 ACID ---------- */
+  .d5{background:var(--acid);color:var(--ink)}
+  .d5 .rings{left:1011px;top:0;color:var(--ink)}
+  .d5 .rings i:nth-child(1){width:260px;height:260px}
+  .d5 .rings i:nth-child(2){width:470px;height:470px;opacity:.6}
+  .d5 .rings i:nth-child(3){width:700px;height:700px;opacity:.35}
+  .d5 .rings i:nth-child(4){width:950px;height:950px;opacity:.15}
+  .d5 .brandline{left:60px;top:56px}
+  .d5 .big{left:52px;bottom:40px;font-size:300px}
+  .d5 .id{right:60px;bottom:60px;font-family:'JetBrains Mono';font-weight:700;font-size:24px;text-align:right}
+  .d5 .id small{display:block;font-weight:400;font-size:22px;opacity:.65}
+  .d5b{background:var(--ink);color:#fff}
+  .d5b .qr{right:60px;top:60px;width:340px;height:340px;background:#fff;color:var(--ink)}
+  .d5b .cond{left:60px;top:70px;font-size:104px}
+  .d5b .cond span{color:var(--acid)}
+  .d5b p{left:60px;top:300px;width:470px;font-size:24px;line-height:1.45;color:#c9ccd3}
+  .d5b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono';font-size:22px;color:#8b8f98}
+  .d5b .ft b{color:var(--acid)}
+
+  /* ---------- 06 CO-BRAND (white-label for a client business; swap --brand + names) ---------- */
+  .d6,.d6b{--brand:var(--tomato);color:var(--ink)}
+  .d6{background:#fbfaf5}
+  .d6b{background:#fff}
+  .d6 .biz{left:60px;top:58px}
+  .d6 .biz .cond{font-size:78px}
+  .d6 .biz small{display:block;font-size:22px;color:var(--muted);margin-top:10px}
+  .d6 .tap{right:56px;top:56px;color:var(--brand)}
+  .d6 .stamps{left:60px;top:300px;right:60px}
+  .d6 .stamps .lbl{font-family:'JetBrains Mono';font-size:20px;letter-spacing:.14em;color:var(--muted);margin-bottom:16px}
+  .d6 .stamps .row{display:flex;gap:18px}
+  .d6 .stamps i{width:70px;height:70px;border-radius:50%;border:3px dashed #cfcfc8}
+  .d6 .stamps i.on{border:0;background:var(--brand)}
+  .d6 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:28px}
+  .d6 .nm small{display:block;font-weight:400;font-size:20px;color:var(--muted);margin-top:6px}
+  .pw{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono';font-size:20px;color:var(--muted)}
+  .pw b{color:var(--ink)}
+  .pw [data-tn-mark]{display:block;width:38px;height:38px}
+  .d6 .pw{position:absolute;right:60px;bottom:60px}
+  .d6b .qr{left:60px;top:60px;width:300px;height:300px;color:var(--ink);box-shadow:0 0 0 3px var(--brand)}
+  .d6b .txt{left:410px;top:66px;right:60px}
+  .d6b .txt .cond{font-size:70px}
+  .d6b .txt .cond span{color:var(--brand)}
+  .d6b .txt p{font-size:24px;line-height:1.45;color:var(--muted);margin-top:18px}
+  .d6b .txt p b{color:var(--ink)}
+  .d6b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    border-top:2px solid var(--line);padding-top:22px;font-size:20px;color:var(--muted)}
+
+  /* ---------- 07 COIL (the antenna inlay as the artwork) ---------- */
+  .d7,.d7b{background:#0e0f11;color:#fff}
+  .d7 svg,.d7b svg{position:absolute;inset:0}
+  .d7 .mid{left:0;right:0;top:200px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .d7 .mid .brandline{font-size:34px}
+  .d7 .nm{left:0;right:0;top:392px;text-align:center;font-family:'JetBrains Mono';font-size:24px;color:#8b8f98}
+  .d7 .nm b{color:#fff;font-weight:700}
+  .d7b .qr{left:150px;top:150px;width:300px;height:300px;background:#fff;color:var(--ink)}
+  .d7b .txt{left:500px;top:170px;right:150px}
+  .d7b .txt .cond{font-size:66px}
+  .d7b .txt .cond span{color:var(--acid)}
+  .d7b .txt p{font-family:'JetBrains Mono';font-size:22px;color:#8b8f98;margin-top:20px;line-height:1.5}
+
+  /* ---------- 08 BLUEPRINT ---------- */
+  .d8,.d8b{background:var(--navy);color:var(--sky)}
+  .d8::before,.d8b::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(124,200,255,.16) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(124,200,255,.16) 1.5px,transparent 1.5px),
+      linear-gradient(rgba(124,200,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,200,255,.06) 1px,transparent 1px);
+    background-size:130px 130px,130px 130px,26px 26px,26px 26px;background-position:-4px -4px}
+  .d8 svg,.d8b svg{position:absolute;inset:0}
+  .d8 .brandline{left:84px;top:96px;color:#fff;font-size:26px}
+  .d8 .call{font-family:'JetBrains Mono';font-size:22px;color:var(--sky)}
+  .d8 .call b{color:#fff;font-weight:700}
+  .tb{position:absolute;right:60px;bottom:60px;border:2px solid var(--sky);font-family:'JetBrains Mono';font-size:20px;display:grid;grid-template-columns:auto auto}
+  .tb span{padding:8px 14px;border-right:2px solid var(--sky);border-bottom:2px solid var(--sky)}
+  .tb span:nth-child(2n){border-right:0;color:#fff}
+  .tb span:nth-last-child(-n+2){border-bottom:0}
+  .d8b .qr{left:84px;top:96px;width:320px;height:320px;background:#fff;color:var(--navy);border-radius:6px}
+  .d8b .txt{left:470px;top:110px;right:70px;color:#fff}
+  .d8b .txt .cond{font-size:70px}
+  .d8b .txt .cond span{color:var(--sun)}
+  .d8b .txt p{font-family:'JetBrains Mono';font-size:22px;color:var(--sky);margin-top:20px;line-height:1.55}
+
+  /* ---------- 09 COLON (the ":" from TYPE: NODES, doubling as the tap target) ---------- */
+  .d9{background:#0e0f11;color:#fff}
+  .d9 .colon i{position:absolute;width:130px;height:130px;border-radius:50%;background:var(--acid)}
+  .d9 .colon i:nth-child(1){left:760px;top:120px}
+  .d9 .colon i:nth-child(2){left:760px;top:388px}
+  .d9 .rings{left:825px;top:185px;color:var(--acid)}
+  .d9 .rings i:nth-child(1){width:210px;height:210px;opacity:.45}
+  .d9 .rings i:nth-child(2){width:300px;height:300px;opacity:.2}
+  .d9 .rings i:nth-child(3){width:400px;height:400px;opacity:.08}
+  .d9 .tl{left:60px;top:60px;font-family:'JetBrains Mono';font-size:22px;color:#5b5e66;letter-spacing:.1em}
+  .d9 .nm{left:60px;bottom:60px;font-family:'JetBrains Mono';font-weight:700;font-size:36px}
+  .d9 .nm small{display:block;font-weight:400;font-size:22px;color:#8b8f98;margin-top:8px}
+  .d9b{background:#fff;color:var(--ink)}
+  .d9b .qr{left:60px;top:60px;width:320px;height:320px;box-shadow:0 0 0 2px var(--line)}
+  .d9b .colon i{position:absolute;left:450px;width:56px;height:56px;border-radius:50%;background:var(--ink)}
+  .d9b .colon i:nth-child(1){top:96px}
+  .d9b .colon i:nth-child(2){top:206px}
+  .d9b .txt{left:550px;top:74px;right:60px}
+  .d9b .txt .cond{font-size:74px}
+  .d9b .txt p{font-size:24px;line-height:1.45;color:var(--muted);margin-top:18px}
+  .d9b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono';font-size:22px;color:var(--muted)}
+  .d9b .ft b{color:var(--ink)}
+
+  /* ---------- 10 BADGE (portrait, events / staff) ---------- */
+  .face.portrait{width:638px;height:1011px}
+  .d10{background:#fff;color:var(--ink)}
+  .d10 .top{left:0;right:0;top:0;height:230px;background:var(--acid)}
+  .slotcut{position:absolute;left:50%;top:44px;width:150px;height:28px;border-radius:14px;transform:translateX(-50%);border:2px dashed rgba(14,15,17,.35)}
+  .d10 .brandline{left:56px;top:120px;font-size:26px}
+  .d10 .ev{left:56px;top:290px;font-family:'JetBrains Mono';font-size:22px;color:var(--muted);letter-spacing:.14em}
+  .d10 .nm{left:56px;right:56px;top:340px}
+  .d10 .nm .cond{font-size:120px}
+  .d10 .role{left:56px;top:620px;font-family:'JetBrains Mono';font-weight:700;font-size:24px;background:var(--ink);color:var(--acid);padding:10px 18px;border-radius:8px}
+  .d10 .org{left:56px;top:690px;font-size:26px;color:var(--muted)}
+  .d10 .ft{left:56px;right:56px;bottom:56px;display:flex;align-items:center;gap:16px;border-top:2px solid var(--line);padding-top:28px;
+    font-family:'JetBrains Mono';font-size:22px;color:var(--muted)}
+  .d10 .ft i{color:var(--ink)}
+  .d10b{background:#0e0f11;color:#fff}
+  .d10b .slotcut{border-color:rgba(255,255,255,.3)}
+  .d10b svg.net{position:absolute;inset:0;opacity:.4}
+  .d10b .qr{left:109px;top:180px;width:420px;height:420px;background:#fff;color:var(--ink);box-shadow:0 0 0 12px #0e0f11,0 0 0 15px var(--acid)}
+  .d10b .txt{left:56px;right:56px;top:670px;text-align:center}
+  .d10b .txt .cond{font-size:72px}
+  .d10b .txt .cond span{color:var(--acid)}
+  .d10b .txt p{font-family:'JetBrains Mono';font-size:22px;color:#8b8f98;margin-top:16px}
+  .d10b .ft{left:0;right:0;bottom:56px;text-align:center;font-family:'JetBrains Mono';font-weight:700;font-size:22px;color:var(--acid)}
+
+  /* ---------- 11 GYM (co-brand #2: attendance) ---------- */
+  .d11{background:var(--navy);color:#fff}
+  .d11 .biz{left:60px;top:58px}
+  .d11 .biz .cond{font-size:84px}
+  .d11 .biz .cond span{color:var(--sun)}
+  .d11 .biz small{display:block;font-family:'JetBrains Mono';font-size:22px;color:var(--sky);margin-top:12px}
+  .d11 .tap{right:56px;top:56px;color:var(--sun)}
+  .d11 .wk{left:60px;right:60px;top:300px}
+  .d11 .wk .lbl{font-family:'JetBrains Mono';font-size:20px;letter-spacing:.14em;color:var(--sky);margin-bottom:16px}
+  .d11 .wk .row{display:flex;gap:14px}
+  .d11 .wk span{width:82px;height:82px;border-radius:14px;border:3px solid rgba(124,200,255,.35);display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono';font-weight:700;font-size:26px;color:rgba(124,200,255,.6)}
+  .d11 .wk span.on{background:var(--sun);border-color:var(--sun);color:var(--navy)}
+  .d11 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:28px}
+  .d11 .nm small{display:block;font-weight:400;font-size:20px;color:var(--sky);margin-top:6px}
+  .d11 .pw{position:absolute;right:60px;bottom:60px;color:var(--sky)}
+  .d11 .pw b{color:#fff}
+  .d11b{background:#fff;color:var(--ink)}
+  .d11b .qr{left:60px;top:60px;width:300px;height:300px;color:var(--navy);box-shadow:0 0 0 4px var(--sun)}
+  .d11b .txt{left:410px;top:66px;right:60px}
+  .d11b .txt .cond{font-size:70px;color:var(--navy)}
+  .d11b .txt .cond span{color:var(--cobalt)}
+  .d11b .txt p{font-size:24px;line-height:1.45;color:var(--muted);margin-top:18px}
+  .d11b .txt p b{color:var(--ink)}
+  .d11b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    border-top:2px solid var(--line);padding-top:22px;font-size:20px;color:var(--muted)}
+
+  /* ---------- 12 HOLO (soft iridescent, premium tier) ---------- */
+  .d12,.d12b{color:var(--ink);background:
+    radial-gradient(circle at 15% 20%,rgba(182,242,74,.75),transparent 45%),
+    radial-gradient(circle at 85% 30%,rgba(124,200,255,.8),transparent 50%),
+    radial-gradient(circle at 60% 95%,rgba(35,64,230,.35),transparent 55%),
+    linear-gradient(120deg,#f4ffe0,#e9f7ff 50%,#eef1ff)}
+  .d12b{background:
+    radial-gradient(circle at 85% 80%,rgba(182,242,74,.6),transparent 45%),
+    radial-gradient(circle at 15% 70%,rgba(124,200,255,.7),transparent 50%),
+    linear-gradient(120deg,#eef1ff,#e9f7ff 50%,#f4ffe0)}
+  .d12::after,.d12b::after{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(115deg,rgba(255,255,255,0) 0 40px,rgba(255,255,255,.22) 40px 42px)}
+  .d12 .brandline{left:60px;top:56px;z-index:1}
+  .d12 .tier{right:60px;top:66px;z-index:1;font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.2em;
+    border:2px solid var(--ink);border-radius:99px;padding:8px 18px}
+  .d12 .rings{left:820px;top:330px;color:#fff;z-index:1}
+  .d12 .rings i{border-width:4px}
+  .d12 .rings i:nth-child(1){width:120px;height:120px}
+  .d12 .rings i:nth-child(2){width:220px;height:220px;opacity:.7}
+  .d12 .rings i:nth-child(3){width:330px;height:330px;opacity:.45}
+  .d12 .nm{left:60px;bottom:56px;z-index:1}
+  .d12 .nm .cond{font-size:88px}
+  .d12 .nm small{display:block;font-family:'JetBrains Mono';font-size:22px;color:var(--muted);margin-top:12px}
+  .d12b .card{left:60px;top:60px;right:60px;bottom:60px;z-index:1;background:rgba(255,255,255,.72);border-radius:26px;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.9)}
+  .d12b .qr{left:100px;top:100px;width:300px;height:300px;background:#fff;color:var(--ink);z-index:2}
+  .d12b .txt{left:450px;top:110px;right:100px;z-index:2}
+  .d12b .txt .cond{font-size:66px}
+  .d12b .txt p{font-size:24px;line-height:1.45;color:var(--muted);margin-top:16px}
+  .d12b .ft{left:100px;right:100px;bottom:96px;z-index:2;display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono';font-size:22px;color:var(--muted)}
+  .d12b .ft b{color:var(--ink)}
+
+  /* ---------- category bar + headers (preview sheet only) ---------- */
+  .cats{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;max-width:1100px;margin:0 auto 30px;padding:12px 0;background:#1b1c1f}
+  .cats button{font:500 14px 'JetBrains Mono',monospace;color:#c9ccd3;background:#25272b;border:1px solid #34373e;border-radius:99px;padding:8px 14px;cursor:pointer}
+  .cats button.on{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+  .cat{max-width:1100px;margin:0 auto 24px}
+  .cat-h{border-top:1px solid #34373e;padding-top:24px;margin-bottom:28px}
+  .cat-h span{font-family:'JetBrains Mono';font-size:14px;color:var(--acid)}
+  .cat-h .t{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:44px;line-height:1;text-transform:uppercase;color:#fff;margin-top:4px}
+  .cat-h p{font-size:15px;color:#8b8f98;margin-top:8px;max-width:640px}
+  .tierlabel{font-family:'JetBrains Mono';font-size:13px;color:#8b8f98;letter-spacing:.1em;margin:18px 0 8px}
+
+  /* ---------- 13 RECEIPT ---------- */
+  .d13{background:var(--tomato);color:var(--cream)}
+  .d13 .rcpt{left:70px;top:-30px;width:400px;height:610px;background:#fbfaf5;color:var(--ink);transform:rotate(-3deg);padding:76px 34px 0;
+    font-family:'JetBrains Mono';font-size:20px;line-height:1.55;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+  .d13 .rcpt::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;background:radial-gradient(circle at 10px 0,#fbfaf5 10px,transparent 10.5px) 0 0/20px 12px}
+  .rcpt .h{font-weight:800;font-size:24px;text-align:center}
+  .rcpt .c{text-align:center;color:var(--muted)}
+  .rcpt hr{border:0;border-top:2px dashed #c9c9c2;margin:12px 0}
+  .rcpt .li{display:flex;justify-content:space-between;white-space:pre}
+  .rcpt .st{letter-spacing:.18em;font-size:26px;text-align:center;color:var(--tomato)}
+  .d13 .side{left:540px;top:64px;right:60px}
+  .d13 .side .cond{font-size:118px}
+  .d13 .side small{display:block;font-family:'JetBrains Mono';font-size:22px;margin-top:22px;opacity:.85}
+  .d13 .tap{left:540px;bottom:56px}
+  .d13 .pw{position:absolute;right:60px;bottom:64px;color:rgba(255,246,220,.8)}
+  .d13 .pw b{color:var(--cream)}
+  .d13b{background:#fbfaf5;color:var(--ink)}
+  .d13b .qr{left:70px;top:70px;width:290px;height:290px;outline:2px dashed #c9c9c2;outline-offset:10px;border-radius:0}
+  .d13b .txt{left:420px;top:60px;right:60px;font-family:'JetBrains Mono';font-size:24px;line-height:1.6;overflow:hidden}
+  .d13b .eq{color:#c9c9c2;white-space:nowrap}
+  .d13b .txt .cond{font-family:'Archivo';font-size:76px;margin:10px 0 14px}
+  .d13b .txt .cond span{color:var(--tomato)}
+  .d13b .txt p{color:var(--muted);margin-bottom:10px}
+  .d13b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    border-top:2px dashed #c9c9c2;padding-top:22px;font-family:'JetBrains Mono';font-size:20px;color:var(--muted)}
+
+  /* ---------- 14 KRAFT ---------- */
+  .d14,.d14b{color:#3b2615;background:radial-gradient(rgba(60,35,15,.09) 1px,transparent 1.6px) 0 0/7px 7px,
+    radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.6px) 3px 4px/11px 11px,linear-gradient(160deg,#d6b48a,#bd976a)}
+  .d14 .brand{left:60px;top:60px}
+  .d14 .brand .w,.d14b .txt .cond{font-family:'Archivo';font-stretch:125%;font-weight:800;letter-spacing:-.01em;line-height:1}
+  .d14 .brand .w{font-size:58px}
+  .d14 .brand small{display:block;font-size:24px;margin-top:12px;opacity:.8}
+  .d14 .stain{position:absolute;left:650px;top:140px;width:290px;height:290px}
+  .d14 .stain > i{position:absolute;inset:0;border-radius:50%;border:13px solid rgba(92,52,22,.3)}
+  .d14 .stain > i:nth-child(2){inset:8px -7px -4px 11px;border-width:4px;border-color:rgba(92,52,22,.24)}
+  .d14 .stain > i:nth-child(3){inset:-12px 6px 16px -5px;border-width:2px;border-color:rgba(92,52,22,.18);background:rgba(92,52,22,.06)}
+  .d14 .stain .tap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;
+    font-family:'JetBrains Mono';font-weight:800;font-size:20px;letter-spacing:.2em}
+  .d14 .stamp{left:380px;top:300px;width:180px;height:180px;border-radius:50%;border:4px solid #a8392a;box-shadow:inset 0 0 0 6px transparent,inset 0 0 0 9px #a8392a;
+    color:#a8392a;transform:rotate(-14deg);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono';font-weight:800;font-size:18px;line-height:1.15;text-align:center;opacity:.85}
+  .d14 .stamp b{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:58px;line-height:1}
+  .d14 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:28px}
+  .d14 .nm small{display:block;font-weight:400;font-size:20px;opacity:.75;margin-top:6px}
+  .d14 .pw,.d14b .pw{color:rgba(59,38,21,.75)}
+  .d14 .pw b,.d14b .pw b{color:#3b2615}
+  .d14 .pw{position:absolute;right:60px;bottom:60px}
+  .d14b .label{left:70px;top:120px;width:330px;height:330px;background:#fbf6ea;transform:rotate(-2deg);box-shadow:0 10px 24px rgba(60,35,15,.25);padding:14px}
+  .d14b .label .qr{width:100%;height:100%;color:#2a1a0d}
+  .d14b .tape{left:165px;top:92px;width:150px;height:44px;background:rgba(255,255,255,.45);transform:rotate(-7deg)}
+  .d14b .txt{left:470px;top:120px;right:60px}
+  .d14b .txt .cond{font-size:52px}
+  .d14b .txt .cond span{color:#a8392a}
+  .d14b .txt p{font-size:24px;line-height:1.45;opacity:.85;margin-top:20px}
+  .d14b .ft{left:60px;right:60px;bottom:48px;display:flex;justify-content:space-between;align-items:center;font-size:20px}
+
+  /* ---------- 15 PLATE ---------- */
+  .d15,.d15b{background:#121316;color:#fff}
+  .d15 svg,.d15b svg{position:absolute;inset:0}
+  .d15 .gym{right:60px;top:60px;font-family:'JetBrains Mono';font-weight:700;font-size:22px;color:var(--sun);letter-spacing:.12em}
+  .d15 .big{left:600px;top:110px;font-size:230px}
+  .d15 .lbl{left:604px;top:330px;font-family:'JetBrains Mono';font-size:22px;color:var(--sun);letter-spacing:.12em}
+  .d15 .nm{left:604px;top:410px;font-family:'JetBrains Mono';font-weight:700;font-size:30px}
+  .d15 .nm small{display:block;font-weight:400;font-size:20px;color:#8b8f98;margin-top:6px}
+  .d15 .pw,.d15b .pw{color:#8b8f98}
+  .d15 .pw b,.d15b .pw b{color:#fff}
+  .d15 .pw{position:absolute;right:60px;bottom:60px}
+  .d15b .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--ink)}
+  .d15b .txt{left:400px;top:66px;width:290px}
+  .d15b .txt .cond{font-size:66px}
+  .d15b .txt .cond span{color:var(--sun)}
+  .d15b .txt p{font-family:'JetBrains Mono';font-size:20px;color:#8b8f98;margin-top:18px;line-height:1.5}
+  .d15b .ft{left:60px;bottom:60px}
+
+  /* ---------- 16 STREAK ---------- */
+  .d16,.d16b{background:#0e0f11;color:#fff}
+  .d16 .biz{left:60px;top:56px}
+  .d16 .biz .cond{font-size:64px}
+  .d16 .tap{right:56px;top:56px;color:var(--sun)}
+  .d16 .heat{left:60px;top:180px;display:grid;grid-template-rows:repeat(7,24px);grid-auto-flow:column;grid-auto-columns:24px;gap:5px}
+  .d16 .heat i{border-radius:5px}
+  .d16 .legend{left:60px;top:400px;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98}
+  .d16 .legend i{width:20px;height:20px;border-radius:4px}
+  .d16 .legend b{color:#fff;font-weight:500}
+  .d16 .streak{right:60px;top:170px;text-align:right}
+  .d16 .streak .cond{font-size:170px;color:var(--sun)}
+  .d16 .streak small{display:block;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98;line-height:1.3}
+  .d16 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:28px}
+  .d16 .nm small{display:block;font-weight:400;font-size:20px;color:#8b8f98;margin-top:6px}
+  .d16 .pw,.d16b .pw{color:#8b8f98}
+  .d16 .pw b,.d16b .pw b{color:#fff}
+  .d16 .pw{position:absolute;right:60px;bottom:60px}
+  .d16b .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--ink)}
+  .d16b .txt{left:410px;top:66px;right:60px}
+  .d16b .txt .cond{font-size:76px}
+  .d16b .txt .cond span{color:var(--sun)}
+  .d16b .txt p{font-family:'JetBrains Mono';font-size:22px;color:#8b8f98;margin-top:20px;line-height:1.5}
+  .d16b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;
+    border-top:2px solid #2a2d33;padding-top:22px;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98}
+
+  /* ---------- 17 TICKET (die-cut notches at the perforation) ---------- */
+  .d17{-webkit-mask:radial-gradient(circle 26px at 740px 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 26px at 740px 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+    background:linear-gradient(90deg,var(--cobalt) 740px,var(--acid) 740px);color:#fff}
+  .d17b{-webkit-mask:radial-gradient(circle 26px at 271px 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 26px at 271px 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+    background:linear-gradient(90deg,var(--cobalt) 271px,#fff 271px);color:var(--ink)}
+  .d17 .perf,.d17b .perf{position:absolute;top:40px;bottom:40px;border-left:3px dashed rgba(14,15,17,.3)}
+  .d17 .perf{left:739px}
+  .d17b .perf{left:270px;border-color:rgba(255,255,255,.4)}
+  .d17 .adm{left:60px;top:56px;font-family:'JetBrains Mono';font-size:22px;letter-spacing:.2em;opacity:.75}
+  .d17 .ev{left:56px;top:100px;font-size:130px}
+  .d17 .ev span{color:var(--acid)}
+  .d17 .dt{left:60px;top:240px;font-family:'JetBrains Mono';font-size:24px}
+  .d17 .grid{left:60px;top:310px;display:flex;gap:48px;font-family:'JetBrains Mono'}
+  .d17 .grid small{display:block;font-size:18px;letter-spacing:.14em;opacity:.7}
+  .d17 .grid b{font-size:36px}
+  .d17 .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:30px}
+  .d17 .nm small{display:block;font-weight:400;font-size:20px;opacity:.7;margin-top:6px;letter-spacing:.14em;text-transform:uppercase}
+  .d17 .stub{left:740px;right:0;top:0;bottom:0;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    font-family:'JetBrains Mono';text-align:center}
+  .d17 .stub b{font-size:24px;line-height:1.3}
+  .d17 .stub span{font-size:20px;opacity:.7}
+  .d17b .stub{left:0;width:271px;top:0;bottom:0;display:flex;align-items:center;justify-content:center;color:#fff}
+  .d17b .stub span{transform:rotate(-90deg);white-space:nowrap;font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.14em}
+  .d17b .qr{left:330px;top:60px;width:290px;height:290px;box-shadow:0 0 0 2px var(--line)}
+  .d17b .txt{left:660px;top:66px;right:50px}
+  .d17b .txt .cond{font-size:54px}
+  .d17b .txt p{font-size:22px;line-height:1.45;color:var(--muted);margin-top:16px}
+  .d17b .ft{left:330px;right:50px;bottom:52px;display:flex;justify-content:space-between;border-top:2px solid var(--line);padding-top:22px;
+    font-family:'JetBrains Mono';font-size:20px;color:var(--muted)}
+  .d17b .ft b{color:var(--ink)}
+
+  /* ---------- 18 TIER SET (one layout; each tier swaps the material via variables) ---------- */
+  .tier{background:var(--tbg);color:var(--tfg)}
+  .tier::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--tsheen,none)}
+  .t-member{--tbg:#f6f6f4;--tfg:#0e0f11;--tmut:#5b5e66;--tbar:var(--acid);--tring:#0e0f11}
+  .t-silver{--tbg:linear-gradient(125deg,#e8ebef 0%,#b6bcc5 30%,#f5f7f9 52%,#a3a9b3 78%,#dde1e6 100%);--tfg:#1b1e23;--tmut:#454a53;--tbar:#1b1e23;--tring:#1b1e23;
+    --tsheen:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 1px,transparent 1px 3px)}
+  .t-gold{--tbg:linear-gradient(125deg,#f3dc93 0%,#c49a3f 30%,#fbe9b4 52%,#b0832a 78%,#e8cb7c 100%);--tfg:#2b1f05;--tmut:#57400e;--tbar:#2b1f05;--tring:#2b1f05;
+    --tsheen:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 1px,transparent 1px 3px)}
+  .t-black{--tbg:radial-gradient(circle at 80% 15%,#22252b,#0b0c0e 60%);--tfg:#fff;--tmut:#8b8f98;--tbar:linear-gradient(90deg,var(--acid),var(--sky),#b49cff);--tring:#fff;
+    --tsheen:linear-gradient(115deg,transparent 38%,rgba(182,242,74,.07) 48%,rgba(124,200,255,.09) 56%,transparent 68%)}
+  .t-black::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;z-index:1;background:linear-gradient(180deg,var(--acid),var(--sky),#b49cff)}
+  .t-black .tw{background:linear-gradient(100deg,var(--acid),var(--sky) 55%,#b49cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tier .abs,.tier .rings,.tier .core{z-index:2}
+  .tier .brandline{left:60px;top:56px;font-size:24px}
+  .tier .lv{right:60px;top:68px;display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono';font-size:20px;color:var(--tmut);letter-spacing:.1em}
+  .tier .lv i{width:20px;height:20px;transform:rotate(45deg);border:2px solid var(--tfg);margin-left:4px}
+  .tier .lv i.on{background:var(--tfg)}
+  .tier .tw{left:52px;top:200px;font-size:160px}
+  .tier .rings{left:830px;top:380px;color:var(--tring)}
+  .tier .rings i:nth-child(1){width:110px;height:110px;opacity:.9}
+  .tier .rings i:nth-child(2){width:200px;height:200px;opacity:.45}
+  .tier .rings i:nth-child(3){width:300px;height:300px;opacity:.2}
+  .tier .core{position:absolute;left:810px;top:360px;width:40px;height:40px;border-radius:50%;background:var(--tfg)}
+  .t-black .core{background:var(--acid)}
+  .tier .nm{left:60px;bottom:56px;font-family:'JetBrains Mono';font-weight:700;font-size:30px}
+  .tier .nm small{display:block;font-weight:400;font-size:20px;color:var(--tmut);margin-top:6px}
+  .tier .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--ink)}
+  .tier .pg{left:410px;top:70px;right:60px}
+  .tier .pg .l{font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.1em}
+  .tier .pg .bar{height:14px;border-radius:7px;background:rgba(127,127,127,.28);margin:14px 0 10px;overflow:hidden}
+  .tier .pg .bar b{display:block;height:100%;background:var(--tbar);border-radius:7px}
+  .t-member .pg .bar b{box-shadow:inset 0 0 0 2px var(--ink)}
+  .tier .pg small{font-family:'JetBrains Mono';font-size:20px;color:var(--tmut)}
+  .tier .pg ul{list-style:none;margin-top:28px;font-size:26px;font-weight:600;line-height:1.7}
+  .tier .pg li::before{content:"+ ";font-family:'JetBrains Mono';color:var(--tmut)}
+  .tier .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:22px;color:var(--tmut)}
+  .tier .ft b{color:var(--tfg)}
+</style>
+</head>
+<body>
+<header class="sheet-h">
+  <h1>TYPE: NODES · NFC cards</h1>
+  <p>CR80 · 85.6 × 54 mm · faces at 1011 × 638 (300 dpi, trim). Each QR encodes its <code>data-qr</code> URL; swap it per card.
+    Add 3 mm bleed at print and keep foil/metal inks away from the antenna area.</p>
+</header>
+
+<nav class="cats"><button class="on" data-f="all">All</button><button data-f="members">TYPE: NODES members</button><button data-f="cafes">Cafés &amp; restaurants</button><button data-f="gyms">Gyms &amp; fitness</button><button data-f="events">Events &amp; badges</button><button data-f="tiers">Tiers</button><button data-f="codenon">CODE: NON style</button></nav>
+
+<div class="cat" data-cat="members">
+<div class="cat-h"><span>01</span><div class="t">TYPE: NODES members</div><p>Our own brand up front: member cards, demo cards, giveaways.</p></div>
+
+<!-- 01 -->
+<section class="set">
+  <h2><b>01</b>Ink</h2>
+  <p>Flagship member card. Matte black, acid NFC ripple marks the tap spot; the ASCII wordmark sits faintly on the back.</p>
+  <div class="pair">
+    <div class="slot" id="d1-front"><div class="face d1">
+      <div class="dots"></div>
+      <div class="rings"><i></i><i></i><i></i><i></i></div><div class="core"></div>
+      <div class="abs brandline" style="left:60px;top:56px"><i data-tn-mark style="width:76px;height:76px"></i><div>TYPE: NODES<small>member</small></div></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · GOLD</small></div>
+      <i class="abs tap" data-icon="tap" data-size="64"></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d1-back"><div class="face d1b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Tap it.<br><span>Or scan it.</span></div>
+        <p>Hold your phone to the card, or scan the code to open your membership.</p>
+        <div class="u">typenodes.com/c/CN-0042</div>
+      </div>
+      <img class="abs tn-wordmark wm" src="assets/typenodes-wordmark.png" alt="TYPE: NODES">
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="set">
+  <h2><b>02</b>Nodes</h2>
+  <p>The "nodes" hint made literal: a quiet network with one lit path that ends at the antenna. Back joins the QR into the same graph.</p>
+  <div class="pair">
+    <div class="slot" id="d2-front"><div class="face d2">
+      <svg class="net" data-net="7" data-lit="1" viewBox="0 0 1011 638"></svg>
+      <div class="abs brandline"><i data-tn-mark style="width:64px;height:64px"></i><div>TYPE: NODES</div></div>
+      <div class="abs nm">Aria Tanaka<small>node CN-0042</small></div>
+      <div class="abs hint">tap here ↑</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d2-back"><div class="face d2b">
+      <svg class="net" data-net="11" viewBox="0 0 1011 638"></svg>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Scan to<br><span>connect.</span></div>
+        <p>or tap the front<br><b>typenodes.com</b></p>
+      </div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="set">
+  <h2><b>03</b>Paper</h2>
+  <p>Light, minimal, cheapest to print. The acid edge band wraps: left on the front, right on the back, so it lines up when flipped.</p>
+  <div class="pair">
+    <div class="slot" id="d3-front"><div class="face d3">
+      <div class="band"><span>TYPE: NODES · TAP · TYPE: NODES · TAP</span></div>
+      <div class="abs brandline"><i data-tn-mark style="width:64px;height:64px"></i><div>TYPE: NODES</div></div>
+      <div class="abs lbl">MEMBER</div>
+      <i class="abs tap" data-icon="tap" data-size="200" data-stroke="1.4"></i>
+      <div class="abs nm"><div class="cond">Aria Tanaka</div><small>CN-0042 · since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d3-back"><div class="face d3b">
+      <div class="band"><span>TYPE: NODES · SCAN · TYPE: NODES · SCAN</span></div>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <ol class="abs">
+        <li><span>01</span><div>Tap the card<small>to the back of your phone</small></div></li>
+        <li><span>02</span><div>or scan the code<small>with any camera app</small></div></li>
+      </ol>
+      <div class="abs ft"><span>No app needed</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="set">
+  <h2><b>04</b>Terminal</h2>
+  <p>For the dev-leaning crowd: the card reads like a prompt. Back flips to acid with an ink QR (dark-on-light, scans reliably).</p>
+  <div class="pair">
+    <div class="slot" id="d4-front"><div class="face d4">
+      <div class="abs bar"><span>type:nodes ~ /members</span><span>NFC ●</span></div>
+<pre class="abs"><span class="p">$</span> type:nodes --whoami
+<span class="k">name  </span> Aria Tanaka
+<span class="k">node  </span> CN-0042
+<span class="k">status</span> <span class="ok">● active</span>
+<span class="p">$</span> tap<span class="cur"></span></pre>
+      <i data-tn-mark></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d4-back"><div class="face d4b">
+<pre class="abs"><b>$ scan</b>
+→ opens your
+  membership
+  in the browser
+
+<b>$ tap</b>
+→ same thing,
+  faster</pre>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs ft"><span>TYPE: NODES</span><span>typenodes.com</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="set">
+  <h2><b>05</b>Acid</h2>
+  <p>Loudest option, for events and launch drops. One word front, rings bleeding off the corner where the antenna sits.</p>
+  <div class="pair">
+    <div class="slot" id="d5-front"><div class="face d5">
+      <div class="rings"><i></i><i></i><i></i><i></i></div>
+      <div class="abs brandline"><i data-tn-mark style="width:64px;height:64px"></i><div>TYPE: NODES</div></div>
+      <div class="abs cond big">Tap.</div>
+      <div class="abs id">CN-0042<small>Aria Tanaka</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d5-back"><div class="face d5b">
+      <div class="abs cond">One tap.<br><span>You're in.</span></div>
+      <p class="abs">Tap the card to your phone, or scan the code. No app, no sign-up form.</p>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs ft"><span>TYPE: NODES by CODE: NON</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="set">
+  <h2><b>07</b>Coil</h2>
+  <p>The NFC antenna that's already inside the card, drawn on the outside. Traces end in nodes; the brand sits in the middle of the loop.</p>
+  <div class="pair">
+    <div class="slot" id="d7-front"><div class="face d7">
+      <svg data-coil viewBox="0 0 1011 638"></svg>
+      <div class="abs mid"><div class="brandline"><i data-tn-mark style="width:96px;height:96px"></i></div><div class="brandline">TYPE: NODES</div></div>
+      <div class="abs nm"><b>Aria Tanaka</b> · CN-0042</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d7-back"><div class="face d7b">
+      <svg data-coil data-dim viewBox="0 0 1011 638"></svg>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Tap inside<br><span>the loop.</span></div>
+        <p>or scan the code<br>typenodes.com</p>
+      </div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="set">
+  <h2><b>09</b>Colon</h2>
+  <p>The most subtle hint: just the ":" from TYPE: NODES, blown up. The top dot is where you tap. Reads as abstract art to anyone who doesn't know the brand.</p>
+  <div class="pair">
+    <div class="slot" id="d9-front"><div class="face d9">
+      <div class="rings"><i></i><i></i><i></i></div>
+      <div class="colon"><i></i><i></i></div>
+      <div class="abs tl">type: nodes</div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d9-back"><div class="face d9b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="colon"><i></i><i></i></div>
+      <div class="abs txt">
+        <div class="cond">Tap the<br>top dot.</div>
+        <p>Or scan the code. Either way, you're checked in.</p>
+      </div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<div class="cat" data-cat="cafes">
+<div class="cat-h"><span>02</span><div class="t">Cafés &amp; restaurants</div><p>Loyalty stamps. The café's brand leads; TYPE: NODES is a small &ldquo;powered by&rdquo;.</p></div>
+
+<!-- 06 -->
+<section class="set">
+  <h2><b>06</b>Corner Café</h2>
+  <p>White-label for client businesses (café loyalty shown). Their brand leads; TYPE: NODES is only a small "powered by" mark. Change <code>--brand</code> per client.</p>
+  <div class="pair">
+    <div class="slot" id="d6-front"><div class="face d6">
+      <div class="abs biz"><div class="cond">The Corner Café</div><small>coffee &amp; bakes · since 2019</small></div>
+      <i class="abs tap" data-icon="tap" data-size="72"></i>
+      <div class="abs stamps"><div class="lbl">TAP EACH VISIT · 10 = ONE FREE</div>
+        <div class="row"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042</small></div>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d6-back"><div class="face d6b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Tap at the <span>counter.</span></div>
+        <p><b>Your stamps live on the card.</b> Scan the code to see your rewards, or to move them to a new card if this one goes missing.</p>
+      </div>
+      <div class="abs ft"><span>12 Mabini St · open 7am–7pm</span><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="set">
+  <h2><b>13</b>Receipt</h2>
+  <p>The loyalty card as a till receipt: every visit is a line item, the stamp count is the total. Tomato is the café's colour; swap per client.</p>
+  <div class="pair">
+    <div class="slot" id="d13-front"><div class="face d13">
+      <div class="abs rcpt">
+        <div class="h">THE CORNER CAFÉ</div>
+        <div class="c">loyalty · card #0042</div>
+        <hr>
+        <div class="li"><span>02 NOV  flat white</span><span>★</span></div>
+        <div class="li"><span>29 OCT  oat latte</span><span>★</span></div>
+        <div class="li"><span>24 OCT  cortado</span><span>★</span></div>
+        <div class="li"><span>20 OCT  mocha</span><span>★</span></div>
+        <hr>
+        <div class="li"><b>STAMPS</b><b>4 / 10</b></div>
+        <div class="st">●●●●○○○○○○</div>
+        <hr>
+        <div class="c">*** TAP AT THE TILL ***</div>
+      </div>
+      <div class="abs side"><div class="cond">Tap.<br>Sip.<br>Repeat.</div><small>Aria Tanaka · CN-0042</small></div>
+      <i class="abs tap" data-icon="tap" data-size="64"></i>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d13-back"><div class="face d13b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="eq">================================</div>
+        <div class="cond">Your tab,<br><span>online.</span></div>
+        <p>scan → stamps, rewards<br>and your visit history</p>
+        <div class="eq">================================</div>
+      </div>
+      <div class="abs ft"><span>12 Mabini St · open 7am–7pm</span><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="set">
+  <h2><b>14</b>Kraft</h2>
+  <p>Brown kraft stock for an artisan café. The coffee-cup ring stain is the NFC ripple; a rubber stamp carries the offer.</p>
+  <div class="pair">
+    <div class="slot" id="d14-front"><div class="face d14">
+      <div class="abs brand"><div class="w">BEAN &amp; BLOOM</div><small>small-batch coffee · Kapitolyo</small></div>
+      <div class="stain"><i></i><i></i><i></i><div class="tap"><i data-icon="tap" data-size="56"></i>TAP</div></div>
+      <div class="abs stamp">EVERY<br><b>8TH</b>CUP FREE</div>
+      <div class="abs nm">Aria Tanaka<small>card CN-0042</small></div>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d14-back"><div class="face d14b">
+      <div class="abs label"><div class="qr" data-qr="https://typenodes.com/c/CN-0042"></div></div>
+      <div class="abs tape"></div>
+      <div class="abs txt"><div class="cond">Every 8th<br><span>cup's on us.</span></div>
+        <p>Tap the card at the counter, or scan to check your stamps.</p></div>
+      <div class="abs ft"><span>Bean &amp; Bloom · open daily</span><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<div class="cat" data-cat="gyms">
+<div class="cat-h"><span>03</span><div class="t">Gyms &amp; fitness</div><p>Attendance and check-ins at the door.</p></div>
+
+<!-- 11 -->
+<section class="set">
+  <h2><b>11</b>Iron Hour</h2>
+  <p>Second client example, attendance instead of loyalty. CODE: NON navy + sun; the week strip shows check-ins at a glance.</p>
+  <div class="pair">
+    <div class="slot" id="d11-front"><div class="face d11">
+      <div class="abs biz"><div class="cond">Iron Hour <span>Gym</span></div><small>24/7 · members only</small></div>
+      <i class="abs tap" data-icon="tap" data-size="72"></i>
+      <div class="abs wk"><div class="lbl">THIS WEEK · 4 CHECK-INS</div>
+        <div class="row"><span class="on">M</span><span class="on">T</span><span>W</span><span class="on">T</span><span class="on">F</span><span>S</span><span>S</span></div></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · 112 visits</small></div>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d11-back"><div class="face d11b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Tap the reader<br><span>at the door.</span></div>
+        <p><b>No card at the desk? No problem.</b> Scan the code to check in from your phone or see your visit history.</p>
+      </div>
+      <div class="abs ft"><span>Lost card? Tell the front desk.</span><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="set">
+  <h2><b>15</b>Plate</h2>
+  <p>A bumper plate: the hub is the tap spot, the visit count is the weight. Plate peeks in from the other edge on the back.</p>
+  <div class="pair">
+    <div class="slot" id="d15-front"><div class="face d15">
+      <svg data-plate="250" viewBox="0 0 1011 638"></svg>
+      <div class="abs gym">IRON HOUR GYM</div>
+      <div class="abs cond big">112</div>
+      <div class="abs lbl">VISITS · TAP THE HUB</div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · member since 2024</small></div>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d15-back"><div class="face d15b">
+      <svg data-plate="1011" viewBox="0 0 1011 638"></svg>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt"><div class="cond">Scan to<br>log a<br><span>session.</span></div><p>or tap the hub on the front</p></div>
+      <div class="abs ft"><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="set">
+  <h2><b>16</b>Streak</h2>
+  <p>Six months of check-ins as a contribution heatmap: a nod to the "code" side of TYPE: NODES, and motivating for members.</p>
+  <div class="pair">
+    <div class="slot" id="d16-front"><div class="face d16">
+      <div class="abs biz"><div class="cond">Iron Hour Gym</div></div>
+      <i class="abs tap" data-icon="tap" data-size="64"></i>
+      <div class="abs heat" data-heat="5"></div>
+      <div class="abs legend">less <i style="background:#24262b"></i><i style="background:#5c4a14"></i><i style="background:#a8831f"></i><i style="background:#ffc83d"></i> more · <b>112 check-ins in 26 weeks</b></div>
+      <div class="abs streak"><div class="cond">9</div><small>day<br>streak</small></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042</small></div>
+      <div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d16-back"><div class="face d16b">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt"><div class="cond">Don't break<br><span>the chain.</span></div><p>scan to see your full history,<br>or tap the reader at the door</p></div>
+      <div class="abs ft"><span>current streak · 9 days</span><div class="pw">powered by <i data-tn-mark></i><b>TYPE: NODES</b></div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<div class="cat" data-cat="events">
+<div class="cat-h"><span>04</span><div class="t">Events &amp; badges</div><p>Badges, tickets and contact swaps.</p></div>
+
+<!-- 10 -->
+<section class="set">
+  <h2><b>10</b>Badge</h2>
+  <p>Portrait CR80 for events, staff and attendance. Tap to swap contacts or check in at the door; the dashed slot marks the lanyard punch.</p>
+  <div class="pair">
+    <div class="slot" id="d10-front" data-portrait><div class="face portrait d10">
+      <div class="abs top"></div><div class="slotcut"></div>
+      <div class="abs brandline"><i data-tn-mark style="width:64px;height:64px"></i><div>TYPE: NODES</div></div>
+      <div class="abs ev">DEMO DAY · 2026</div>
+      <div class="abs nm"><div class="cond">Aria<br>Tanaka</div></div>
+      <div class="abs role">SPEAKER</div>
+      <div class="abs org">The Corner Café</div>
+      <div class="abs ft"><i data-icon="tap" data-size="40"></i>tap to swap contacts</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d10-back" data-portrait><div class="face portrait d10b">
+      <svg class="net" data-net="23" viewBox="0 0 638 1011"></svg>
+      <div class="slotcut"></div>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt"><div class="cond">Save my<br><span>contact.</span></div><p>scan, or tap the front</p></div>
+      <div class="abs ft">typenodes.com</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="set">
+  <h2><b>17</b>Ticket</h2>
+  <p>Event ticket with a perforated stub and die-cut notches. Tap at the gate; the stub stays on the left after you flip it.</p>
+  <div class="pair">
+    <div class="slot" id="d17-front"><div class="face d17">
+      <div class="abs adm">ADMIT ONE</div>
+      <div class="abs cond ev">Node<span>/</span>Conf</div>
+      <div class="abs dt">14 NOV 2026 · DOORS 9:00 · MANILA</div>
+      <div class="abs grid"><div><small>GATE</small><b>B</b></div><div><small>ZONE</small><b>GA</b></div><div><small>DAY</small><b>1 + 2</b></div></div>
+      <div class="abs nm">Aria Tanaka<small>attendee</small></div>
+      <div class="perf"></div>
+      <div class="abs stub"><i data-icon="tap" data-size="80"></i><b>TAP AT<br>THE GATE</b><span>No. 0042</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d17-back"><div class="face d17b">
+      <div class="abs stub"><span>KEEP THIS STUB · No. 0042</span></div>
+      <div class="perf"></div>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt"><div class="cond">Your ticket<br>is the card.</div><p>Tap at the gate. Scan to put the schedule on your phone.</p></div>
+      <div class="abs ft"><span>NODE/CONF 26</span><b>TYPE: NODES</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<div class="cat" data-cat="tiers">
+<div class="cat-h"><span>05</span><div class="t">Tiers</div><p>Same member, different levels: the card's material changes as they climb.</p></div>
+
+<!-- 18 -->
+<section class="set">
+  <h2><b>18</b>Tier set</h2>
+  <p>One layout, four materials: Member (paper) → Silver → Gold → Black. Diamonds show the level; the back shows progress to the next tier and what it unlocks.</p>
+  <div class="tierlabel">MEMBER · 1 / 4</div>
+  <div class="pair">
+    <div class="slot" id="d18a-front"><div class="face tier t-member">
+      <div class="abs brandline"><i data-tn-mark style="width:56px;height:56px"></i><div>TYPE: NODES</div></div>
+      <div class="abs lv">TIER 1/4 <i class="on"></i><i></i><i></i><i></i></div>
+      <div class="abs cond tw">Member</div>
+      <div class="rings"><i></i><i></i><i></i></div><div class="core"></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d18a-back"><div class="face tier t-member">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs pg"><div class="l">MEMBER → SILVER</div><div class="bar"><b style="width:40%"></b></div><small>8 / 20 visits to Silver</small>
+        <ul><li>stamp card on every visit</li><li>member-only offers</li><li>one-tap check-in</li></ul></div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="tierlabel">SILVER · 2 / 4</div>
+  <div class="pair">
+    <div class="slot" id="d18b-front"><div class="face tier t-silver">
+      <div class="abs brandline"><i data-tn-mark style="width:56px;height:56px"></i><div>TYPE: NODES</div></div>
+      <div class="abs lv">TIER 2/4 <i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <div class="abs cond tw">Silver</div>
+      <div class="rings"><i></i><i></i><i></i></div><div class="core"></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d18b-back"><div class="face tier t-silver">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs pg"><div class="l">SILVER → GOLD</div><div class="bar"><b style="width:62%"></b></div><small>31 / 50 visits to Gold</small>
+        <ul><li>5% off every visit</li><li>priority booking</li><li>a birthday treat</li></ul></div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="tierlabel">GOLD · 3 / 4</div>
+  <div class="pair">
+    <div class="slot" id="d18c-front"><div class="face tier t-gold">
+      <div class="abs brandline"><i data-tn-mark style="width:56px;height:56px"></i><div>TYPE: NODES</div></div>
+      <div class="abs lv">TIER 3/4 <i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="abs cond tw">Gold</div>
+      <div class="rings"><i></i><i></i><i></i></div><div class="core"></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d18c-back"><div class="face tier t-gold">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs pg"><div class="l">GOLD → BLACK</div><div class="bar"><b style="width:74%"></b></div><small>74 / 100 visits to Black</small>
+        <ul><li>10% off every visit</li><li>skip the line</li><li>a guest pass every month</li></ul></div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="tierlabel">BLACK · 4 / 4</div>
+  <div class="pair">
+    <div class="slot" id="d18d-front"><div class="face tier t-black">
+      <div class="abs brandline"><i data-tn-mark style="width:56px;height:56px"></i><div>TYPE: NODES</div></div>
+      <div class="abs lv">TIER 4/4 <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="abs cond tw">Black</div>
+      <div class="rings"><i></i><i></i><i></i></div><div class="core"></div>
+      <div class="abs nm">Aria Tanaka<small>CN-0042 · since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d18d-back"><div class="face tier t-black">
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs pg"><div class="l">BLACK · TOP TIER</div><div class="bar"><b style="width:100%"></b></div><small>every perk unlocked</small>
+        <ul><li>15% off, always</li><li>free guest passes</li><li>invite-only events</li></ul></div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="set">
+  <h2><b>12</b>Holo</h2>
+  <p>Soft iridescent wash in the brand colours with a foil-like sheen. A premium / top-tier card; prints well as a holographic film overlay.</p>
+  <div class="pair">
+    <div class="slot" id="d12-front"><div class="face d12">
+      <div class="rings"><i></i><i></i><i></i></div>
+      <div class="abs brandline"><i data-tn-mark style="width:64px;height:64px"></i><div>TYPE: NODES</div></div>
+      <div class="abs tier">PLATINUM</div>
+      <div class="abs nm"><div class="cond">Aria Tanaka</div><small>CN-0042 · member since 2026</small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d12-back"><div class="face d12b">
+      <div class="abs card"></div>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt"><div class="cond">Your card,<br>your link.</div><p>Tap it to a phone or scan the code to open your profile.</p></div>
+      <div class="abs ft"><span>TYPE: NODES</span><b>typenodes.com</b></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<div class="cat" data-cat="codenon">
+<div class="cat-h"><span>06</span><div class="t">CODE: NON style</div><p>Navy, sky and sun from the CODE: NON palette. Dedicated CODE: NON cards live on <code>cards-codenon-design</code>.</p></div>
+
+<!-- 08 -->
+<section class="set">
+  <h2><b>08</b>Blueprint</h2>
+  <p>CODE: NON navy + sky. The card drawn as its own technical drawing: real dimensions, antenna outline, a title block with the member ID.</p>
+  <div class="pair">
+    <div class="slot" id="d8-front"><div class="face d8">
+      <svg data-blueprint viewBox="0 0 1011 638"></svg>
+      <div class="abs brandline"><i data-tn-mark style="width:60px;height:60px"></i><div>TYPE: NODES</div></div>
+      <div class="abs call" style="left:84px;top:236px"><b>NFC</b> · tap zone</div>
+      <div class="abs call" style="left:84px;top:380px">member<br><b style="font-size:36px">Aria Tanaka</b></div>
+      <div class="tb"><span>DWG</span><span>CN-0042</span><span>REV</span><span>A · gold</span><span>SCALE</span><span>1:1</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="d8-back"><div class="face d8b">
+      <svg data-blueprint data-back viewBox="0 0 1011 638"></svg>
+      <div class="abs qr" data-qr="https://typenodes.com/c/CN-0042"></div>
+      <div class="abs txt">
+        <div class="cond">Built to<br><span>be tapped.</span></div>
+        <p>← scan, or tap the front.<br>typenodes.com/c/CN-0042</p>
+      </div>
+      <div class="tb"><span>BY</span><span>CODE: NON</span><span>CHIP</span><span>NFC-A</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+</div>
+
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  // QR: dark modules as one path in currentColor, 4-module quiet zone built in.
+  document.querySelectorAll('[data-qr]').forEach(function (el) {
+    var q = qrcode(0, 'M'); q.addData(el.getAttribute('data-qr')); q.make();
+    var n = q.getModuleCount(), d = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + c + ' ' + r + 'h1v1h-1z';
+    el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 ' + (n + 8) + ' ' + (n + 8) +
+      '" shape-rendering="crispEdges"><path fill="currentColor" d="' + d + '"/></svg>';
+    if (!el.style.background && getComputedStyle(el).backgroundColor === 'rgba(0, 0, 0, 0)') el.style.background = 'transparent';
+  });
+
+  // Node network: jittered grid sized to the viewBox, seeded so every render matches. data-lit draws the acid path to the tap spot.
+  document.querySelectorAll('svg[data-net]').forEach(function (svg) {
+    var s = +svg.getAttribute('data-net');
+    function rnd() { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
+    var vb = svg.viewBox.baseVal, C = Math.round(vb.width / 126), R = Math.round(vb.height / 127), P = [];
+    var sx = (vb.width - 80) / (C - 1), sy = (vb.height - 100) / (R - 1);
+    for (var y = 0; y < R; y++) { P[y] = []; for (var x = 0; x < C; x++)
+      P[y][x] = [40 + x * sx + (rnd() - .5) * 70, 50 + y * sy + (rnd() - .5) * 60]; }
+    var lit = svg.hasAttribute('data-lit'), hot = [6, 1];
+    if (lit) P[1][6] = [800, 230];
+    var out = '';
+    function line(a, b, st) { out += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" ' + st + '/>'; }
+    for (y = 0; y < R; y++) for (x = 0; x < C; x++) {
+      if (x < C - 1 && rnd() > .2) line(P[y][x], P[y][x + 1], 'stroke="#2a2d33" stroke-width="2"');
+      if (y < R - 1 && rnd() > .3) line(P[y][x], P[y + 1][x], 'stroke="#2a2d33" stroke-width="2"');
+      if (x < C - 1 && y < R - 1 && rnd() > .75) line(P[y][x], P[y + 1][x + 1], 'stroke="#22252a" stroke-width="2"');
+    }
+    for (y = 0; y < R; y++) for (x = 0; x < C; x++)
+      out += '<circle cx="' + P[y][x][0] + '" cy="' + P[y][x][1] + '" r="' + (rnd() > .7 ? 7 : 4.5) + '" fill="#3a3e46"/>';
+    if (lit) {
+      var path = [[0, 3], [1, 3], [2, 2], [3, 2], [4, 1], [5, 1], hot], pts = path.map(function (p) { return P[p[1]][p[0]].join(','); });
+      out += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#b6f24a" stroke-width="4" stroke-linejoin="round"/>';
+      path.slice(0, -1).forEach(function (p) { out += '<circle cx="' + P[p[1]][p[0]][0] + '" cy="' + P[p[1]][p[0]][1] + '" r="8" fill="#b6f24a"/>'; });
+      var h = P[hot[1]][hot[0]];
+      [70, 120, 175].forEach(function (r, i) { out += '<circle cx="' + h[0] + '" cy="' + h[1] + '" r="' + r + '" fill="none" stroke="#b6f24a" stroke-width="3" opacity="' + [.6, .3, .14][i] + '"/>'; });
+      out += '<circle cx="' + h[0] + '" cy="' + h[1] + '" r="26" fill="#b6f24a"/>';
+    }
+    svg.innerHTML = out;
+  });
+
+  // Antenna coil: concentric rounded loops broken by the chip at the bottom, each trace ending in a node.
+  document.querySelectorAll('svg[data-coil]').forEach(function (svg) {
+    var op = svg.hasAttribute('data-dim') ? .3 : .7, out = '', cx = 700, cw = 90;
+    for (var i = 0; i < 5; i++) {
+      var o = 40 + i * 18, x2 = 1011 - o, y2 = 638 - o, r = 40 - i * 4;
+      out += '<path d="M' + cx + ' ' + y2 + 'H' + (o + r) + 'Q' + o + ' ' + y2 + ' ' + o + ' ' + (y2 - r) + 'V' + (o + r) + 'Q' + o + ' ' + o + ' ' + (o + r) + ' ' + o +
+        'H' + (x2 - r) + 'Q' + x2 + ' ' + o + ' ' + x2 + ' ' + (o + r) + 'V' + (y2 - r) + 'Q' + x2 + ' ' + y2 + ' ' + (x2 - r) + ' ' + y2 + 'H' + (cx + cw) +
+        '" fill="none" stroke="#b6f24a" stroke-width="3" opacity="' + op + '"/>';
+      out += '<circle cx="' + cx + '" cy="' + y2 + '" r="5" fill="#b6f24a" opacity="' + op + '"/><circle cx="' + (cx + cw) + '" cy="' + y2 + '" r="5" fill="#b6f24a" opacity="' + op + '"/>';
+    }
+    out += '<rect x="' + (cx + 14) + '" y="' + (638 - 40 - 4 * 18 - 8) + '" width="' + (cw - 28) + '" height="' + (4 * 18 + 16) + '" rx="6" fill="#0e0f11" stroke="#b6f24a" stroke-width="3" opacity="' + op + '"/>';
+    svg.innerHTML = out;
+  });
+
+  // Blueprint: dimension lines, a dashed antenna outline with crosshair (front), registration marks (back).
+  document.querySelectorAll('svg[data-blueprint]').forEach(function (svg) {
+    var st = 'stroke="#7cc8ff" stroke-width="2" fill="none"', out = '';
+    function dim(x1, y1, x2, y2, label, vert) {
+      out += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" ' + st + '/>';
+      [[x1, y1], [x2, y2]].forEach(function (p) {
+        out += vert ? '<line x1="' + (p[0] - 10) + '" y1="' + p[1] + '" x2="' + (p[0] + 10) + '" y2="' + p[1] + '" ' + st + '/>'
+                    : '<line x1="' + p[0] + '" y1="' + (p[1] - 10) + '" x2="' + p[0] + '" y2="' + (p[1] + 10) + '" ' + st + '/>';
+      });
+      var mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      out += '<g transform="translate(' + mx + ' ' + my + ')' + (vert ? ' rotate(-90)' : '') + '"><rect x="-58" y="-16" width="116" height="32" fill="#0b1b4d"/>' +
+        '<text text-anchor="middle" y="8" font-family="JetBrains Mono" font-size="22" fill="#7cc8ff">' + label + '</text></g>';
+    }
+    if (svg.hasAttribute('data-back')) {
+      dim(84, 590, 927, 590, '85.60 mm');
+      [[30, 30], [981, 30], [30, 608], [981, 608]].forEach(function (p) {
+        out += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="10" ' + st + '/><line x1="' + (p[0] - 18) + '" y1="' + p[1] + '" x2="' + (p[0] + 18) + '" y2="' + p[1] + '" ' + st + '/>' +
+          '<line x1="' + p[0] + '" y1="' + (p[1] - 18) + '" x2="' + p[0] + '" y2="' + (p[1] + 18) + '" ' + st + '/>';
+      });
+    } else {
+      dim(84, 44, 927, 44, '85.60 mm');
+      dim(970, 84, 970, 554, '54.00 mm', true);
+      for (var i = 0; i < 3; i++) out += '<rect x="' + (600 + i * 22) + '" y="' + (110 + i * 22) + '" width="' + (320 - i * 44) + '" height="' + (300 - i * 44) +
+        '" rx="' + (24 - i * 6) + '" stroke="#7cc8ff" stroke-width="2" stroke-dasharray="10 8" fill="none" opacity="' + (.9 - i * .25) + '"/>';
+      out += '<circle cx="760" cy="260" r="28" stroke="#ffc83d" stroke-width="3" fill="none"/><line x1="720" y1="260" x2="800" y2="260" stroke="#ffc83d" stroke-width="2"/>' +
+        '<line x1="760" y1="220" x2="760" y2="300" stroke="#ffc83d" stroke-width="2"/>';
+      out += '<polyline points="330,250 560,250 600,260" ' + st + '/><circle cx="600" cy="260" r="5" fill="#7cc8ff"/>';
+    }
+    svg.innerHTML = out;
+  });
+
+  // Bumper plate centred at x = data-plate: red rim, embossed rings, lettering on an arc, the hub is the tap spot.
+  document.querySelectorAll('svg[data-plate]').forEach(function (svg) {
+    var cx = +svg.getAttribute('data-plate'), cy = 319, id = 'arc' + cx, t = 'IRON HOUR GYM · 25 KG · ';
+    function ring(r, a) { return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" ' + a + '/>'; }
+    svg.innerHTML = '<defs><path id="' + id + '" d="M' + (cx - 240) + ' ' + cy + 'a240 240 0 1 1 480 0a240 240 0 1 1 -480 0"/></defs>' +
+      ring(290, 'fill="#1b1d21" stroke="#d9352b" stroke-width="34"') + ring(225, 'fill="none" stroke="#2a2d33" stroke-width="3"') +
+      ring(155, 'fill="none" stroke="#2a2d33" stroke-width="3"') +
+      '<text font-family="Archivo" font-weight="800" font-size="30" letter-spacing="4" fill="#5b5e66" style="font-stretch:75%"><textPath href="#' + id + '">' +
+      t + t + t + '</textPath></text>' +
+      ring(88, 'fill="#24262b"') + ring(62, 'fill="none" stroke="#ffc83d" stroke-width="2" opacity=".5"') +
+      ring(40, 'fill="#0b0c0e" stroke="#ffc83d" stroke-width="4"');
+  });
+
+  // Check-in heatmap: 26 weeks x 7 days, seeded; the last 9 days are the current streak.
+  document.querySelectorAll('[data-heat]').forEach(function (el) {
+    var s = +el.getAttribute('data-heat'), c = ['#24262b', '#5c4a14', '#a8831f', '#ffc83d'], h = '';
+    function rnd() { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
+    for (var i = 0; i < 182; i++) {
+      var r = rnd(), lv = r < .38 ? 0 : r < .62 ? 1 : r < .85 ? 2 : 3;
+      if (i >= 173) lv = Math.max(lv, 2);
+      h += '<i style="background:' + c[lv] + '"></i>';
+    }
+    el.innerHTML = h;
+  });
+
+  // Category filter on the preview sheet.
+  document.querySelectorAll('.cats button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      document.querySelectorAll('.cats button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      document.querySelectorAll('.cat').forEach(function (c) { c.hidden = f !== 'all' && c.getAttribute('data-cat') !== f; });
+    });
+  });
+
+  // #d1-front etc: show that one face alone for rendering.
+  var id = location.hash.slice(1), slot = id && document.getElementById(id);
+  if (slot && slot.classList.contains('slot')) { document.body.classList.add('solo'); slot.classList.add('on'); }
+})();
+</script>
+</body>
+</html>
