@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CODE: NON · Founder cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* CODE: NON founder business cards, NFC CR80 (85.6 x 54 mm). Faces are 1011x638 = 300 dpi at trim size, no bleed.
+     Every design is a pair: n* = founder (Null), v* = co-founder (Void).
+     cards.html             -> preview sheet; the name buttons swap the founder's name everywhere
+     cards.html?n=1#n1-front -> that face alone at full size with name #1 (render-cards.sh screenshots these) */
+  html,body{width:auto;background:#141a2e}
+  body{padding:48px 40px;color:#c9ccd3}
+  .sheet-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;max-width:1100px;margin:0 auto 24px}
+  .sheet-h h1{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:48px;line-height:1;text-transform:uppercase;color:#fff}
+  .sheet-h h1 span{color:var(--sun)}
+  .sheet-h p{font-size:15px;color:#8b93ab;max-width:520px;line-height:1.5}
+  .names{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;align-items:center;max-width:1100px;margin:0 auto 30px;padding:12px 0;background:#141a2e;
+    font-family:'JetBrains Mono';font-size:14px;color:#8b93ab}
+  .names button{font:500 14px 'JetBrains Mono',monospace;color:#c9ccd3;background:#1f2740;border:1px solid #2e3858;border-radius:99px;padding:8px 14px;cursor:pointer}
+  .names button.on{background:var(--sun);color:var(--navy);border-color:var(--sun)}
+  .set{max-width:1100px;margin:0 auto 52px;border-top:1px solid #2e3858;padding-top:24px}
+  .set h2{font-family:'JetBrains Mono';font-size:16px;font-weight:500;color:#fff;margin-bottom:4px}
+  .set h2 b{color:var(--sun);margin-right:10px}
+  .set > p{font-size:14px;color:#8b93ab;margin-bottom:6px}
+  .who-l{font-family:'JetBrains Mono';font-size:13px;color:#8b93ab;letter-spacing:.1em;margin:16px 0 8px}
+  .pair{display:flex;gap:28px;flex-wrap:wrap}
+  .slot{zoom:.5}
+  .slot .face{box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .tag{font-family:'JetBrains Mono';font-size:13px;color:#5b6380;margin-top:8px;letter-spacing:.08em}
+
+  html:has(body.solo),body.solo{padding:0;background:transparent}
+  body.solo .sheet-h,body.solo .names,body.solo .set > h2,body.solo .set > p,body.solo .who-l,body.solo .tag{display:none}
+  body.solo .set,body.solo .pair{margin:0;padding:0;border:0;display:block}
+  body.solo .slot{zoom:1;display:none}
+  body.solo .slot.on{display:block}
+  body.solo .face{box-shadow:none}
+
+  /* ---------- shared face bits ---------- */
+  .face{position:relative;width:1011px;height:638px;border-radius:38px;overflow:hidden;font-family:'Figtree',system-ui,sans-serif}
+  .cond{font-family:'Archivo',system-ui,sans-serif;font-stretch:68%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.88}
+  .abs{position:absolute}
+  .cnb{display:flex;align-items:center;gap:14px;font-family:'Archivo';font-weight:800;font-size:26px;letter-spacing:.04em}
+  .cnb img{width:60px;height:60px;border-radius:12px;display:block}
+  .qr{display:block;border-radius:20px}
+  .qr svg{display:block;width:100%;height:100%}
+  /* Standard back: QR left, name + role + contacts right, footer line */
+  .bk .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--navy)}
+  .bk .txt{left:410px;top:62px;right:60px}
+  .bk .txt .cond{font-size:72px}
+  .bk .txt .r{font-family:'JetBrains Mono';font-size:22px;letter-spacing:.12em;margin-top:12px;color:var(--acc)}
+  .bk .txt ul{list-style:none;margin-top:28px;font-family:'JetBrains Mono';font-size:22px;line-height:1.8}
+  .bk .txt li span{display:inline-block;width:70px;opacity:.55}
+  .bk .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono';font-size:20px;
+    border-top:2px solid rgba(127,127,127,.3);padding-top:22px;opacity:.8}
+
+  /* ---------- 01 NULL & VOID: inverse pair; the "&" is split across both cards ---------- */
+  .c1n{background:var(--cream);color:var(--navy);--acc:var(--tomato)}
+  .c1v{background:var(--navy);color:var(--cream);--acc:var(--sun)}
+  .c1 .cnb{left:60px;top:56px}
+  .c1 .pg{right:60px;top:74px;font-family:'JetBrains Mono';font-size:20px;opacity:.6}
+  .c1 .word{left:52px;top:160px;font-size:320px}
+  .c1v .word{left:150px}
+  .c1 .amp{top:160px;font-size:320px;color:var(--acc)}
+  .c1n .amp{right:-92px}
+  .c1v .amp{left:-92px}
+  .c1 .who{left:60px;bottom:56px;font-family:'Archivo';font-weight:800;font-size:40px}
+  .c1 .who small{display:block;font-family:'JetBrains Mono';font-weight:400;font-size:20px;letter-spacing:.12em;opacity:.7;margin-top:6px}
+  .c1 .tap{right:56px;bottom:52px;opacity:.6}
+  .c1nb{background:var(--navy);color:var(--cream);--acc:var(--sun)}
+  .c1vb{background:var(--cream);color:var(--navy);--acc:var(--tomato)}
+  .c1vb .qr{box-shadow:0 0 0 2px var(--navy)}
+
+  /* ---------- 02 RETURN TYPE: the card as a function signature ---------- */
+  .c2{background:var(--navy);color:#fff;font-family:'JetBrains Mono';
+    background-image:linear-gradient(rgba(124,200,255,.07) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(124,200,255,.07) 1.5px,transparent 1.5px);background-size:26px 26px}
+  .c2 .cnb{left:60px;top:56px}
+  .c2 .cm{left:60px;top:176px;font-size:24px;color:var(--sky);opacity:.75}
+  .c2 .fnc{left:60px;top:222px;font-size:60px;font-weight:700}
+  .c2 .ret{left:50px;top:300px;font-size:150px;font-weight:800;line-height:1}
+  .c2n .ret{color:var(--sun)}
+  .c2v .ret{color:var(--sky)}
+  .c2 .ret span{margin-right:28px}
+  .c2 .obj{left:60px;bottom:56px;font-size:22px;color:var(--sky)}
+  .c2 .obj .dim{opacity:.6}
+  .c2b{background:var(--sky);color:var(--navy);font-family:'JetBrains Mono'}
+  .c2v.c2b,.c2b.alt{background:var(--sun)}
+  .c2b pre{left:60px;top:66px;font-family:'JetBrains Mono';font-size:28px;line-height:1.6}
+  .c2b pre b{font-weight:800}
+  .c2b .qr{right:60px;top:60px;width:300px;height:300px;color:var(--navy)}
+  .c2b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;font-size:20px;border-top:2px solid rgba(11,27,77,.25);padding-top:22px}
+
+  /* ---------- 03 EMPTY SET / EVENT HORIZON ---------- */
+  .c3n{background:var(--sun);color:var(--navy)}
+  .c3v{background:#050608;color:#fff}
+  .c3 .cnb{left:60px;top:56px}
+  .c3 .def{left:60px;top:190px;width:420px;font-family:'JetBrains Mono';font-size:22px;line-height:1.5;opacity:.75}
+  .c3 .who{left:60px;bottom:56px}
+  .c3 .who .cond{font-size:64px}
+  .c3 .who small{display:block;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.12em;margin-top:12px;opacity:.75}
+  .empty{position:absolute;right:-50px;top:69px;width:500px;height:500px}
+  .empty::before{content:"";position:absolute;inset:0;border-radius:50%;border:44px solid var(--navy)}
+  .empty::after{content:"";position:absolute;left:50%;top:-50px;width:44px;height:600px;background:var(--navy);transform:translateX(-50%) rotate(35deg)}
+  .hole{position:absolute;right:40px;top:69px;width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,#000 0 54%,#2340e6 56.5%,rgba(124,200,255,.7) 58.5%,rgba(35,64,230,.3) 64%,transparent 71%);
+    box-shadow:0 0 140px rgba(35,64,230,.25)}
+  .c3nb{background:var(--navy);color:#fff;--acc:var(--sun)}
+  .c3vb{background:#050608;color:#fff;--acc:var(--sky)}
+
+  /* ---------- 04 CODE: / NON: the wordmark split across the pair ---------- */
+  .c4{background:var(--cobalt);color:#fff}
+  .c4 .cnb{left:60px;top:56px}
+  .c4v .cnb{left:auto;right:60px;flex-direction:row-reverse}
+  .c4 .big{top:150px;font-size:330px}
+  .c4n .big{right:-34px}
+  .c4v .big{left:-24px}
+  .c4 .big span{color:var(--sun)}
+  .c4 .who{bottom:56px;font-family:'JetBrains Mono';font-size:22px;line-height:1.5}
+  .c4 .who b{font-family:'Archivo';font-size:38px;font-weight:800;display:block}
+  .c4n .who{left:60px}
+  .c4v .who{right:60px;text-align:right}
+  .c4b{background:#fff;color:var(--navy);--acc:var(--cobalt)}
+  .c4b .qr{box-shadow:0 0 0 3px var(--cobalt)}
+
+  /* ---------- 05 SPEC PLATE: riveted unit plate, a nod to the mecha names ---------- */
+  .c5{background:linear-gradient(160deg,#323741,#1a1d22);color:#e8e6df;--hz:var(--sun)}
+  .c5.cv{--hz:var(--sky)}
+  .c5::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+  .c5 .plate{position:absolute;inset:24px;border:2px solid rgba(255,255,255,.12);border-radius:22px}
+  .c5 .rv{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#9aa0aa,#2a2d33 70%)}
+  .c5 .hz{left:60px;right:60px;top:60px;height:30px;border-radius:4px;background:repeating-linear-gradient(-45deg,var(--hz) 0 18px,#1b1e23 18px 36px)}
+  .c5 .nm{left:58px;top:132px;font-size:96px;color:#fff}
+  .c5 .spec{left:60px;top:250px;display:grid;grid-template-columns:230px auto;row-gap:10px;font-family:'JetBrains Mono';font-size:24px}
+  .c5 .spec span{color:#8b8f98;letter-spacing:.1em}
+  .c5 .spec b{color:#fff;font-weight:700}
+  .c5 .spec b.hl{color:var(--hz)}
+  .c5 .logo{right:60px;top:126px;width:110px;height:110px;border-radius:18px;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+  .c5 .sn{left:60px;bottom:52px;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98;letter-spacing:.1em}
+  .c5 .sn b{color:var(--hz)}
+  .c5 .tap{right:60px;bottom:48px;color:var(--hz)}
+  .c5 .qr{left:60px;top:126px;width:300px;height:300px;background:#fff;color:#1a1d22;border-radius:10px;box-shadow:0 0 0 6px #1b1e23,0 0 0 8px rgba(255,255,255,.2)}
+  .c5 .spec.ct{left:420px;top:136px;grid-template-columns:110px auto}
+
+  /* ---------- 06 SWISS: quiet, conventional option ---------- */
+  .c6{background:#fff;color:var(--navy)}
+  .c6 .dot{position:absolute;right:60px;top:60px;width:56px;height:56px;border-radius:50%}
+  .c6n .dot{background:var(--sun)}
+  .c6v .dot{background:var(--cobalt)}
+  .c6 .nm{left:60px;top:190px;font-family:'Archivo';font-stretch:125%;font-weight:800;font-size:66px;letter-spacing:-.02em;line-height:1}
+  .c6 .r{left:62px;top:286px;font-size:30px;color:var(--muted)}
+  .c6 .r b{color:var(--navy);font-weight:700}
+  .c6 .ft{left:60px;right:60px;bottom:56px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--line);padding-top:24px;
+    font-family:'JetBrains Mono';font-size:20px;color:var(--muted)}
+  .c6 .ft .cnb{font-size:22px;color:var(--navy)}
+  .c6 .ft .cnb img{width:44px;height:44px;border-radius:9px}
+  .c6b{background:var(--navy);color:#fff}
+  .c6b .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--navy)}
+  .c6b .txt{left:410px;top:80px;right:60px}
+  .c6b .txt .w{font-family:'Archivo';font-stretch:125%;font-weight:800;font-size:52px;letter-spacing:-.02em}
+  .c6b .txt p{font-size:26px;line-height:1.4;color:var(--sky);margin-top:18px}
+  .c6b .txt ul{list-style:none;margin-top:26px;font-family:'JetBrains Mono';font-size:22px;line-height:1.8;color:#c9d6f5}
+  .c6b .bar{left:0;right:0;bottom:0;height:20px}
+  .c6n.c6b .bar{background:var(--sun)}
+  .c6v.c6b .bar{background:var(--cobalt)}
+
+  /* ---------- 07 STACK TRACE ---------- */
+  .c7{background:#0d1117;color:#e6edf3;font-family:'JetBrains Mono'}
+  .c7 .bar{left:0;right:0;top:0;height:64px;border-bottom:2px solid #21262d;display:flex;align-items:center;justify-content:space-between;padding:0 56px;font-size:20px;color:#6e7681}
+  .c7n .cnt,.c7n .k{color:#ff7b72}
+  .c7v .cnt,.c7v .k{color:var(--sun)}
+  .c7 .msg{left:40px;right:40px;top:104px;padding:22px 20px 22px 24px;border-left:8px solid;border-radius:6px}
+  .c7n .msg{border-color:#f85149;background:rgba(248,81,73,.1)}
+  .c7v .msg{border-color:var(--sun);background:rgba(255,200,61,.09)}
+  .c7 .k{font-size:24px;font-weight:700}
+  .c7 .t{font-size:34px;line-height:1.35;margin-top:8px}
+  .c7 .t b{color:var(--sky);font-weight:700}
+  .c7 .st{font-size:20px;color:#6e7681;margin-top:14px;white-space:pre;line-height:1.5}
+  .c7 .cnb{left:56px;bottom:50px;font-size:22px}
+  .c7 .cnb img{width:48px;height:48px;border-radius:10px}
+  .c7 .tr{right:56px;bottom:62px;font-size:20px;color:#6e7681}
+  .c7b pre{left:56px;top:70px;font-family:'JetBrains Mono';font-size:26px;line-height:1.6}
+  .c7b pre span{color:#6e7681}
+  .c7b pre b{color:var(--sky);font-weight:500}
+  .c7b .qr{right:56px;top:60px;width:280px;height:280px;background:#fff;color:#0d1117}
+  .c7b .ok{left:56px;right:56px;bottom:52px;border-top:2px solid #21262d;padding-top:22px;font-size:20px;color:#3fb950}
+
+  /* ---------- 08 DOSSIER ---------- */
+  .c8{color:#1e1b16;font-family:'JetBrains Mono';
+    background:repeating-linear-gradient(0deg,transparent 0 41px,rgba(80,60,30,.08) 41px 43px),linear-gradient(170deg,#efe3c6,#e2d2ad)}
+  .c8 .hd{left:56px;right:56px;top:46px;font-size:20px;letter-spacing:.16em;border-bottom:2px solid #1e1b16;padding-bottom:12px}
+  .c8 .lb{left:56px;top:110px;font-size:18px;letter-spacing:.2em;opacity:.6}
+  .c8 .cn{left:50px;top:136px;font-size:150px}
+  .c8 .fields{left:56px;top:290px;display:grid;grid-template-columns:190px auto;row-gap:12px;font-size:24px;align-items:center}
+  .c8 .fields span{opacity:.6;letter-spacing:.14em;font-size:20px}
+  .c8 .fields b{font-weight:700}
+  .rd{display:inline-block;height:24px;background:#1e1b16;vertical-align:-4px}
+  .c8 .photo{right:60px;top:110px;width:210px;height:250px;border:2px solid #1e1b16;background:rgba(255,255,255,.35);transform:rotate(2deg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+  .c8 .photo img{width:120px;height:120px;filter:grayscale(1) contrast(1.1);border-radius:10px}
+  .c8 .photo span{font-size:16px;letter-spacing:.2em}
+  .c8 .stamp{right:80px;bottom:66px;border:5px solid #b8362a;color:#b8362a;font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:56px;
+    letter-spacing:.06em;padding:6px 20px;transform:rotate(-10deg);opacity:.8}
+  .c8 .qbox{left:56px;top:110px;width:330px;height:330px;border:2px dashed #1e1b16;padding:14px;background:rgba(255,255,255,.45)}
+  .c8 .qbox .qr{width:100%;height:100%;color:#1e1b16;border-radius:0}
+  .c8 .fields.ct{left:440px;top:130px;grid-template-columns:120px auto}
+  .c8 .foot{left:56px;right:56px;bottom:46px;font-size:18px;letter-spacing:.16em;border-top:2px solid #1e1b16;padding-top:12px}
+
+  /* ---------- 09 GLITCH ---------- */
+  .c9{background:#07080c;color:#fff;--acc:var(--tomato)}
+  .c9.c9v{--acc:var(--sky)}
+  .c9::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px)}
+  .c9 .cnb{left:60px;top:56px}
+  .c9 .sig{right:60px;top:74px;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98;letter-spacing:.12em}
+  .c9 .sig b{color:var(--acc)}
+  .c9 .gl{left:56px;top:196px;font-size:136px;white-space:nowrap;text-shadow:-3px 0 rgba(217,53,43,.9),3px 0 rgba(124,200,255,.9)}
+  .c9 .gl::before,.c9 .gl::after{content:attr(data-t);position:absolute;left:0;top:0;text-shadow:none}
+  .c9 .gl::before{color:#fff;text-shadow:-3px 0 rgba(217,53,43,.9);clip-path:inset(30% 0 56% 0);transform:translateX(16px)}
+  .c9 .gl::after{color:#fff;text-shadow:3px 0 rgba(124,200,255,.9);clip-path:inset(68% 0 16% 0);transform:translateX(-12px)}
+  .c9v .gl::before{transform:translateX(-16px)}
+  .c9v .gl::after{transform:translateX(12px)}
+  .c9 .sub{left:60px;top:350px;font-family:'JetBrains Mono';font-size:28px;color:var(--acc)}
+  .c9 .sub .ttl{color:#8b8f98}
+  .c9 .cur{display:inline-block;width:16px;height:30px;background:var(--acc);vertical-align:-5px;margin-left:4px}
+  .c9 .hint{left:60px;bottom:56px;font-family:'JetBrains Mono';font-size:20px;color:#5b5e66}
+
+  /* ---------- 10 HALFTONE: three dot sizes stacked, each masked to a radius, so dots grow toward the centre ---------- */
+  .c10{background:var(--navy);color:var(--cream);--dot:var(--sun);--acc:var(--sun);--c:74% 46%}
+  .c10v{--dot:var(--sky);--acc:var(--sky)}
+  .c10v{--c:80% 46%}
+  .c10b{--c:100% 100%}
+  .c10 .ht,.c10 .ht::before,.c10 .ht::after{position:absolute;inset:0;background:radial-gradient(circle,var(--dot) var(--r),transparent calc(var(--r) + 3%)) 0 0/22px 22px}
+  .c10 .ht::before,.c10 .ht::after{content:""}
+  .c10 .ht{--r:16%}
+  .c10 .ht::before{--r:30%}
+  .c10 .ht::after{--r:46%}
+  .c10n .ht{-webkit-mask:radial-gradient(circle at var(--c),#000 0 330px,transparent 330px)}
+  .c10n .ht::before{-webkit-mask:radial-gradient(circle at var(--c),#000 0 230px,transparent 230px)}
+  .c10n .ht::after{-webkit-mask:radial-gradient(circle at var(--c),#000 0 130px,transparent 130px)}
+  .c10v .ht{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 120px,#000 120px 420px,transparent 420px)}
+  .c10v .ht::before{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 160px,#000 160px 400px,transparent 400px)}
+  .c10v .ht::after{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 210px,#000 210px 330px,transparent 330px)}
+  .c10 .cnb{left:60px;top:56px}
+  .c10 .who{left:60px;bottom:56px}
+  .c10 .who .cond{font-size:80px}
+  .c10 .who small{display:block;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.12em;margin-top:12px;color:var(--dot)}
+  .c10b .ft span:last-child{display:none}
+
+  /* ---------- 11 ELEMENT ---------- */
+  .c11n,.c11b{background:var(--cream);color:var(--navy);--tile:var(--sun);--acc:#b8362a}
+  .c11v,.c11b.c11v{background:var(--navy);color:var(--cream);--tile:var(--sky);--acc:var(--sky)}
+  .c11b .qr{box-shadow:0 0 0 2px var(--navy)}
+  .c11 .el{left:60px;top:109px;width:400px;height:420px;background:var(--tile);color:var(--navy);border-radius:22px;box-shadow:inset 0 0 0 4px var(--navy)}
+  .c11 .el .z{position:absolute;left:30px;top:24px;font-family:'JetBrains Mono';font-weight:700;font-size:40px}
+  .c11 .el .m{position:absolute;right:30px;top:32px;font-family:'JetBrains Mono';font-size:24px}
+  .c11 .el b{position:absolute;left:0;right:0;top:92px;text-align:center;font-family:'Archivo';font-weight:900;font-size:200px;line-height:1;letter-spacing:-.02em}
+  .c11 .el i{position:absolute;left:0;right:0;bottom:34px;text-align:center;font-style:normal;font-family:'Archivo';font-weight:700;font-size:34px}
+  .c11 .info{left:510px;top:120px;right:60px}
+  .c11 .info .cond{font-size:64px}
+  .c11 .info .r{font-family:'JetBrains Mono';font-size:22px;letter-spacing:.14em;margin-top:10px;opacity:.7}
+  .c11 .info dl{display:grid;grid-template-columns:130px auto;row-gap:10px;margin-top:30px;font-family:'JetBrains Mono';font-size:22px}
+  .c11 .info dt{opacity:.55;letter-spacing:.12em}
+  .c11 .logo{right:60px;bottom:56px;width:64px;height:64px;border-radius:12px}
+
+  /* ---------- 12 FOIL ---------- */
+  .c12{background:radial-gradient(circle at 30% 20%,#1a1a1c,#08080a 70%);color:#d9c38a;
+    --foil:linear-gradient(115deg,#8a6a2a 0%,#f3dc93 28%,#b8913f 46%,#fff1c2 60%,#a07a2e 80%,#e8cb7c 100%)}
+  .c12 .mono,.c12 .nm{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .c12 .mono{left:70px;top:40px;font-family:'Archivo';font-stretch:125%;font-weight:900;font-size:520px;line-height:1}
+  .c12 .info{left:580px;top:220px;right:60px}
+  .c12 .nm{font-family:'Figtree';font-weight:600;font-size:28px;letter-spacing:.18em;text-transform:uppercase}
+  .c12 hr{border:0;height:2px;background:var(--foil);margin:18px 0}
+  .c12 .r{font-family:'JetBrains Mono';font-size:20px;letter-spacing:.2em;color:#b9a571;line-height:1.7}
+  .c12 .qr{left:80px;top:139px;width:360px;height:360px;background:#f3e6c4;color:#08080a;border-radius:16px}
+  .c12 .info.b{left:500px;top:230px}
+  .c12 .info.b .nm{text-transform:none;letter-spacing:.06em;font-size:40px}
+
+  /* ---------- titles toggle + export ---------- */
+  body.no-ttl .ttl{display:none!important}
+  .names .sp{flex:1}
+  .names label{display:flex;align-items:center;gap:8px;margin:0 6px 0 10px;cursor:pointer;color:#c9ccd3}
+  .names label input{width:16px;height:16px;accent-color:var(--sun)}
+  .names button.x{background:transparent;border-color:var(--sun);color:var(--sun)}
+  .set h2 .ex{float:right;font:500 13px 'JetBrains Mono',monospace;color:var(--sun);background:none;border:1px solid #2e3858;border-radius:99px;padding:5px 12px;cursor:pointer}
+
+  /* PDF: "card" = one face per page at real CR80 size (1011px * .3195 = 85.6mm), square corners for the printer's die-cut;
+     "sheet" = A4 proof with every pair at real size. */
+  @page card{size:85.6mm 54mm;margin:0}
+  @page sheet{size:A4;margin:12mm}
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    html,body{background:#fff!important;padding:0!important;width:auto!important}
+    .sheet-h,.names,.tag,.set > p,.ex{display:none!important}
+    .set{border:0!important;padding:0!important;margin:0!important;max-width:none!important}
+    .slot .face{box-shadow:none}
+    body.pr-card .set > h2,body.pr-card .who-l{display:none}
+    body.pr-card .pair{display:block}
+    body.pr-card .slot{page:card;zoom:.3195;break-after:page}
+    body.pr-card .face{border-radius:0}
+    body.pr-sheet .set{page:sheet;break-inside:avoid;margin-bottom:8mm!important}
+    body.pr-sheet .set > h2{font-size:11pt;color:#000;margin-bottom:2mm}
+    body.pr-sheet .who-l{font-size:7pt;color:#555;margin:1mm 0}
+    body.pr-sheet .pair{gap:5mm}
+    body.pr-sheet .slot{zoom:.3195}
+    body.pr-one .set:not(.pick){display:none!important}
+  }
+
+  /* ---------- 13 BIOS ---------- */
+  .c13{background:#0a1fa8;color:#c8cdd8;font-family:'JetBrains Mono';--hl:var(--sun)}
+  .c13v{--hl:var(--sky)}
+  .c13 .top{left:0;right:0;top:0;height:62px;background:#c8cdd8;color:#0a1fa8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;letter-spacing:.08em}
+  .c13 .box{left:40px;right:40px;top:92px;bottom:92px;border:6px double #c8cdd8;padding:24px 30px;font-size:24px;line-height:1.72}
+  .c13 .ln{display:flex;gap:12px;align-items:baseline}
+  .c13 .ln i{flex:1;border-bottom:3px dotted rgba(200,205,216,.45);transform:translateY(-6px)}
+  .c13 .ln b{color:#fff}
+  .c13 .ln b.hl{color:var(--hl)}
+  .c13 .bt{left:40px;right:40px;bottom:30px;display:flex;justify-content:space-between;font-size:20px}
+  .c13 .bt b{color:var(--hl)}
+  .c13 .cur{display:inline-block;width:12px;height:22px;background:#c8cdd8;vertical-align:-4px;margin-left:8px}
+  .c13 .opt{white-space:pre;padding:0 12px;margin-right:330px}
+  .c13 .opt.on{background:#c8cdd8;color:#0a1fa8;font-weight:700}
+  .c13 .qr{right:76px;top:126px;width:270px;height:270px;background:#fff;color:#0a1fa8;border-radius:0}
+
+  /* ---------- 14 PUNCH CARD (corner cut like the real thing) ---------- */
+  .c14{background:#f1e6c8;color:#7a2d1c;clip-path:polygon(70px 0,100% 0,100% 100%,0 100%,0 70px)}
+  .c14 .hd{left:96px;top:34px;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.12em}
+  .c14 .hd b{font-weight:800}
+  .c14 .no{right:56px;top:34px;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.12em}
+  .c14 svg{position:absolute;inset:0}
+  .c14b{--acc:#7a2d1c;color:#3a1a10}
+  .c14b .qr{color:#2a1d14;box-shadow:0 0 0 2px #7a2d1c}
+  .c14b .ft{font-size:18px;letter-spacing:.1em}
+
+  /* ---------- 15 NULL ISLAND / POINT NEMO ---------- */
+  .c15{background:#e2f2ff;color:var(--navy);--ln:#2340e6;--mk:var(--sun)}
+  .c15v{background:#06102e;color:#e9f7ff;--ln:#7cc8ff;--mk:var(--sun)}
+  .c15 svg{position:absolute;inset:0}
+  .c15 .hd{left:60px;top:52px;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.14em;font-weight:700}
+  .c15 .cap{left:60px;top:92px;width:380px;font-family:'JetBrains Mono';font-size:20px;line-height:1.5;opacity:.7}
+  .c15 .ttl0{left:56px;top:340px;font-size:100px}
+  .c15 .co{left:60px;top:440px;font-family:'JetBrains Mono';font-size:26px;font-weight:700}
+  .c15 .who{left:60px;bottom:52px;font-family:'JetBrains Mono';font-size:24px}
+  .c15 .who b{font-size:28px}
+  .c15 .who span{opacity:.65}
+  .c15b{background:#e2f2ff;color:var(--navy);--acc:var(--cobalt)}
+  .c15b.c15v{background:#06102e;color:#e9f7ff;--acc:var(--sky)}
+  .c15b .qr{box-shadow:0 0 0 2px var(--navy)}
+
+  /* ---------- 16 MIXTAPE ---------- */
+  .c16{background:var(--cream);color:var(--navy);--mkc:var(--tomato);
+    --stripes:linear-gradient(var(--sun) 0 25%,var(--tomato) 25% 50%,var(--cobalt) 50% 75%,var(--sky) 75%)}
+  .c16v{--mkc:var(--cobalt);--stripes:linear-gradient(var(--sky) 0 25%,var(--cobalt) 25% 50%,var(--tomato) 50% 75%,var(--sun) 75%)}
+  .c16 .mk{font-family:'Permanent Marker','Archivo',cursive;color:var(--mkc);line-height:1.1}
+  .c16 .lbl{left:56px;right:56px;top:44px;height:196px;background:#fff;border-radius:14px;box-shadow:0 0 0 2px rgba(11,27,77,.15);padding:22px 30px;
+    background-image:repeating-linear-gradient(transparent 0 58px,rgba(11,27,77,.13) 58px 60px)}
+  .c16 .lbl .mk{font-size:62px}
+  .c16 .lbl .ar{font-family:'JetBrains Mono';font-size:24px;font-weight:700;margin-top:18px}
+  .c16 .lbl .ar .ttl{font-weight:400;opacity:.65}
+  .c16 .lbl .ty{position:absolute;right:28px;top:24px;font-family:'JetBrains Mono';font-size:20px;opacity:.6}
+  .c16 .sd{left:84px;top:280px;font-size:160px}
+  .c16 .win{left:250px;top:272px;width:511px;height:170px;background:#1b1e23;border-radius:30px;display:flex;align-items:center;justify-content:space-between;padding:0 54px}
+  .c16 .win::after{content:"";position:absolute;left:140px;right:140px;bottom:30px;height:10px;background:#4a2c1a}
+  .c16 .reel{width:110px;height:110px;border-radius:50%;box-shadow:0 0 0 8px #4a2c1a;
+    background:radial-gradient(circle,#1b1e23 0 14px,#f3efe6 15px 28px,transparent 29px),repeating-conic-gradient(#f3efe6 0 40deg,#bfb8a8 40deg 60deg)}
+  .c16 .reel.big{box-shadow:0 0 0 26px #4a2c1a}
+  .c16 .tap{left:860px;top:322px;color:var(--mkc)}
+  .c16 .str{left:0;right:0;top:474px;height:76px;background:var(--stripes)}
+  .c16 .ft{left:56px;right:56px;bottom:34px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:20px;opacity:.75}
+  .c16b .qr{left:56px;top:56px;width:300px;height:300px;background:#fff;color:var(--navy);box-shadow:0 0 0 2px rgba(11,27,77,.2)}
+  .c16b .tl{left:410px;top:46px;right:56px}
+  .c16b .tl .mk{font-size:56px}
+  .c16b ol{list-style:none;margin-top:14px;font-family:'JetBrains Mono';font-size:26px;line-height:1.7}
+  .c16b ol b{display:inline-block;width:64px;color:var(--mkc)}
+  .c16b .tl p{font-family:'JetBrains Mono';font-size:20px;opacity:.7;margin-top:14px}
+  .c16b .str{top:430px;height:56px}
+
+  /* ---------- 17 LED SIGN ---------- */
+  .c17{background:#09090b;color:#e6e6e6;--led:var(--sun)}
+  .c17v{--led:var(--sky)}
+  .c17 .top{left:60px;right:60px;top:52px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:22px;letter-spacing:.12em;color:#8b8f98}
+  .c17 .top .clk{color:var(--led)}
+  .c17 .led{left:60px;top:126px;display:grid;grid-template-columns:repeat(23,28px);grid-auto-rows:28px;gap:6px}
+  .c17 .led i{border-radius:50%;background:#1c1c20}
+  .c17 .led i.on{background:var(--led);box-shadow:0 0 14px var(--led)}
+  .c17 .tick{left:60px;top:420px;font-family:'JetBrains Mono';font-size:34px;color:var(--led)}
+  .c17 .tick b{color:#fff}
+  .c17 .tick .ttl{color:#8b8f98;font-size:26px}
+  .c17 .sub{left:60px;bottom:52px;font-family:'JetBrains Mono';font-size:20px;color:#5b5e66;letter-spacing:.1em}
+  .c17b{--acc:var(--led)}
+
+  /* ---------- 18 PASSPORT ---------- */
+  .c18{color:var(--navy);
+    background:repeating-radial-gradient(circle at 28% 42%,rgba(35,64,230,.08) 0 2px,transparent 2px 9px),
+      repeating-radial-gradient(circle at 82% 70%,rgba(217,53,43,.06) 0 2px,transparent 2px 11px),linear-gradient(135deg,#edf3ff,#fdf5e3)}
+  .c18 .hd{left:56px;right:56px;top:42px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:18px;letter-spacing:.12em;font-weight:700;
+    border-bottom:2px solid rgba(11,27,77,.25);padding-bottom:12px}
+  .c18 .ph{left:56px;top:104px;width:200px;height:250px;border:2px solid rgba(11,27,77,.3);background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center}
+  .c18 .ph img{width:130px;height:130px;filter:grayscale(1);border-radius:12px}
+  .c18 .fl{left:292px;top:104px;right:56px;display:grid;grid-template-columns:1fr 1fr;row-gap:16px;column-gap:24px}
+  .c18 .fl small{display:block;font-family:'JetBrains Mono';font-size:15px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+  .c18 .fl b{font-size:28px;font-weight:700}
+  .c18 .mrz{left:40px;right:40px;bottom:36px;padding:14px 16px;background:rgba(255,255,255,.65);font-family:'JetBrains Mono';font-size:25px;letter-spacing:3.4px;
+    line-height:1.45;white-space:pre;color:#111}
+  .c18b .visa{left:56px;top:56px;width:330px;background:#fff;box-shadow:0 6px 18px rgba(11,27,77,.18);border-radius:8px;overflow:hidden}
+  .c18b .vh{height:44px;background:linear-gradient(100deg,var(--sky),#c9b6ff,var(--sun),var(--sky));font-family:'JetBrains Mono';font-weight:800;font-size:18px;
+    letter-spacing:.2em;display:flex;align-items:center;justify-content:center}
+  .c18b .visa .qr{width:280px;height:280px;margin:16px auto 6px;color:var(--navy);border-radius:0}
+  .c18b .vm{text-align:center;font-family:'JetBrains Mono';font-size:20px;padding-bottom:16px}
+  .c18b .st1,.c18b .st2,.c18b .st3{font-family:'JetBrains Mono';text-align:center;line-height:1.35;opacity:.85}
+  .c18b .st1{left:480px;top:66px;width:230px;height:230px;border-radius:50%;border:6px double var(--tomato);color:var(--tomato);font-size:22px;transform:rotate(-12deg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .c18b .st1 b{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:38px}
+  .c18b .st2{left:560px;top:340px;border:5px solid var(--cobalt);color:var(--cobalt);padding:12px 22px;font-size:22px;transform:rotate(7deg);border-radius:8px}
+  .c18b .st2 b{font-size:26px}
+  .c18b .st3{left:760px;top:120px;border:4px dashed #0b8577;color:#0b8577;padding:14px 18px;font-size:20px;transform:rotate(16deg);border-radius:50px}
+</style>
+</head>
+<body>
+<header class="sheet-h">
+  <h1>CODE: NON · <span>Null &amp; Void</span></h1>
+  <p>Founder business cards, NFC CR80 · 85.6 × 54 mm. Every design is a pair: <b>Null</b> (founder) and <b>Void</b> (co-founder).
+    Tap the card to save the contact, or scan the QR. Emails and QR links are placeholders.</p>
+</header>
+<nav class="names">founder name:<button class="on" data-n="0">Alteisen</button><button data-n="1">Weißritter</button><button data-n="2">Persönlichkeit</button><label><input type="checkbox" id="ttl" checked> show titles</label><span class="sp"></span><button class="x" data-pr="card">Export PDF · card size</button><button class="x" data-pr="sheet">Export PDF · A4 proof</button></nav>
+
+<!-- 01 -->
+<section class="set">
+  <h2><b>01</b>Null &amp; Void</h2>
+  <p>Inverse pair: cream and navy. Lay the two cards side by side and the "&amp;" joins up: NULL &amp; VOID.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n1-front"><div class="face c1 c1n">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs pg">01 / 02</div>
+      <div class="abs cond word">Null</div><div class="abs cond amp">&amp;</div>
+      <div class="abs who"><span class="fn">Alteisen</span><small class="ttl">FOUNDER</small></div>
+      <i class="abs tap" data-icon="tap" data-size="56"></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n1-back"><div class="face bk c1nb">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v1-front"><div class="face c1 c1v">
+      <div class="abs cnb" style="left:auto;right:60px"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs cond amp">&amp;</div><div class="abs cond word">Void</div>
+      <div class="abs who" style="left:auto;right:60px;text-align:right">BucDevGin<small><span class="ttl">CO-FOUNDER · </span>02 / 02</small></div>
+      <i class="abs tap" data-icon="tap" data-size="56" style="right:auto;left:160px"></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v1-back"><div class="face bk c1vb">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="set">
+  <h2><b>02</b>Return type</h2>
+  <p>The person as a function signature: what you call is the name, what you get back is the role. The back returns the contact details.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n2-front"><div class="face c2 c2n">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs cm ttl">// founder</div>
+      <div class="abs fnc"><span class="fnl">alteisen</span>()</div>
+      <div class="abs ret"><span>:</span>null</div>
+      <div class="abs obj"><span class="ttl">{ role: "founder" } </span><span class="dim">// tap → save contact</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n2-back"><div class="face c2b">
+<pre class="abs"><b>return</b> {
+  name: "<span class="fn">Alteisen</span>",
+  mail: "null@codenon.io",
+  web:  "codenon.io",
+  ig:   "@codenon.io",
+};</pre>
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs ft"><b>CODE: NON</b><span>// scan, or tap the front</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v2-front"><div class="face c2 c2v">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs cm ttl">// co-founder</div>
+      <div class="abs fnc">bucdevgin()</div>
+      <div class="abs ret"><span>:</span>void</div>
+      <div class="abs obj"><span class="ttl">{ role: "co-founder" } </span><span class="dim">// tap → save contact</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v2-back"><div class="face c2b alt">
+<pre class="abs"><b>return</b> {
+  name: "BucDevGin",
+  mail: "void@codenon.io",
+  web:  "codenon.io",
+  ig:   "@codenon.io",
+};</pre>
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs ft"><b>CODE: NON</b><span>// scan, or tap the front</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="set">
+  <h2><b>03</b>Empty set / Event horizon</h2>
+  <p>Abstract pair. Null is ∅, the empty set, on sun yellow. Void is a black hole on black: a ring of light around nothing.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n3-front"><div class="face c3 c3n">
+      <div class="empty"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs def">null — the intentional absence of a value.</div>
+      <div class="abs who"><div class="cond fn">Alteisen</div><small>NULL<span class="ttl"> · FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n3-back"><div class="face bk c3nb">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">∅ · NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v3-front"><div class="face c3 c3v">
+      <div class="hole"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs def">void — returns nothing, does everything.</div>
+      <div class="abs who"><div class="cond">BucDevGin</div><small>VOID<span class="ttl"> · CO-FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v3-back"><div class="face bk c3vb">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">◯ · VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="set">
+  <h2><b>04</b>CODE: / NON</h2>
+  <p>The company name split across the two founders. Each card bleeds off the edge; side by side they read CODE: NON.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n4-front"><div class="face c4 c4n">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">01</div>
+      <div class="abs cond big">Code<span>:</span></div>
+      <div class="abs who"><b class="fn">Alteisen</b>Null<span class="ttl"> · founder</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n4-back"><div class="face bk c4b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><b>CODE: NON</b><span>we build what only your business does</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v4-front"><div class="face c4 c4v">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">02</div>
+      <div class="abs cond big">Non</div>
+      <div class="abs who"><b>BucDevGin</b>Void<span class="ttl"> · co-founder</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v4-back"><div class="face bk c4b">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><b>CODE: NON</b><span>we build what only your business does</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="set">
+  <h2><b>05</b>Spec plate</h2>
+  <p>A riveted unit plate, like the ID plate on a machine: model, designation, unit number. Yellow hazard stripes for Null, sky for Void.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n5-front"><div class="face c5">
+      <div class="plate"></div><i class="rv" style="left:38px;top:38px"></i><i class="rv" style="right:38px;top:38px"></i><i class="rv" style="left:38px;bottom:38px"></i><i class="rv" style="right:38px;bottom:38px"></i>
+      <div class="abs hz"></div>
+      <div class="abs cond nm fn">Alteisen</div>
+      <img class="abs logo" src="assets/codenon-logo.png" alt="">
+      <div class="abs spec"><span>DESIGNATION</span><b class="hl">NULL</b><span>UNIT</span><b>01<span class="ttl"> · FOUNDER</span></b><span>MAKER</span><b>CODE: NON</b><span>INTERFACE</span><b>NFC · QR</b></div>
+      <div class="abs sn">SN <b>CN-0001</b> · TAP TO CONNECT</div>
+      <i class="abs tap" data-icon="tap" data-size="52"></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n5-back"><div class="face c5">
+      <div class="plate"></div><i class="rv" style="left:38px;top:38px"></i><i class="rv" style="right:38px;top:38px"></i><i class="rv" style="left:38px;bottom:38px"></i><i class="rv" style="right:38px;bottom:38px"></i>
+      <div class="abs hz"></div>
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs spec ct"><span>NAME</span><b class="fn">Alteisen</b><span>MAIL</span><b>null@codenon.io</b><span>WEB</span><b>codenon.io</b><span>IG</span><b>@codenon.io</b></div>
+      <div class="abs sn">SN <b>CN-0001</b> · SCAN OR TAP TO SAVE CONTACT</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v5-front"><div class="face c5 cv">
+      <div class="plate"></div><i class="rv" style="left:38px;top:38px"></i><i class="rv" style="right:38px;top:38px"></i><i class="rv" style="left:38px;bottom:38px"></i><i class="rv" style="right:38px;bottom:38px"></i>
+      <div class="abs hz"></div>
+      <div class="abs cond nm">BucDevGin</div>
+      <img class="abs logo" src="assets/codenon-logo.png" alt="">
+      <div class="abs spec"><span>DESIGNATION</span><b class="hl">VOID</b><span>UNIT</span><b>02<span class="ttl"> · CO-FOUNDER</span></b><span>MAKER</span><b>CODE: NON</b><span>INTERFACE</span><b>NFC · QR</b></div>
+      <div class="abs sn">SN <b>CN-0002</b> · TAP TO CONNECT</div>
+      <i class="abs tap" data-icon="tap" data-size="52"></i>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v5-back"><div class="face c5 cv">
+      <div class="plate"></div><i class="rv" style="left:38px;top:38px"></i><i class="rv" style="right:38px;top:38px"></i><i class="rv" style="left:38px;bottom:38px"></i><i class="rv" style="right:38px;bottom:38px"></i>
+      <div class="abs hz"></div>
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs spec ct"><span>NAME</span><b>BucDevGin</b><span>MAIL</span><b>void@codenon.io</b><span>WEB</span><b>codenon.io</b><span>IG</span><b>@codenon.io</b></div>
+      <div class="abs sn">SN <b>CN-0002</b> · SCAN OR TAP TO SAVE CONTACT</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="set">
+  <h2><b>06</b>Swiss</h2>
+  <p>The quiet one, for meetings where the joke can wait: white, a wide name, one colour dot marking the tap spot. Sun for Null, cobalt for Void.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n6-front"><div class="face c6 c6n">
+      <div class="dot"></div>
+      <div class="abs nm fn">Alteisen</div>
+      <div class="abs r"><b>Null</b><span class="ttl"> — Founder</span></div>
+      <div class="abs ft"><div class="cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div><span>null@codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n6-back"><div class="face c6b c6n">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="w">codenon.io</div><p>Need something only your business does? We build it.</p>
+        <ul><li>null@codenon.io</li><li>@codenon.io</li></ul></div>
+      <div class="abs bar"></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v6-front"><div class="face c6 c6v">
+      <div class="dot"></div>
+      <div class="abs nm">BucDevGin</div>
+      <div class="abs r"><b>Void</b><span class="ttl"> — Co-founder</span></div>
+      <div class="abs ft"><div class="cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div><span>void@codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v6-back"><div class="face c6b c6v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="w">codenon.io</div><p>Need something only your business does? We build it.</p>
+        <ul><li>void@codenon.io</li><li>@codenon.io</li></ul></div>
+      <div class="abs bar"></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="set">
+  <h2><b>07</b>Stack trace</h2>
+  <p>The card as a console message. Null throws the famous TypeError; Void gets a compiler warning. The back is the console answering with contact details.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n7-front"><div class="face c7 c7n">
+      <div class="abs bar"><span>● ● ●</span><span>console</span><span class="cnt">✖ 1</span></div>
+      <div class="abs msg"><div class="k">Uncaught TypeError:</div><div class="t">Cannot read properties of null<br>(reading '<b class="fn">Alteisen</b>')</div>
+        <div class="st">    at CODE: NON (codenon.io:1:1)<br>    at tap (nfc:0:0)</div></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs ttl tr">// founder</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n7-back"><div class="face c7 c7b">
+<pre class="abs">&gt; codenon.contact("null")
+<span>&lt;</span> {
+    name: "<b class="fn">Alteisen</b>",
+    mail: "null@codenon.io",
+    web:  "codenon.io",
+    ig:   "@codenon.io" }</pre>
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs ok">✔ 0 errors · tap or scan to save contact</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v7-front"><div class="face c7 c7v">
+      <div class="abs bar"><span>● ● ●</span><span>compiler</span><span class="cnt">⚠ 1</span></div>
+      <div class="abs msg"><div class="k">warning [-Wvoid]:</div><div class="t">'<b>BucDevGin</b>' returns void,<br>but does everything anyway.</div>
+        <div class="st">    in CODE: NON (codenon.io:2:1)<br>    note: this is intended</div></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs ttl tr">// co-founder</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v7-back"><div class="face c7 c7b">
+<pre class="abs">&gt; codenon.contact("void")
+<span>&lt;</span> {
+    name: "<b>BucDevGin</b>",
+    mail: "void@codenon.io",
+    web:  "codenon.io",
+    ig:   "@codenon.io" }</pre>
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs ok">✔ 0 errors · tap or scan to save contact</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="set">
+  <h2><b>08</b>Dossier</h2>
+  <p>A personnel file on manila paper: codename in big type, a few lines redacted, CLASSIFIED stamp. The aliases finally get the paperwork they deserve.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n8-front"><div class="face c8">
+      <div class="abs hd">PERSONNEL FILE · CODE: NON · CN-0001</div>
+      <div class="abs lb">CODENAME</div>
+      <div class="abs cond cn">Null</div>
+      <div class="abs fields"><span>NAME</span><b class="fn">Alteisen</b><span class="ttl">ROLE</span><b class="ttl">Founder</b><span>LOCATION</span><b><i class="rd" style="width:220px"></i></b><span>CLEARANCE</span><b>LEVEL 0 <i class="rd" style="width:120px"></i></b></div>
+      <div class="abs photo"><img src="assets/codenon-logo.png" alt=""><span>FIG. 1</span></div>
+      <div class="abs stamp">CLASSIFIED</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n8-back"><div class="face c8">
+      <div class="abs hd">ATTACHMENT A · DECLASSIFIED</div>
+      <div class="abs qbox"><div class="qr" data-qr="https://codenon.io/null"></div></div>
+      <div class="abs fields ct"><span>MAIL</span><b>null@codenon.io</b><span>WEB</span><b>codenon.io</b><span>IG</span><b>@codenon.io</b><span>NOTES</span><b><i class="rd" style="width:190px"></i></b></div>
+      <div class="abs foot">FILE CN-0001 · TAP OR SCAN TO OPEN · DO NOT DUPLICATE</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v8-front"><div class="face c8">
+      <div class="abs hd">PERSONNEL FILE · CODE: NON · CN-0002</div>
+      <div class="abs lb">CODENAME</div>
+      <div class="abs cond cn">Void</div>
+      <div class="abs fields"><span>NAME</span><b>BucDevGin</b><span class="ttl">ROLE</span><b class="ttl">Co-founder</b><span>LOCATION</span><b><i class="rd" style="width:220px"></i></b><span>CLEARANCE</span><b>LEVEL 0 <i class="rd" style="width:120px"></i></b></div>
+      <div class="abs photo"><img src="assets/codenon-logo.png" alt=""><span>FIG. 2</span></div>
+      <div class="abs stamp">CLASSIFIED</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v8-back"><div class="face c8">
+      <div class="abs hd">ATTACHMENT A · DECLASSIFIED</div>
+      <div class="abs qbox"><div class="qr" data-qr="https://codenon.io/void"></div></div>
+      <div class="abs fields ct"><span>MAIL</span><b>void@codenon.io</b><span>WEB</span><b>codenon.io</b><span>IG</span><b>@codenon.io</b><span>NOTES</span><b><i class="rd" style="width:190px"></i></b></div>
+      <div class="abs foot">FILE CN-0002 · TAP OR SCAN TO OPEN · DO NOT DUPLICATE</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="set">
+  <h2><b>09</b>Glitch</h2>
+  <p>Signal lost: the name split into red and blue channels with a sliced offset and scanlines. Null tears to the right, Void to the left.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n9-front"><div class="face c9">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs sig">SIGNAL: <b>NULL</b></div>
+      <div class="abs cond gl fn" data-t="Alteisen">Alteisen</div>
+      <div class="abs sub">&gt; null<i class="cur"></i> <span class="ttl">· founder</span></div>
+      <div class="abs hint">// tap to resolve</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n9-back"><div class="face bk c9 c9b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>signal restored</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v9-front"><div class="face c9 c9v">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs sig">SIGNAL: <b>VOID</b></div>
+      <div class="abs cond gl" data-t="BucDevGin">BucDevGin</div>
+      <div class="abs sub">&gt; void<i class="cur"></i> <span class="ttl">· co-founder</span></div>
+      <div class="abs hint">// tap to resolve</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v9-back"><div class="face bk c9 c9b c9v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>signal restored</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="set">
+  <h2><b>10</b>Halftone</h2>
+  <p>Print-shop halftone dots. Null is a dot sun that fades out from the centre; Void is the same field of dots with a hole punched through the middle.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n10-front"><div class="face c10 c10n">
+      <div class="ht"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs who"><div class="cond fn">Alteisen</div><small>NULL<span class="ttl"> · FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n10-back"><div class="face bk c10 c10n c10b">
+      <div class="ht"></div>
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v10-front"><div class="face c10 c10v">
+      <div class="ht"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs who"><div class="cond">BucDevGin</div><small>VOID<span class="ttl"> · CO-FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v10-back"><div class="face bk c10 c10b c10v">
+      <div class="ht"></div>
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="set">
+  <h2><b>11</b>Element</h2>
+  <p>Each founder as a periodic-table element: Nl, atomic number 0, and Vd. Group: CODE: NON.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n11-front"><div class="face c11 c11n">
+      <div class="abs el"><span class="z">0</span><span class="m">0.000</span><b>Nl</b><i>Null</i></div>
+      <div class="abs info"><div class="cond fn">Alteisen</div><div class="r ttl">FOUNDER</div>
+        <dl><dt>GROUP</dt><dd>CODE: NON</dd><dt>PERIOD</dt><dd>01</dd><dt>STATE</dt><dd>intentionally empty</dd></dl></div>
+      <img class="abs logo" src="assets/codenon-logo.png" alt="">
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n11-back"><div class="face bk c11b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">Nl · NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON · group 0</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v11-front"><div class="face c11 c11v">
+      <div class="abs el"><span class="z">1</span><span class="m">—</span><b>Vd</b><i>Void</i></div>
+      <div class="abs info"><div class="cond">BucDevGin</div><div class="r ttl">CO-FOUNDER</div>
+        <dl><dt>GROUP</dt><dd>CODE: NON</dd><dt>PERIOD</dt><dd>01</dd><dt>STATE</dt><dd>returns nothing</dd></dl></div>
+      <img class="abs logo" src="assets/codenon-logo.png" alt="">
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v11-back"><div class="face bk c11b c11v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">Vd · VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON · group 0</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="set">
+  <h2><b>12</b>Foil</h2>
+  <p>The premium one: matte black with a gold-foil monogram, N for Null and V for Void. Print the gold as a real foil stamp.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n12-front"><div class="face c12">
+      <div class="abs mono">N</div>
+      <div class="abs info"><div class="nm fn">Alteisen</div><hr><div class="r">NULL<span class="ttl"> · FOUNDER</span></div><div class="r">CODE: NON</div></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n12-back"><div class="face c12">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs info b"><div class="nm">codenon.io</div><hr><div class="r">null@codenon.io</div><div class="r">@codenon.io</div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v12-front"><div class="face c12">
+      <div class="abs mono">V</div>
+      <div class="abs info"><div class="nm">BucDevGin</div><hr><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div><div class="r">CODE: NON</div></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v12-back"><div class="face c12">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs info b"><div class="nm">codenon.io</div><hr><div class="r">void@codenon.io</div><div class="r">@codenon.io</div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="set">
+  <h2><b>13</b>BIOS</h2>
+  <p>A boot screen: the card detects its founder unit on startup. The back is the boot menu: tap, scan, mail or web.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n13-front"><div class="face c13">
+      <div class="abs top">CODE: NON BIOS SETUP UTILITY</div>
+      <div class="abs box">
+        <div class="ln">Detecting units<i></i><b>done</b></div>
+        <div class="ln">Unit 0<i></i><b class="fn">Alteisen</b></div>
+        <div class="ln">Designation<i></i><b class="hl">[ NULL ]</b></div>
+        <div class="ln ttl">Title<i></i><b>Founder</b></div>
+        <div class="ln">NFC controller<i></i><b>present</b></div>
+        <div class="ln">Memory test<i></i><b>0 KB OK</b></div>
+      </div>
+      <div class="abs bt"><span>Press &lt;<b>TAP</b>&gt; to enter setup<i class="cur"></i></span><span>v1.0 · codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n13-back"><div class="face c13">
+      <div class="abs top">BOOT MENU</div>
+      <div class="abs box"><div class="opt on">1. NFC  · tap the card</div><div class="opt">2. QR   · scan the code</div><div class="opt">3. MAIL · null@codenon.io</div><div class="opt">4. WEB  · codenon.io</div><div class="opt">5. IG   · @codenon.io</div></div>
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs bt"><span>↑↓ select · ⏎ boot</span><span>ESC: never</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v13-front"><div class="face c13 c13v">
+      <div class="abs top">CODE: NON BIOS SETUP UTILITY</div>
+      <div class="abs box">
+        <div class="ln">Detecting units<i></i><b>done</b></div>
+        <div class="ln">Unit 1<i></i><b>BucDevGin</b></div>
+        <div class="ln">Designation<i></i><b class="hl">[ VOID ]</b></div>
+        <div class="ln ttl">Title<i></i><b>Co-founder</b></div>
+        <div class="ln">NFC controller<i></i><b>present</b></div>
+        <div class="ln">Return value<i></i><b>none, as designed</b></div>
+      </div>
+      <div class="abs bt"><span>Press &lt;<b>TAP</b>&gt; to enter setup<i class="cur"></i></span><span>v1.0 · codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v13-back"><div class="face c13 c13v">
+      <div class="abs top">BOOT MENU</div>
+      <div class="abs box"><div class="opt on">1. NFC  · tap the card</div><div class="opt">2. QR   · scan the code</div><div class="opt">3. MAIL · void@codenon.io</div><div class="opt">4. WEB  · codenon.io</div><div class="opt">5. IG   · @codenon.io</div></div>
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs bt"><span>↑↓ select · ⏎ boot</span><span>ESC: never</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="set">
+  <h2><b>14</b>Punch card</h2>
+  <p>An 80s-mainframe punch card. The holes really encode the printed line (Hollerith code), name included, so every name gets its own hole pattern.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n14-front"><div class="face c14">
+      <div class="abs hd"><b>CODE: NON</b> · NULL<span class="ttl"> · FOUNDER</span></div><div class="abs no">CN-0001</div>
+      <svg class="punch" data-punch="{n} NULL CODE:NON CN-0001" viewBox="0 0 1011 638"></svg>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n14-back"><div class="face bk c14 c14b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>DO NOT FOLD, SPINDLE OR MUTILATE</span><span>CODE: NON</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v14-front"><div class="face c14">
+      <div class="abs hd"><b>CODE: NON</b> · VOID<span class="ttl"> · CO-FOUNDER</span></div><div class="abs no">CN-0002</div>
+      <svg class="punch" data-punch="BUCDEVGIN VOID CODE:NON CN-0002" viewBox="0 0 1011 638"></svg>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v14-back"><div class="face bk c14 c14b">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>DO NOT FOLD, SPINDLE OR MUTILATE</span><span>CODE: NON</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="set">
+  <h2><b>15</b>Null Island / Point Nemo</h2>
+  <p>Two real places. Null Island is 0°N 0°E, where every broken GPS coordinate ends up. Point Nemo is the spot in the ocean farthest from any land: the void.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n15-front"><div class="face c15">
+      <svg class="topo" data-topo="3" viewBox="0 0 1011 638"></svg>
+      <div class="abs hd">CODE: NON · FIELD MAP 01</div>
+      <div class="abs cap">0°N 0°E — where every missing value lands.</div>
+      <div class="abs cond ttl0">Null Island</div>
+      <div class="abs co">0°00′00″N · 0°00′00″E</div>
+      <div class="abs who"><b class="fn">Alteisen</b><span class="ttl"> · founder</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n15-back"><div class="face bk c15b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">0°N 0°E · NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON · field map 01</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v15-front"><div class="face c15 c15v">
+      <svg class="topo" data-topo="9" viewBox="0 0 1011 638"></svg>
+      <div class="abs hd">CODE: NON · FIELD MAP 02</div>
+      <div class="abs cap">The farthest point from any land. Pure void.</div>
+      <div class="abs cond ttl0">Point Nemo</div>
+      <div class="abs co">48°52′36″S · 123°23′36″W</div>
+      <div class="abs who"><b>BucDevGin</b><span class="ttl"> · co-founder</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v15-back"><div class="face bk c15b c15v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">48°S 123°W · VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON · field map 02</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="set">
+  <h2><b>16</b>Mixtape</h2>
+  <p>A cassette: Null is Side A, Void is Side B. Hand-written label, two reels, brand stripes. The back is the tracklist.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n16-front"><div class="face c16">
+      <div class="abs lbl"><div class="mk">Side A — Null</div><div class="ar"><span class="fn">Alteisen</span><span class="ttl"> · founder</span></div><span class="ty">C-60</span></div>
+      <div class="abs cond sd">A</div>
+      <div class="abs win"><i class="reel big"></i><i class="reel"></i></div>
+      <i class="abs tap" data-icon="tap" data-size="64"></i>
+      <div class="abs str"></div>
+      <div class="abs ft"><span>CODE: NON · TYPE I · NFC</span><span>codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n16-back"><div class="face c16 c16b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs tl"><div class="mk">Tracklist</div>
+        <ol><li><b>A1</b>tap the card</li><li><b>A2</b>scan the code</li><li><b>A3</b>save my contact</li></ol>
+        <p>null@codenon.io · @codenon.io</p></div>
+      <div class="abs str"></div>
+      <div class="abs ft"><span>℗ CODE: NON</span><span>codenon.io</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v16-front"><div class="face c16 c16v">
+      <div class="abs lbl"><div class="mk">Side B — Void</div><div class="ar"><span>BucDevGin</span><span class="ttl"> · co-founder</span></div><span class="ty">C-60</span></div>
+      <div class="abs cond sd">B</div>
+      <div class="abs win"><i class="reel"></i><i class="reel big"></i></div>
+      <i class="abs tap" data-icon="tap" data-size="64"></i>
+      <div class="abs str"></div>
+      <div class="abs ft"><span>CODE: NON · TYPE I · NFC</span><span>codenon.io</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v16-back"><div class="face c16 c16b c16v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs tl"><div class="mk">Tracklist</div>
+        <ol><li><b>B1</b>tap the card</li><li><b>B2</b>scan the code</li><li><b>B3</b>save my contact</li></ol>
+        <p>void@codenon.io · @codenon.io</p></div>
+      <div class="abs str"></div>
+      <div class="abs ft"><span>℗ CODE: NON</span><span>codenon.io</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="set">
+  <h2><b>17</b>LED sign</h2>
+  <p>A dot-matrix departure board. NULL and VOID spelled in glowing LEDs, the name on the ticker underneath.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n17-front"><div class="face c17">
+      <div class="abs top"><span>CODE: NON · LINE 0</span><span class="clk">00:00</span></div>
+      <div class="abs led" data-led="NULL"></div>
+      <div class="abs tick">▶ <b class="fn">Alteisen</b><span class="ttl"> · founder</span></div>
+      <div class="abs sub">now boarding · tap to connect</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n17-back"><div class="face bk c17 c17b">
+      <div class="abs qr" data-qr="https://codenon.io/null"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">LINE 0 · NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>next departure: now</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v17-front"><div class="face c17 c17v">
+      <div class="abs top"><span>CODE: NON · LINE 1</span><span class="clk">--:--</span></div>
+      <div class="abs led" data-led="VOID"></div>
+      <div class="abs tick">▶ <b>BucDevGin</b><span class="ttl"> · co-founder</span></div>
+      <div class="abs sub">no further stops · tap to connect</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v17-back"><div class="face bk c17 c17b c17v">
+      <div class="abs qr" data-qr="https://codenon.io/void"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">LINE 1 · VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.io</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>next departure: now</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="set">
+  <h2><b>18</b>Passport</h2>
+  <p>A passport data page issued by CODE: NON, with security-print background and a real-format machine-readable zone built from the name. The back is the visa page.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n18-front"><div class="face c18">
+      <div class="abs hd"><span>CODE: NON · PASSPORT · PASSEPORT</span><span>P · CDN · CN0000001</span></div>
+      <div class="abs ph"><img src="assets/codenon-logo.png" alt=""></div>
+      <div class="abs fl"><div><small>Surname</small><b>NULL</b></div><div><small>Given names</small><b class="fn">Alteisen</b></div>
+        <div><small>Nationality</small><b>CODE: NON</b></div><div><small>Date of issue</small><b>2026</b></div>
+        <div class="ttl"><small>Occupation</small><b>Founder</b></div><div><small>Authority</small><b>codenon.io</b></div></div>
+      <div class="abs mrz" data-mrz="NULL|{n}|CN0000001"></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n18-back"><div class="face c18 c18b">
+      <div class="abs visa"><div class="vh">VISA · CONTACT</div><div class="qr" data-qr="https://codenon.io/null"></div><div class="vm">null@codenon.io</div></div>
+      <div class="abs st1">ARRIVED<br><b>CODE: NON</b><br>★ 2026 ★</div>
+      <div class="abs st2">ENTRY · NULL<br><b>tap to connect</b></div>
+      <div class="abs st3">codenon.io<br>@codenon.io</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v18-front"><div class="face c18">
+      <div class="abs hd"><span>CODE: NON · PASSPORT · PASSEPORT</span><span>P · CDN · CN0000002</span></div>
+      <div class="abs ph"><img src="assets/codenon-logo.png" alt=""></div>
+      <div class="abs fl"><div><small>Surname</small><b>VOID</b></div><div><small>Given names</small><b>BucDevGin</b></div>
+        <div><small>Nationality</small><b>CODE: NON</b></div><div><small>Date of issue</small><b>2026</b></div>
+        <div class="ttl"><small>Occupation</small><b>Co-founder</b></div><div><small>Authority</small><b>codenon.io</b></div></div>
+      <div class="abs mrz" data-mrz="VOID|BucDevGin|CN0000002"></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v18-back"><div class="face c18 c18b">
+      <div class="abs visa"><div class="vh">VISA · CONTACT</div><div class="qr" data-qr="https://codenon.io/void"></div><div class="vm">void@codenon.io</div></div>
+      <div class="abs st1">ARRIVED<br><b>CODE: NON</b><br>★ 2026 ★</div>
+      <div class="abs st2">ENTRY · VOID<br><b>tap to connect</b></div>
+      <div class="abs st3">codenon.io<br>@codenon.io</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
+
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  // QR: dark modules as one path in currentColor, 4-module quiet zone built in.
+  document.querySelectorAll('[data-qr]').forEach(function (el) {
+    var q = qrcode(0, 'M'); q.addData(el.getAttribute('data-qr')); q.make();
+    var n = q.getModuleCount(), d = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + c + ' ' + r + 'h1v1h-1z';
+    el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 ' + (n + 8) + ' ' + (n + 8) +
+      '" shape-rendering="crispEdges"><path fill="currentColor" d="' + d + '"/></svg>';
+  });
+
+  // Founder name candidates: .fn shows it as written, .fnl lowercase (for the code-style card).
+  var NAMES = ['Alteisen', 'Weißritter', 'Persönlichkeit'], hooks = [], cur;
+  function setName(i) {
+    document.querySelectorAll('.fn').forEach(function (el) { el.textContent = NAMES[i]; });
+    document.querySelectorAll('.fnl').forEach(function (el) { el.textContent = NAMES[i].toLowerCase(); });
+    document.querySelectorAll('.gl.fn').forEach(function (el) { el.setAttribute('data-t', NAMES[i]); });
+    cur = NAMES[i]; hooks.forEach(function (f) { f(cur); });
+    document.querySelectorAll('.names button').forEach(function (b) { b.classList.toggle('on', +b.getAttribute('data-n') === i); });
+  }
+  document.querySelectorAll('.names button').forEach(function (b) {
+    b.addEventListener('click', function () { setName(+b.getAttribute('data-n')); });
+  });
+  var n = +(new URLSearchParams(location.search).get('n') || 0);
+  setName(NAMES[n] ? n : 0);
+
+  // Name-dependent drawings (punch holes, passport MRZ) redraw whenever the founder name changes.
+  function fold(s) { return s.replace(/ß/g, 'SS').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase(); }
+  function onName(f) { hooks.push(f); f(cur); }
+
+  // Punch card: 40 columns x 12 rows (12, 11, 0-9); the holes are the Hollerith code of the printed line.
+  function holler(ch) {
+    var k = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(ch);
+    if (ch >= '0' && ch <= '9') return [2 + +ch];
+    if (k >= 0 && k < 9) return [0, 3 + k];
+    if (k >= 9 && k < 18) return [1, 3 + k - 9];
+    if (k >= 18) return [2, 4 + k - 18];
+    return { ':': [4, 10], '-': [1], '.': [0, 5, 10] }[ch] || [];
+  }
+  document.querySelectorAll('svg[data-punch]').forEach(function (svg) {
+    onName(function (name) {
+      var t = fold(svg.getAttribute('data-punch').replace('{n}', name)).slice(0, 40), x0 = 54, cw = 22.6, y0 = 160, rh = 37.5, out = '';
+      for (var c = 0; c < 40; c++) {
+        var x = x0 + c * cw + cw / 2, ch = t[c] || ' ', holes = holler(ch);
+        out += '<text x="' + x + '" y="128" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="19" fill="#2a1d14">' + ch + '</text>';
+        for (var r = 0; r < 12; r++) {
+          var y = y0 + r * rh + rh / 2;
+          if (holes.indexOf(r) >= 0) out += '<rect x="' + (x - 6) + '" y="' + (y - 14) + '" width="12" height="28" rx="2" fill="#2a1d14"/>';
+          else if (r >= 2) out += '<text x="' + x + '" y="' + (y + 5) + '" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#7a2d1c" opacity=".65">' + (r - 2) + '</text>';
+        }
+      }
+      svg.innerHTML = out;
+    });
+  });
+
+  // Contour map: wobbly concentric rings round the marker, plus the two grid lines through it.
+  document.querySelectorAll('svg[data-topo]').forEach(function (svg) {
+    var k = +svg.getAttribute('data-topo'), cx = 720, cy = 300, nemo = svg.closest('.c15v'), ln = 'style="stroke:var(--ln)"', out = '';
+    out += '<path d="M0 ' + cy + 'H1011M' + cx + ' 0V638" ' + ln + ' stroke-width="2" stroke-dasharray="8 8" opacity=".45"/>';
+    for (var i = 1; i <= 13; i++) {
+      var d = '';
+      for (var a = 0; a <= 72; a++) {
+        var t = a / 72 * Math.PI * 2, r = 26 + i * 36 * (1 + .09 * Math.sin(3 * t + i * .6 + k) + .05 * Math.sin(5 * t - i * .4));
+        d += (a ? 'L' : 'M') + (cx + r * Math.cos(t)).toFixed(1) + ' ' + (cy + r * .82 * Math.sin(t)).toFixed(1);
+      }
+      out += '<path d="' + d + 'Z" fill="none" ' + ln + ' stroke-width="' + (i % 4 ? 1.6 : 3) + '" opacity="' + (i % 4 ? .28 : .5) + '"/>';
+    }
+    var lab = 'font-family="JetBrains Mono" font-size="15" letter-spacing="2" style="fill:var(--ln)" opacity=".7"';
+    out += '<text x="990" y="' + (cy - 10) + '" text-anchor="end" ' + lab + '>' + (nemo ? '48°52′36″S' : 'EQUATOR') + '</text>';
+    out += '<text x="' + (cx + 10) + '" y="40" ' + lab + '>' + (nemo ? '123°23′36″W' : 'PRIME MERIDIAN') + '</text>';
+    out += nemo
+      ? '<circle cx="' + cx + '" cy="' + cy + '" r="30" fill="none" stroke="#ffc83d" stroke-width="4"/><path d="M' + (cx - 54) + ' ' + cy + 'H' + (cx + 54) +
+        'M' + cx + ' ' + (cy - 54) + 'V' + (cy + 54) + '" stroke="#ffc83d" stroke-width="3"/>'
+      : '<path d="M' + (cx - 24) + ' ' + (cy + 4) + 'q10 -22 32 -15q19 6 14 19q-8 14 -27 10q-17 -2 -19 -14z" fill="#ffc83d" stroke="#0b1b4d" stroke-width="3"/>' +
+        '<text x="' + (cx + 34) + '" y="' + (cy - 22) + '" font-family="JetBrains Mono" font-weight="700" font-size="20" fill="#0b1b4d">0,0</text>';
+    svg.innerHTML = out;
+  });
+
+  // LED dot-matrix: 5x7 glyphs, one blank column between letters.
+  var FONT = { N: ['10001', '11001', '10101', '10011', '10001', '10001', '10001'], U: ['10001', '10001', '10001', '10001', '10001', '10001', '01110'],
+    L: ['10000', '10000', '10000', '10000', '10000', '10000', '11111'], V: ['10001', '10001', '10001', '10001', '10001', '01010', '00100'],
+    O: ['01110', '10001', '10001', '10001', '10001', '10001', '01110'], I: ['01110', '00100', '00100', '00100', '00100', '00100', '01110'],
+    D: ['11110', '10001', '10001', '10001', '10001', '10001', '11110'] };
+  document.querySelectorAll('[data-led]').forEach(function (el) {
+    var w = el.getAttribute('data-led').split(''), h = '';
+    for (var r = 0; r < 7; r++) w.forEach(function (ch, j) {
+      for (var c = 0; c < 5; c++) h += '<i' + (FONT[ch][r][c] === '1' ? ' class="on"' : '') + '></i>';
+      if (j < w.length - 1) h += '<i></i>';
+    });
+    el.innerHTML = h;
+  });
+
+  // Passport machine-readable zone: two 44-character lines, "<" as filler, names folded to A-Z.
+  document.querySelectorAll('[data-mrz]').forEach(function (el) {
+    onName(function (name) {
+      var p = el.getAttribute('data-mrz').split('|');
+      function pad(s) { return (s + Array(45).join('<')).slice(0, 44); }
+      el.textContent = pad('P<CDN' + fold(p[0]) + '<<' + fold(p[1].replace('{n}', name))) + '\n' + pad(p[2] + '0CDN2601010X3101011<<<<<<<<<<<<<<04');
+    });
+  });
+
+  // Titles toggle (founder / co-founder). ?t=0 starts with them hidden.
+  var ttl = document.getElementById('ttl'), qs = new URLSearchParams(location.search);
+  function setTtl(on) { ttl.checked = on; document.body.classList.toggle('no-ttl', !on); }
+  ttl.addEventListener('change', function () { setTtl(ttl.checked); });
+  setTtl(qs.get('t') !== '0');
+
+  // PDF export through the print dialog (choose "Save as PDF"). ?print=card|sheet&only=3 does the same for headless renders.
+  var sets = document.querySelectorAll('.set');
+  function exportPdf(mode, only) {
+    document.body.classList.add('pr-' + mode);
+    if (only) { document.body.classList.add('pr-one'); sets[only - 1].classList.add('pick'); }
+  }
+  function clearPdf() {
+    document.body.classList.remove('pr-card', 'pr-sheet', 'pr-one');
+    sets.forEach(function (s) { s.classList.remove('pick'); });
+  }
+  window.addEventListener('afterprint', clearPdf);
+  document.querySelectorAll('.names [data-pr]').forEach(function (b) {
+    b.addEventListener('click', function () { exportPdf(b.getAttribute('data-pr')); window.print(); });
+  });
+  sets.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.className = 'ex'; b.textContent = 'Export this design · PDF';
+    b.addEventListener('click', function () { exportPdf('card', i + 1); window.print(); });
+    s.querySelector('h2').appendChild(b);
+  });
+  if (qs.get('print')) exportPdf(qs.get('print'), +qs.get('only') || 0);
+
+  // #n1-front etc: show that one face alone for rendering.
+  var id = location.hash.slice(1), slot = id && document.getElementById(id);
+  if (slot && slot.classList.contains('slot')) { document.body.classList.add('solo'); slot.classList.add('on'); }
+})();
+</script>
+</body>
+</html>
