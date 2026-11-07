@@ -1,0 +1,60 @@
+<style>
+  /* ---------- 50 CORNERS: four corners carry everything; the centre holds one point (Null) or one ring (Void) ---------- */
+  .c50{--pp:#ffffff;--ink:#0f0f10;--mu:#9a9a9a;background:var(--pp);color:var(--ink);font-family:'Figtree'}
+  .c50v{--pp:#000;--ink:#f4f4f2;--mu:#6d6d6d}
+  .c50 .tl{left:64px;top:60px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.3em}
+  .c50 .tr{right:64px;top:60px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.3em;color:var(--mu)}
+  .c50 .bl{left:64px;bottom:58px}
+  .c50 .bl b{display:block;font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1}
+  .c50 .bl span{display:block;margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--mu)}
+  .c50 .br{right:64px;bottom:58px;text-align:right;font-family:'JetBrains Mono';font-size:14px;line-height:1.8}
+  .c50 .pt{left:calc(50% - 5px);top:calc(50% - 5px);width:10px;height:10px;border-radius:50%;background:var(--ink)}
+  .c50v .pt{left:calc(50% - 14px);top:calc(50% - 14px);width:28px;height:28px;background:none;border:1.5px solid var(--ink)}
+  .c50b .cq{left:calc(50% - 120px);top:calc(50% - 120px);width:240px;height:240px;border-radius:0}
+  .c50b .ck{width:22px;height:22px;border-color:var(--ink);border-style:solid;border-width:0}
+  .c50b .ck.a{left:calc(50% - 142px);top:calc(50% - 142px);border-top-width:1.5px;border-left-width:1.5px}
+  .c50b .ck.b{right:calc(50% - 142px);top:calc(50% - 142px);border-top-width:1.5px;border-right-width:1.5px}
+  .c50b .ck.c{left:calc(50% - 142px);bottom:calc(50% - 142px);border-bottom-width:1.5px;border-left-width:1.5px}
+  .c50b .ck.d{right:calc(50% - 142px);bottom:calc(50% - 142px);border-bottom-width:1.5px;border-right-width:1.5px}
+</style>
+<!-- 50 -->
+<section class="set">
+  <h2><b>50</b>Corners</h2>
+  <p>The four corners carry everything, so the middle can be empty. The exact centre holds one point (Null, white card) or one ring (Void, black card). On the back the QR takes the centre, framed by four crop marks.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n50-front"><div class="face c50">
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs tr">N° 01</div>
+      <div class="abs pt"></div>
+      <div class="abs bl"><b class="fn">Alteisen</b><span><span class="ttl" style="display:inline;margin:0">Founder · </span>Null</span></div>
+      <div class="abs br">codenon.null@gmail.com<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n50-back"><div class="face c50 c50b">
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs tr">SCAN · OR TAP</div>
+      <div class="abs ck a"></div><div class="abs ck b"></div><div class="abs ck c"></div><div class="abs ck d"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-fg="#0f0f10" data-bg="#ffffff"></div>
+      <div class="abs bl"><b class="fn">Alteisen</b><span>Null</span></div>
+      <div class="abs br">codenon.null@gmail.com<br>codenon.pages.dev</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v50-front"><div class="face c50 c50v">
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs tr">N° 02</div>
+      <div class="abs pt"></div>
+      <div class="abs bl"><b>BucDevGin</b><span><span class="ttl" style="display:inline;margin:0">Co-founder · </span>Void</span></div>
+      <div class="abs br">codenon.null@gmail.com<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v50-back"><div class="face c50 c50b c50v">
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs tr">SCAN · OR TAP</div>
+      <div class="abs ck a"></div><div class="abs ck b"></div><div class="abs ck c"></div><div class="abs ck d"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-fg="#000000" data-bg="#f4f4f2"></div>
+      <div class="abs bl"><b>BucDevGin</b><span>Void</span></div>
+      <div class="abs br">codenon.null@gmail.com<br>codenon.pages.dev</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+<style>
+  /* ---------- 21 BLUEPRINT: R&D drawing of the unit, with callouts ---------- */
+  .c21{background:#1446a0;color:#e8f1ff;font-family:'JetBrains Mono';
+    background-image:linear-gradient(rgba(232,241,255,.2) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(232,241,255,.2) 1.5px,transparent 1.5px),
+      linear-gradient(rgba(232,241,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(232,241,255,.08) 1px,transparent 1px);
+    background-size:125px 125px,125px 125px,25px 25px,25px 25px;background-position:-12px -12px;
+    --m-ink:#e8f1ff;--m-shell:#1446a0;--m-acc:#1446a0;--m-hole:#0e367f;--m-glow:#e8f1ff}
+  .c21 .fr{inset:22px;border:2px solid rgba(232,241,255,.75);border-radius:18px}
+  .c21 .msc{left:330px;top:60px;width:330px;height:440px}
+  .c21 .ln{left:0;top:0;width:1011px;height:638px}
+  .c21 .ttl0{left:52px;top:52px;font-size:118px}
+  .c21 .un{left:54px;top:170px;font-size:17px;letter-spacing:.18em;opacity:.8}
+  .c21 .co{position:absolute;font-size:15px;line-height:1.35;letter-spacing:.06em}
+  .c21 .co b{display:block;font-size:17px;letter-spacing:.14em}
+  .c21 .co span{opacity:.75}
+  .c21 .tb{left:52px;bottom:48px;width:250px;display:grid;grid-template-columns:96px 1fr;border:2px solid rgba(232,241,255,.75);font-size:13px}
+  .c21 .tb span,.c21 .tb b{padding:6px 8px;border-bottom:1px solid rgba(232,241,255,.4)}
+  .c21 .tb > :nth-last-child(-n+2){border-bottom:0}
+  .c21 .tb .ttl b{border-right:0}
+  .c21 .tb span{opacity:.65;border-right:1px solid rgba(232,241,255,.4)}
+  .c21 .tb b{font-weight:700}
+  .c21 .stp{right:52px;bottom:48px;font-size:15px;letter-spacing:.16em;border:2px solid #e8f1ff;padding:8px 14px;transform:rotate(-4deg)}
+  .c21v{--m-ink:#2f68cc;--m-shell:#e8f1ff;--m-acc:#e8f1ff;--m-hole:#0a2a6a;--m-rim:#e8f1ff}
+  .c21b .cq{left:60px;top:60px;width:300px;height:300px;border-radius:16px;box-shadow:0 0 0 2px #e8f1ff,0 0 0 10px #1446a0,0 0 0 12px rgba(232,241,255,.5)}
+  .c21b .hd{left:400px;top:58px;right:56px;font-size:16px;letter-spacing:.2em;opacity:.75}
+  .c21b .nm{left:400px;top:92px;right:56px;font-size:76px}
+  .c21b .sp{left:400px;top:190px;right:56px;font-size:19px}
+  .c21b .sp div{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px dashed rgba(232,241,255,.4)}
+  .c21b .sp span{width:86px;opacity:.65;font-size:15px;letter-spacing:.14em}
+  .c21b .ql{left:60px;top:384px;width:300px;text-align:center;font-size:14px;letter-spacing:.16em;opacity:.75}
+</style>
+<!-- 21 -->
+<section class="set">
+  <h2><b>21</b>Blueprint</h2>
+  <p>The R&amp;D drawing of each unit: a line-art mascot with labelled parts and an engineering title block. Sheet 2 is the interface: the branded QR and the contact ports.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n21-front"><div class="face c21">
+      <div class="abs fr"></div>
+      <div class="abs cond ttl0">Null</div><div class="abs un">UNIT N-01 · ANDROID</div>
+      <div class="abs msc" data-mascot="null"></div>
+      <svg class="abs ln" viewBox="0 0 1011 638" fill="none" stroke="#e8f1ff" stroke-width="2">
+        <path d="M495 93L560 82H690M528 188H690M521 307H690M551 426H690M394 212L330 262H306"/>
+        <g fill="#e8f1ff"><circle cx="495" cy="93" r="5"/><circle cx="528" cy="188" r="5"/><circle cx="521" cy="307" r="5"/><circle cx="551" cy="426" r="5"/><circle cx="394" cy="212" r="5"/></g></svg>
+      <div class="co" style="left:700px;top:66px"><b>A · ANTENNA</b><span>listens for NFC taps</span></div>
+      <div class="co" style="left:700px;top:172px"><b>B · ∅ VISOR</b><span>sees what's missing</span></div>
+      <div class="co" style="left:700px;top:291px"><b>C · CORE</b><span>empty by design</span></div>
+      <div class="co" style="left:700px;top:410px"><b>D · BOOTS</b><span>ships on time</span></div>
+      <div class="co" style="left:54px;top:246px;width:250px;text-align:right"><b>E · HAND</b><span>always waves first</span></div>
+      <div class="abs tb"><span>ENGINEER</span><b class="fn">Alteisen</b><div class="ttl" style="display:contents"><span>ROLE</span><b>FOUNDER</b></div><span>PART</span><b>N-01</b><span>SHEET</span><b>1 / 2</b></div>
+      <div class="abs stp">CODE: NON · R&amp;D</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n21-back"><div class="face c21 c21b">
+      <div class="abs fr"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#0e367f" data-bg="#e8f1ff" data-accent="#1446a0"></div>
+      <div class="abs ql">F · QR PORT · scan here</div>
+      <div class="abs hd">SHEET 2 / 2 · INTERFACE</div>
+      <div class="abs cond nm fn">Alteisen</div>
+      <div class="abs sp"><div><span>PORT 1</span>NFC · tap the card</div><div><span>PORT 2</span>QR · scan the code</div>
+        <div><span>MAIL</span>null@codenon.io</div><div><span>WEB</span>codenon.pages.dev</div><div><span>IG</span>@codenon.io</div></div>
+      <div class="abs stp">UNIT N-01<span class="ttl"> · FOUNDER</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v21-front"><div class="face c21 c21v">
+      <div class="abs fr"></div>
+      <div class="abs cond ttl0">Void</div><div class="abs un">UNIT V-02 · SINGULARITY</div>
+      <div class="abs msc" data-mascot="void"></div>
+      <svg class="abs ln" viewBox="0 0 1011 638" fill="none" stroke="#e8f1ff" stroke-width="2">
+        <path d="M495 104L560 82H690M561 225L610 188H690M602 314L630 307H690M587 431L620 426H690M399 337L330 262H306"/>
+        <g fill="#e8f1ff"><circle cx="495" cy="104" r="5"/><circle cx="561" cy="225" r="5"/><circle cx="602" cy="314" r="5"/><circle cx="587" cy="431" r="5"/><circle cx="399" cy="337" r="5"/></g></svg>
+      <div class="co" style="left:700px;top:66px"><b>A · HOOD</b><span>holds one (1) singularity</span></div>
+      <div class="co" style="left:700px;top:172px"><b>B · EVENT HORIZON</b><span>eyes: still watching</span></div>
+      <div class="co" style="left:700px;top:291px"><b>C · BIT</b><span>recently absorbed</span></div>
+      <div class="co" style="left:700px;top:410px"><b>D · HEM</b><span>dissolves on contact</span></div>
+      <div class="co" style="left:54px;top:246px;width:250px;text-align:right"><b>E · SLEEVE</b><span>holds nothing, on purpose</span></div>
+      <div class="abs tb"><span>ENGINEER</span><b>BucDevGin</b><div class="ttl" style="display:contents"><span>ROLE</span><b>CO-FOUNDER</b></div><span>PART</span><b>V-02</b><span>SHEET</span><b>1 / 2</b></div>
+      <div class="abs stp">CODE: NON · R&amp;D</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v21-back"><div class="face c21 c21b c21v">
+      <div class="abs fr"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#0e367f" data-bg="#e8f1ff" data-accent="#2f68cc"></div>
+      <div class="abs ql">F · QR PORT · scan here</div>
+      <div class="abs hd">SHEET 2 / 2 · INTERFACE</div>
+      <div class="abs cond nm">BucDevGin</div>
+      <div class="abs sp"><div><span>PORT 1</span>NFC · tap the card</div><div><span>PORT 2</span>QR · scan the code</div>
+        <div><span>MAIL</span>void@codenon.io</div><div><span>WEB</span>codenon.pages.dev</div><div><span>IG</span>@codenon.io</div></div>
+      <div class="abs stp">UNIT V-02<span class="ttl"> · CO-FOUNDER</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

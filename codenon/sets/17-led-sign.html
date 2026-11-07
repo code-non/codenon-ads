@@ -1,0 +1,50 @@
+<style>
+  /* ---------- 17 LED SIGN ---------- */
+  .c17{background:#09090b;color:#e6e6e6;--led:var(--sun)}
+  .c17v{--led:var(--sky)}
+  .c17 .top{left:60px;right:60px;top:52px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:22px;letter-spacing:.12em;color:#8b8f98}
+  .c17 .top .clk{color:var(--led)}
+  .c17 .led{left:60px;top:126px;display:grid;grid-template-columns:repeat(23,28px);grid-auto-rows:28px;gap:6px}
+  .c17 .led i{border-radius:50%;background:#1c1c20}
+  .c17 .led i.on{background:var(--led);box-shadow:0 0 14px var(--led)}
+  .c17 .tick{left:60px;top:420px;font-family:'JetBrains Mono';font-size:34px;color:var(--led)}
+  .c17 .tick b{color:#fff}
+  .c17 .tick .ttl{color:#8b8f98;font-size:26px}
+  .c17 .sub{left:60px;bottom:52px;font-family:'JetBrains Mono';font-size:20px;color:#5b5e66;letter-spacing:.1em}
+  .c17b{--acc:var(--led)}
+</style>
+<!-- 17 -->
+<section class="set">
+  <h2><b>17</b>LED sign</h2>
+  <p>A dot-matrix departure board. NULL and VOID spelled in glowing LEDs, the name on the ticker underneath.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n17-front"><div class="face c17">
+      <div class="abs top"><span>CODE: NON · LINE 0</span><span class="clk">00:00</span></div>
+      <div class="abs led" data-led="NULL"></div>
+      <div class="abs tick">▶ <b class="fn">Alteisen</b><span class="ttl"> · founder</span></div>
+      <div class="abs sub">now boarding · tap to connect</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n17-back"><div class="face bk c17 c17b">
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">LINE 0 · NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>next departure: now</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v17-front"><div class="face c17 c17v">
+      <div class="abs top"><span>CODE: NON · LINE 1</span><span class="clk">--:--</span></div>
+      <div class="abs led" data-led="VOID"></div>
+      <div class="abs tick">▶ <b>BucDevGin</b><span class="ttl"> · co-founder</span></div>
+      <div class="abs sub">no further stops · tap to connect</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v17-back"><div class="face bk c17 c17b c17v">
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">LINE 1 · VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>next departure: now</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

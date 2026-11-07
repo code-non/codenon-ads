@@ -4,6 +4,7 @@
 #        bash render-cards.sh n1         (only faces whose id starts with n1)
 #        bash render-cards.sh n 2        (founder faces with name #2, Persönlichkeit -> png/cards/persoenlichkeit/)
 cd "$(dirname "$0")"
+node build-sheet.js >/dev/null || exit 1   # cards.html is generated from sets/*.html
 BROWSER="/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 [ -x "$BROWSER" ] || BROWSER="/c/Program Files/Google/Chrome/Application/chrome.exe"
 SLUGS=(alteisen weissritter persoenlichkeit)

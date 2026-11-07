@@ -1,0 +1,13 @@
+{
+  "name": "codenon-cards",
+  "private": true,
+  "scripts": {
+    "build": "node build-sheet.js",
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "jsqr": "1.4.0",
+    "qrcode-generator": "1.4.4"
+  }
+}

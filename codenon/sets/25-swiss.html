@@ -1,0 +1,60 @@
+<style>
+  /* ---------- 25 SWISS: no character, just the symbol on a strict grid ---------- */
+  .c25{background:#f1eee6;color:#111;font-family:'Figtree'}
+  .c25 .sym{right:-150px;top:-60px;width:760px;height:760px}
+  .c25 .gr{left:56px;right:56px;top:56px;display:grid;grid-template-columns:repeat(3,150px);gap:0 20px;font-size:13px;line-height:1.45}
+  .c25 .gr div{border-top:2px solid #111;padding-top:8px}
+  .c25 .gr b{display:block;font-weight:800}
+  .c25 .nm{left:52px;bottom:120px;font-weight:800;font-size:66px;letter-spacing:-.03em;line-height:1}
+  .c25 .rl{left:56px;bottom:84px;font-weight:600;font-size:20px}
+  .c25 .rl span{color:var(--tomato)}
+  .c25 .no{left:56px;bottom:46px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.2em;opacity:.6}
+  .c25v{background:#0d0d0f;color:#f1eee6}
+  .c25v .gr div{border-color:#f1eee6}
+  .c25v .rl span{color:var(--sun)}
+  .c25b{background:var(--tomato);color:#fff}
+  .c25b.c25v{background:var(--cobalt)}
+  .c25b .bg{left:52px;top:46px;width:520px;font-weight:800;font-size:96px;letter-spacing:-.04em;line-height:.92}
+  .c25b .ct{left:56px;bottom:56px;display:grid;grid-template-columns:repeat(3,auto);gap:0 34px;font-size:15px;line-height:1.45}
+  .c25b .ct div{border-top:2px solid #fff;padding-top:8px}
+  .c25b .ct b{display:block;font-weight:800}
+  .c25b .cq{right:56px;top:56px;width:300px;height:300px;border-radius:0}
+  .c25b .ql{right:56px;top:372px;width:300px;font-size:14px;font-weight:600}
+</style>
+<!-- 25 -->
+<section class="set">
+  <h2><b>25</b>Swiss</h2>
+  <p>No character at all: the symbol does the talking. ∅ for Null and ◉ for Void, cropped huge on a strict three-column grid. The back is one solid colour, one line and the QR.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n25-front"><div class="face c25">
+      <svg class="abs sym" viewBox="0 0 760 760" fill="none" stroke="#d9352b" stroke-width="84"><circle cx="380" cy="380" r="270"/><path d="M110 650L650 110"/></svg>
+      <div class="abs gr"><div><b>CODE: NON</b>Studio</div><div><b>N-01</b>Null</div><div><b>Contact</b>null@codenon.io<br>codenon.pages.dev</div></div>
+      <div class="abs nm fn">Alteisen</div>
+      <div class="abs rl"><span class="ttl">Founder · </span><span>Null</span></div>
+      <div class="abs no">TAP THE CARD TO SAVE</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n25-back"><div class="face c25 c25b">
+      <div class="abs bg">Start from zero.</div>
+      <div class="abs ct"><div><b class="fn">Alteisen</b><span class="ttl">Founder</span></div><div><b>Mail</b>null@codenon.io</div><div><b>Web</b>codenon.pages.dev</div></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#111111" data-bg="#ffffff" data-eye="#d9352b" data-accent="#d9352b"></div>
+      <div class="abs ql">Scan to save the contact →</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v25-front"><div class="face c25 c25v">
+      <svg class="abs sym" viewBox="0 0 760 760" fill="none"><circle cx="380" cy="380" r="285" stroke="#f1eee6" stroke-width="44"/><circle cx="380" cy="380" r="160" fill="#ffc83d"/></svg>
+      <div class="abs gr"><div><b>CODE: NON</b>Studio</div><div><b>V-02</b>Void</div><div><b>Contact</b>void@codenon.io<br>codenon.pages.dev</div></div>
+      <div class="abs nm">BucDevGin</div>
+      <div class="abs rl"><span class="ttl">Co-founder · </span><span>Void</span></div>
+      <div class="abs no">TAP THE CARD TO SAVE</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v25-back"><div class="face c25 c25b c25v">
+      <div class="abs bg">Stare back.</div>
+      <div class="abs ct"><div><b>BucDevGin</b><span class="ttl">Co-founder</span></div><div><b>Mail</b>void@codenon.io</div><div><b>Web</b>codenon.pages.dev</div></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#111111" data-bg="#ffffff" data-accent="#ffc83d"></div>
+      <div class="abs ql">Scan to save the contact →</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

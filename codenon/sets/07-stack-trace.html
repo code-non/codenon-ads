@@ -1,0 +1,67 @@
+<style>
+  /* ---------- 07 STACK TRACE ---------- */
+  .c7{background:#0d1117;color:#e6edf3;font-family:'JetBrains Mono'}
+  .c7 .bar{left:0;right:0;top:0;height:64px;border-bottom:2px solid #21262d;display:flex;align-items:center;justify-content:space-between;padding:0 56px;font-size:20px;color:#6e7681}
+  .c7n .cnt,.c7n .k{color:#ff7b72}
+  .c7v .cnt,.c7v .k{color:var(--sun)}
+  .c7 .msg{left:40px;right:40px;top:104px;padding:22px 20px 22px 24px;border-left:8px solid;border-radius:6px}
+  .c7n .msg{border-color:#f85149;background:rgba(248,81,73,.1)}
+  .c7v .msg{border-color:var(--sun);background:rgba(255,200,61,.09)}
+  .c7 .k{font-size:24px;font-weight:700}
+  .c7 .t{font-size:34px;line-height:1.35;margin-top:8px}
+  .c7 .t b{color:var(--sky);font-weight:700}
+  .c7 .st{font-size:20px;color:#6e7681;margin-top:14px;white-space:pre;line-height:1.5}
+  .c7 .cnb{left:56px;bottom:50px;font-size:22px}
+  .c7 .cnb img{width:48px;height:48px;border-radius:10px}
+  .c7 .tr{right:56px;bottom:62px;font-size:20px;color:#6e7681}
+  .c7b pre{left:56px;top:70px;font-family:'JetBrains Mono';font-size:26px;line-height:1.6}
+  .c7b pre span{color:#6e7681}
+  .c7b pre b{color:var(--sky);font-weight:500}
+  .c7b .qr{right:56px;top:60px;width:280px;height:280px;background:#fff;color:#0d1117}
+  .c7b .ok{left:56px;right:56px;bottom:52px;border-top:2px solid #21262d;padding-top:22px;font-size:20px;color:#3fb950}
+</style>
+<!-- 07 -->
+<section class="set">
+  <h2><b>07</b>Stack trace</h2>
+  <p>The card as a console message. Null throws the famous TypeError; Void gets a compiler warning. The back is the console answering with contact details.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n7-front"><div class="face c7 c7n">
+      <div class="abs bar"><span>● ● ●</span><span>console</span><span class="cnt">✖ 1</span></div>
+      <div class="abs msg"><div class="k">Uncaught TypeError:</div><div class="t">Cannot read properties of null<br>(reading '<b class="fn">Alteisen</b>')</div>
+        <div class="st">    at CODE: NON (codenon.pages.dev:1:1)<br>    at tap (nfc:0:0)</div></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs ttl tr">// founder</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n7-back"><div class="face c7 c7b">
+<pre class="abs">&gt; codenon.contact("null")
+<span>&lt;</span> {
+    name: "<b class="fn">Alteisen</b>",
+    mail: "null@codenon.io",
+    web:  "codenon.pages.dev",
+    ig:   "@codenon.io" }</pre>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs ok">✔ 0 errors · tap or scan to save contact</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v7-front"><div class="face c7 c7v">
+      <div class="abs bar"><span>● ● ●</span><span>compiler</span><span class="cnt">⚠ 1</span></div>
+      <div class="abs msg"><div class="k">warning [-Wvoid]:</div><div class="t">'<b>BucDevGin</b>' returns void,<br>but does everything anyway.</div>
+        <div class="st">    in CODE: NON (codenon.pages.dev:2:1)<br>    note: this is intended</div></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs ttl tr">// co-founder</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v7-back"><div class="face c7 c7b">
+<pre class="abs">&gt; codenon.contact("void")
+<span>&lt;</span> {
+    name: "<b>BucDevGin</b>",
+    mail: "void@codenon.io",
+    web:  "codenon.pages.dev",
+    ig:   "@codenon.io" }</pre>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs ok">✔ 0 errors · tap or scan to save contact</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

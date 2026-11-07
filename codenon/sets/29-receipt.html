@@ -1,0 +1,86 @@
+<style>
+  /* ---------- 29 RECEIPT: thermal-paper receipt; everything costs nothing (Null) / is absorbed (Void) ---------- */
+  .c29{background:#fbfaf6;color:#1c1c1c;font-family:'JetBrains Mono'}
+  .c29v{background:#16171d;color:#ebe8df}
+  .c29::after{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:radial-gradient(circle at 10px -4px,#c9c4b6 9px,transparent 10px) 0 0/20px 14px}
+  .c29 .col{top:52px;bottom:48px}
+  .c29 .lft{left:56px;width:470px}
+  .c29 .rgt{left:574px;right:56px;border-left:2px dashed currentColor;padding-left:40px}
+  .c29 .hd{text-align:center;font-weight:800;font-size:30px;letter-spacing:.12em}
+  .c29 .sb{text-align:center;font-size:13px;letter-spacing:.14em;opacity:.7;margin-top:4px}
+  .c29 hr{border:0;border-top:2px dashed currentColor;margin:16px 0;opacity:.6}
+  .c29 .ln{display:flex;font-size:17px;line-height:1.75}
+  .c29 .ln span{flex:1;overflow:hidden;white-space:nowrap}
+  .c29 .ln span::after{content:' ..............................................';opacity:.45}
+  .c29 .tot{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:22px}
+  .c29 .tot b{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:66px;line-height:.9}
+  .c29 .kv{font-size:13px;letter-spacing:.16em;opacity:.65}
+  .c29 .vv{font-size:24px;font-weight:700;margin:2px 0 14px}
+  .c29 .ty{font-weight:800;font-size:18px;letter-spacing:.18em;margin-top:18px}
+  .c29 .bc{height:58px;margin-top:14px;background:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 5px,currentColor 5px 9px,transparent 9px 11px,currentColor 11px 12px,transparent 12px 16px)}
+  .c29b .cq{left:56px;top:66px;width:280px;height:280px;border-radius:8px}
+  .c29b.c29v .cq{box-shadow:0 0 0 10px #fbfaf6}
+  .c29b .ql{left:56px;top:372px;width:280px;text-align:center;font-weight:800;font-size:16px;letter-spacing:.16em}
+  .c29b .rgt{left:400px}
+</style>
+<!-- 29 -->
+<section class="set">
+  <h2><b>29</b>Receipt</h2>
+  <p>A thermal-paper receipt. Null's line items all cost nothing; Void's are all absorbed. The back is the customer copy, with the QR and a barcode.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n29-front"><div class="face c29">
+      <div class="abs col lft">
+        <div class="hd">CODE: NON</div><div class="sb">STORE #001 · NULL BRANCH</div><hr>
+        <div class="ln"><span>1× IDEA</span>0.00</div><div class="ln"><span>1× MVP</span>0.00</div>
+        <div class="ln"><span>1× BUG FIX (urgent)</span>0.00</div><div class="ln"><span>1× LAUNCH</span>0.00</div><hr>
+        <div class="tot">TOTAL<b>∅</b></div>
+      </div>
+      <div class="abs col rgt">
+        <div class="kv">SERVED BY</div><div class="vv fn">Alteisen</div>
+        <div class="ttl"><div class="kv">ROLE</div><div class="vv">FOUNDER</div></div>
+        <div class="kv">REGISTER</div><div class="vv">N-01 · NULL</div>
+        <div class="kv">PAYMENT</div><div class="vv">NFC TAP</div>
+        <div class="ty">THANK YOU · BUILD AGAIN</div>
+      </div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n29-back"><div class="face c29 c29b">
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#1c1c1c" data-bg="#fbfaf6" data-eye="#d9352b" data-accent="#d9352b"></div>
+      <div class="abs ql">SCAN FOR RECEIPT</div>
+      <div class="abs col rgt">
+        <div class="hd" style="text-align:left">CUSTOMER COPY</div><hr>
+        <div class="ln"><span>NAME</span><b class="fn">Alteisen</b></div><div class="ln"><span>MAIL</span>null@codenon.io</div>
+        <div class="ln"><span>WEB</span>codenon.pages.dev</div><div class="ln"><span>IG</span>@codenon.io</div>
+        <div class="bc"></div><div class="sb" style="text-align:left">CN-N01 · KEEP FOR YOUR RECORDS</div>
+      </div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v29-front"><div class="face c29 c29v">
+      <div class="abs col lft">
+        <div class="hd">CODE: NON</div><div class="sb">STORE #002 · VOID BRANCH</div><hr>
+        <div class="ln"><span>1× DEADLINE</span>absorbed</div><div class="ln"><span>1× SCOPE CREEP</span>absorbed</div>
+        <div class="ln"><span>1× MEETING</span>absorbed</div><div class="ln"><span>1× LIGHT</span>absorbed</div><hr>
+        <div class="tot">TOTAL<b>∞</b></div>
+      </div>
+      <div class="abs col rgt">
+        <div class="kv">SERVED BY</div><div class="vv">BucDevGin</div>
+        <div class="ttl"><div class="kv">ROLE</div><div class="vv">CO-FOUNDER</div></div>
+        <div class="kv">REGISTER</div><div class="vv">V-02 · VOID</div>
+        <div class="kv">PAYMENT</div><div class="vv">NFC TAP</div>
+        <div class="ty">NO REFUNDS · NO RETURNS</div>
+      </div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v29-back"><div class="face c29 c29b c29v">
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#16171d" data-bg="#fbfaf6" data-accent="#2340e6"></div>
+      <div class="abs ql">SCAN FOR RECEIPT</div>
+      <div class="abs col rgt">
+        <div class="hd" style="text-align:left">CUSTOMER COPY</div><hr>
+        <div class="ln"><span>NAME</span><b>BucDevGin</b></div><div class="ln"><span>MAIL</span>void@codenon.io</div>
+        <div class="ln"><span>WEB</span>codenon.pages.dev</div><div class="ln"><span>IG</span>@codenon.io</div>
+        <div class="bc"></div><div class="sb" style="text-align:left">CN-V02 · KEEP FOR YOUR RECORDS</div>
+      </div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

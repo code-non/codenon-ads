@@ -1,0 +1,75 @@
+<style>
+  /* ---------- 40 AIRMAIL: an airmail envelope with a perforated 0.00 stamp (Null) / a ∞ stamp returned to sender (Void) ---------- */
+  .c40{--pp:#f3ecdc;--st:var(--sun);--sti:var(--navy);background:repeating-linear-gradient(-45deg,var(--tomato) 0 26px,var(--pp) 26px 52px,var(--cobalt) 52px 78px,var(--pp) 78px 104px);
+    color:var(--navy);font-family:'Figtree'}
+  .c40v{--st:var(--cobalt);--sti:#fff}
+  .c40::before{content:'';position:absolute;inset:22px;border-radius:22px;background:var(--pp)}
+  .c40 .pa{left:60px;top:58px;font-family:'Archivo';font-stretch:75%;font-weight:900;font-size:22px;letter-spacing:.24em;color:var(--cobalt)}
+  .c40 .pa span{color:var(--tomato)}
+  .c40 .to{left:60px;top:196px;width:440px}
+  .c40 .to .k{font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;opacity:.7}
+  .c40 .to .nm{font-size:96px;margin:4px 0 18px;overflow-wrap:anywhere}
+  .c40 .to .ln{font-family:'JetBrains Mono';font-size:19px;line-height:1.9;border-bottom:2px solid rgba(11,27,77,.2)}
+  .c40 .stp{right:66px;top:60px;width:312px;height:384px;background:radial-gradient(circle,var(--pp) 7px,#fff 7.5px) -12px -12px/24px 24px}
+  .c40 .stp .in{position:absolute;inset:20px;background:var(--st);color:var(--sti);overflow:hidden}
+  .c40 .stp .cy{position:absolute;left:16px;top:16px;font-family:'JetBrains Mono';font-weight:700;font-size:14px;letter-spacing:.2em}
+  .c40 .stp .g{position:absolute;left:0;right:0;top:54px;text-align:center;font-family:'Archivo';font-weight:900;font-size:190px;line-height:1}
+  .c40 .stp .dn{position:absolute;right:16px;top:8px;font-size:44px}
+  .c40 .stp .wh{position:absolute;right:16px;bottom:18px;font-family:'JetBrains Mono';font-weight:700;font-size:15px;letter-spacing:.2em}
+  .c40 .pm{right:190px;top:300px;width:380px;height:200px;pointer-events:none}
+  .c40 .pm svg{display:block;width:100%;height:100%}
+  .c40 .rts{right:60px;bottom:56px;padding:8px 16px;border:4px solid var(--tomato);color:var(--tomato);transform:rotate(-6deg);font-family:'Archivo';font-stretch:75%;font-weight:900;font-size:30px;letter-spacing:.08em}
+  .c40b .cq{left:60px;top:60px;width:270px;height:270px;border-radius:10px}
+  .c40b .wy{left:60px;top:350px;width:400px;font-family:'Instrument Serif',serif;font-style:italic;font-size:46px;line-height:1.05}
+  .c40b .dv{left:505px;top:70px;bottom:70px;width:2px;background:rgba(11,27,77,.25)}
+  .c40b .ps{right:60px;top:60px;width:150px;height:180px;border:3px dashed rgba(11,27,77,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    font-family:'JetBrains Mono';font-size:12px;letter-spacing:.14em;text-align:center;opacity:.8}
+  .c40b .ps b{font-family:'Archivo';font-size:56px;line-height:1}
+  .c40b ul{left:540px;right:60px;top:290px;list-style:none;font-family:'JetBrains Mono';font-size:19px}
+  .c40b li{line-height:52px;border-bottom:2px solid rgba(11,27,77,.2)}
+  .c40b li span{display:inline-block;width:62px;opacity:.55}
+</style>
+<!-- 40 -->
+<section class="set">
+  <h2><b>40</b>Airmail</h2>
+  <p>An airmail envelope in red and blue stripes. Null's stamp is worth 0.00, cancelled by a CODE: NON postmark; Void's is worth ∞ and comes back stamped "return to sender". The back is the postcard side: QR, message, address lines.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n40-front"><div class="face c40">
+      <div class="abs pa">PAR AVION <span>·</span> BY AIR MAIL</div>
+      <div class="abs to"><div class="k">To</div><div class="nm cond fn">Alteisen</div>
+        <div class="ln"><span class="ttl">Founder · </span>Null</div><div class="ln">CODE: NON Studio</div><div class="ln">null@codenon.io</div></div>
+      <div class="abs stp"><div class="in"><div class="cy">CODE:NON</div><div class="g">∅</div><div class="dn cond">0.00</div><div class="wh">NULL</div></div></div>
+      <div class="abs pm"><svg viewBox="0 0 380 200" fill="none" stroke="#0b1b4d" stroke-width="3.5" opacity=".72">
+        <circle cx="290" cy="100" r="78"/><circle cx="290" cy="100" r="58"/>
+        <path id="pm40" d="M232 100a58 58 0 0 1 116 0" stroke="none"/>
+        <text font-family="JetBrains Mono" font-weight="700" font-size="15" letter-spacing="3" fill="#0b1b4d" stroke="none"><textPath href="#pm40" startOffset="50%" text-anchor="middle">CODE:NON</textPath></text>
+        <text x="290" y="128" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="22" fill="#0b1b4d" stroke="none">00·00</text>
+        <path d="M120 62q24-14 48 0t48 0 48 0M120 100q24-14 48 0t48 0 48 0M120 138q24-14 48 0t48 0 48 0"/></svg></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n40-back"><div class="face c40 c40b">
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#0b1b4d" data-bg="#ffffff" data-accent="#ffc83d"></div>
+      <div class="abs wy">Wish you were<br>∅ here.</div>
+      <div class="abs dv"></div>
+      <div class="abs ps"><b>∅</b>PLACE<br>NOTHING<br>HERE</div>
+      <ul class="abs"><li><span>name</span><b class="fn">Alteisen</b></li><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li></ul>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v40-front"><div class="face c40 c40v">
+      <div class="abs pa">PAR AVION <span>·</span> BY AIR MAIL</div>
+      <div class="abs to"><div class="k">To</div><div class="nm cond">BucDevGin</div>
+        <div class="ln"><span class="ttl">Co-founder · </span>Void</div><div class="ln">CODE: NON Studio</div><div class="ln">void@codenon.io</div></div>
+      <div class="abs stp"><div class="in"><div class="cy">CODE:NON</div><div class="g">◉</div><div class="dn cond">∞</div><div class="wh">VOID</div></div></div>
+      <div class="abs rts">RETURN TO SENDER</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v40-back"><div class="face c40 c40b c40v">
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#0b1b4d" data-bg="#ffffff" data-accent="#2340e6"></div>
+      <div class="abs wy">Nothing ever<br>comes back.</div>
+      <div class="abs dv"></div>
+      <div class="abs ps"><b>◉</b>NO<br>RETURN<br>ADDRESS</div>
+      <ul class="abs"><li><span>name</span><b>BucDevGin</b></li><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li></ul>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
