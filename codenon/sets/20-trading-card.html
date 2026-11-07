@@ -1,0 +1,113 @@
+<style>
+  /* ---------- 20 TRADING CARD: holo collectable, the character as the art ---------- */
+  .c20{background:linear-gradient(135deg,#ffd76a,#fff6dc 28%,#f0b43a 52%,#fff1c2 74%,#e5a222);color:var(--navy)}
+  .c20 .in{inset:20px;border-radius:24px;background:var(--cream);border:4px solid var(--navy)}
+  .c20 .art{left:40px;top:40px;width:390px;height:558px;border:4px solid var(--navy);border-radius:16px;overflow:hidden;
+    background:repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.22) 0 6deg,transparent 6deg 14deg),radial-gradient(circle at 50% 46%,#fff8e0 0,#ffd76a 34%,#f08a3c 70%,#d9352b)}
+  .c20 .art::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 18%,rgba(124,200,255,.38) 32%,rgba(255,255,255,.55) 40%,rgba(201,182,255,.4) 48%,transparent 62%);mix-blend-mode:screen}
+  .c20 .art .msc{position:absolute;left:-5px;top:14px;width:400px;height:534px}
+  .c20 .no{left:52px;top:52px;z-index:2;font-family:'JetBrains Mono';font-weight:800;font-size:16px;background:var(--navy);color:var(--cream);padding:4px 10px;border-radius:6px}
+  .c20 .col{left:458px;top:42px;right:48px;bottom:42px;display:flex;flex-direction:column}
+  .c20 .nr{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--navy);padding-bottom:8px}
+  .c20 .nr .cond{font-size:96px}
+  .c20 .hp{font-family:'JetBrains Mono';font-weight:700;font-size:18px;color:var(--tomato)}
+  .c20 .hp b{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:64px;margin-left:6px;line-height:.9}
+  .c20 .ty{font-family:'JetBrains Mono';font-size:16px;letter-spacing:.1em;margin-top:10px;opacity:.75}
+  .c20 .ab{margin-top:18px}
+  .c20 .ab em{font-style:normal;font-family:'JetBrains Mono';font-weight:800;font-size:13px;letter-spacing:.16em;background:var(--tomato);color:#fff;padding:3px 8px;border-radius:4px}
+  .c20 .ab b{display:block;font-family:'Archivo';font-weight:800;font-size:28px;margin-top:8px}
+  .c20 .ab p{font-size:18px;line-height:1.35;margin-top:4px}
+  .c20 .at{margin-top:18px;display:flex;align-items:center;gap:12px;border-top:2px dashed rgba(11,27,77,.3);padding-top:14px}
+  .c20 .at i{width:24px;height:24px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--sun);font:800 14px 'JetBrains Mono';font-style:normal}
+  .c20 .at b{font-family:'Archivo';font-weight:800;font-size:28px;flex:1}
+  .c20 .at .cond{font-size:58px;color:var(--tomato)}
+  .c20 .at + p{font-size:16px;margin-top:2px;opacity:.75}
+  .c20 .wk{display:grid;grid-template-columns:repeat(3,1fr);margin-top:16px;border:2px solid var(--navy);border-radius:10px;font-family:'JetBrains Mono';font-size:13px;text-align:center}
+  .c20 .wk div{padding:7px 4px}
+  .c20 .wk div + div{border-left:2px solid var(--navy)}
+  .c20 .wk small{display:block;font-size:11px;letter-spacing:.16em;opacity:.6}
+  .c20 .wk b{font-size:15px}
+  .c20 .inf{font-family:'JetBrains Mono';font-stretch:100%;font-weight:800}
+  .c20 .fl{margin-top:auto;font-style:italic;font-size:16px;opacity:.7;line-height:1.35}
+  .c20 .ft{display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:14px;letter-spacing:.08em;margin-top:12px;padding-top:10px;border-top:2px solid var(--navy)}
+  .c20v .art{background:radial-gradient(circle,rgba(255,246,220,.8) 1.2px,transparent 1.8px) 0 0/34px 34px,
+    radial-gradient(circle at 50% 40%,#2340e6 0,#1a237a 40%,#05070f 85%)}
+  .c20v .art .msc{--m-ink:#05070f;--m-hole:#05070f;--m-acc:var(--sun);--m-rim:rgba(255,246,220,.35)}
+  .c20v .hp,.c20v .at .cond{color:var(--cobalt)}
+  .c20v .ab em{background:var(--cobalt)}
+  .c20b{background:#0b1b4d repeating-conic-gradient(from 45deg at 50% 50%,rgba(255,200,61,.07) 0 25%,transparent 0 50%) 0 0/46px 46px;color:var(--cream)}
+  .c20b .in{inset:20px;border-radius:24px;border:4px solid var(--sun);background:none}
+  .c20b .seal{left:58px;top:64px;width:510px;height:510px}
+  .c20b .seal .cq{position:absolute;left:105px;top:105px;width:300px;height:300px}
+  .c20b .tx{left:600px;top:70px;right:60px}
+  .c20b .tx .cond{font-size:92px;color:var(--sun)}
+  .c20b .tx .r{font-family:'JetBrains Mono';font-size:17px;letter-spacing:.14em;margin-top:10px;opacity:.75}
+  .c20b ul{list-style:none;margin-top:26px;font-family:'JetBrains Mono';font-size:20px;line-height:1.9}
+  .c20b li span{display:inline-block;width:64px;color:var(--sun)}
+  .c20b .go{left:600px;right:60px;bottom:58px;font-family:'JetBrains Mono';font-size:16px;letter-spacing:.12em;opacity:.7;border-top:2px solid rgba(255,200,61,.4);padding-top:14px}
+</style>
+<!-- 20 -->
+<section class="set">
+  <h2><b>20</b>Trading card</h2>
+  <p>A holo collectable with the mascot as the card art, plus stats, an ability and an attack. The back is the card back: a seal with the branded QR in the middle.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n20-front"><div class="face c20">
+      <div class="abs in"></div>
+      <div class="abs art"><div class="msc" data-mascot="null"></div></div>
+      <div class="abs no">001/002 ★</div>
+      <div class="abs col">
+        <div class="nr"><div class="cond">Null</div><div class="hp">HP<b>0</b></div></div>
+        <div class="ty">∅ NULL-TYPE · ANDROID<span class="ttl"> · FOUNDER</span></div>
+        <div class="ab"><em>ABILITY</em><b>Empty Shell</b><p>Starts every project from zero. Whatever you put in, it ships.</p></div>
+        <div class="at"><i>∅</i><i>∅</i><b>Dereference</b><span class="cond">404</span></div>
+        <p>Points at nothing. Lands anyway.</p>
+        <div class="wk"><div><small>WEAKNESS</small><b>undefined</b></div><div><small>RESISTS</small><b>edge cases</b></div><div><small>COST</small><b>0</b></div></div>
+        <div class="fl">"It isn't nothing. It's room."</div>
+        <div class="ft"><span>founder: <b class="fn">Alteisen</b></span><span>CODE: NON · holo</span></div>
+      </div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n20-back"><div class="face c20 c20b">
+      <div class="abs in"></div>
+      <div class="abs seal">
+        <svg viewBox="0 0 510 510" width="510" height="510"><defs><path id="ring-n" d="M255 255m-230 0a230 230 0 1 1 460 0a230 230 0 1 1-460 0"/></defs>
+          <circle cx="255" cy="255" r="252" fill="#0b1b4d" stroke="#ffc83d" stroke-width="4"/><circle cx="255" cy="255" r="214" fill="#fff6dc"/>
+          <text font-family="JetBrains Mono" font-weight="700" font-size="19" fill="#ffc83d"><textPath href="#ring-n" textLength="1435" lengthAdjust="spacing">CODE: NON ✦ NULL &amp; VOID ✦ COLLECTOR SERIES ✦ CN 001/002 ✦ TAP OR SCAN ✦</textPath></text></svg>
+        <div class="cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-bg="#fff6dc" data-eye="#d9352b" data-accent="#d9352b"></div>
+      </div>
+      <div class="abs tx"><div class="cond">Null</div><div class="r"><span class="fn">Alteisen</span><span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs go">scan to add this card to your contacts</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v20-front"><div class="face c20 c20v">
+      <div class="abs in"></div>
+      <div class="abs art"><div class="msc" data-mascot="void"></div></div>
+      <div class="abs no">002/002 ★</div>
+      <div class="abs col">
+        <div class="nr"><div class="cond">Void</div><div class="hp">HP<b class="inf">∞</b></div></div>
+        <div class="ty">◉ VOID-TYPE · SINGULARITY<span class="ttl"> · CO-FOUNDER</span></div>
+        <div class="ab"><em>ABILITY</em><b>Event Horizon</b><p>Anything that gets close is absorbed: ideas, bugs, deadlines.</p></div>
+        <div class="at"><i>◉</i><i>◉</i><i>◉</i><b>Collapse</b><span class="cond inf">∞</span></div>
+        <p>Nothing escapes. Not even scope creep.</p>
+        <div class="wk"><div><small>WEAKNESS</small><b>light</b></div><div><small>RESISTS</small><b>everything</b></div><div><small>COST</small><b>∅</b></div></div>
+        <div class="fl">"Stare into it. It's taking notes."</div>
+        <div class="ft"><span>co-founder: <b>BucDevGin</b></span><span>CODE: NON · holo</span></div>
+      </div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v20-back"><div class="face c20 c20b">
+      <div class="abs in"></div>
+      <div class="abs seal">
+        <svg viewBox="0 0 510 510" width="510" height="510"><defs><path id="ring-v" d="M255 255m-230 0a230 230 0 1 1 460 0a230 230 0 1 1-460 0"/></defs>
+          <circle cx="255" cy="255" r="252" fill="#0b1b4d" stroke="#ffc83d" stroke-width="4"/><circle cx="255" cy="255" r="214" fill="#fff6dc"/>
+          <text font-family="JetBrains Mono" font-weight="700" font-size="19" fill="#ffc83d"><textPath href="#ring-v" textLength="1435" lengthAdjust="spacing">CODE: NON ✦ NULL &amp; VOID ✦ COLLECTOR SERIES ✦ CN 002/002 ✦ TAP OR SCAN ✦</textPath></text></svg>
+        <div class="cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-bg="#fff6dc" data-accent="#ffc83d"></div>
+      </div>
+      <div class="abs tx"><div class="cond">Void</div><div class="r">BucDevGin<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs go">scan to add this card to your contacts</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

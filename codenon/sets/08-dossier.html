@@ -1,0 +1,61 @@
+<style>
+  /* ---------- 08 DOSSIER ---------- */
+  .c8{color:#1e1b16;font-family:'JetBrains Mono';
+    background:repeating-linear-gradient(0deg,transparent 0 41px,rgba(80,60,30,.08) 41px 43px),linear-gradient(170deg,#efe3c6,#e2d2ad)}
+  .c8 .hd{left:56px;right:56px;top:46px;font-size:20px;letter-spacing:.16em;border-bottom:2px solid #1e1b16;padding-bottom:12px}
+  .c8 .lb{left:56px;top:110px;font-size:18px;letter-spacing:.2em;opacity:.6}
+  .c8 .cn{left:50px;top:136px;font-size:150px}
+  .c8 .fields{left:56px;top:290px;display:grid;grid-template-columns:190px auto;row-gap:12px;font-size:24px;align-items:center}
+  .c8 .fields span{opacity:.6;letter-spacing:.14em;font-size:20px}
+  .c8 .fields b{font-weight:700}
+  .rd{display:inline-block;height:24px;background:#1e1b16;vertical-align:-4px}
+  .c8 .photo{right:60px;top:110px;width:210px;height:250px;border:2px solid #1e1b16;background:rgba(255,255,255,.35);transform:rotate(2deg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+  .c8 .photo img{width:120px;height:120px;filter:grayscale(1) contrast(1.1);border-radius:10px}
+  .c8 .photo span{font-size:16px;letter-spacing:.2em}
+  .c8 .stamp{right:80px;bottom:66px;border:5px solid #b8362a;color:#b8362a;font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:56px;
+    letter-spacing:.06em;padding:6px 20px;transform:rotate(-10deg);opacity:.8}
+  .c8 .qbox{left:56px;top:110px;width:330px;height:330px;border:2px dashed #1e1b16;padding:14px;background:rgba(255,255,255,.45)}
+  .c8 .qbox .qr{width:100%;height:100%;color:#1e1b16;border-radius:0}
+  .c8 .fields.ct{left:440px;top:130px;grid-template-columns:120px auto}
+  .c8 .foot{left:56px;right:56px;bottom:46px;font-size:18px;letter-spacing:.16em;border-top:2px solid #1e1b16;padding-top:12px}
+</style>
+<!-- 08 -->
+<section class="set">
+  <h2><b>08</b>Dossier</h2>
+  <p>A personnel file on manila paper: codename in big type, a few lines redacted, CLASSIFIED stamp. The aliases finally get the paperwork they deserve.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n8-front"><div class="face c8">
+      <div class="abs hd">PERSONNEL FILE · CODE: NON · CN-0001</div>
+      <div class="abs lb">CODENAME</div>
+      <div class="abs cond cn">Null</div>
+      <div class="abs fields"><span>NAME</span><b class="fn">Alteisen</b><span class="ttl">ROLE</span><b class="ttl">Founder</b><span>LOCATION</span><b><i class="rd" style="width:220px"></i></b><span>CLEARANCE</span><b>LEVEL 0 <i class="rd" style="width:120px"></i></b></div>
+      <div class="abs photo"><img src="assets/codenon-logo.png" alt=""><span>FIG. 1</span></div>
+      <div class="abs stamp">CLASSIFIED</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n8-back"><div class="face c8">
+      <div class="abs hd">ATTACHMENT A · DECLASSIFIED</div>
+      <div class="abs qbox"><div class="qr" data-qr="https://codenon.pages.dev"></div></div>
+      <div class="abs fields ct"><span>MAIL</span><b>null@codenon.io</b><span>WEB</span><b>codenon.pages.dev</b><span>IG</span><b>@codenon.io</b><span>NOTES</span><b><i class="rd" style="width:190px"></i></b></div>
+      <div class="abs foot">FILE CN-0001 · TAP OR SCAN TO OPEN · DO NOT DUPLICATE</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v8-front"><div class="face c8">
+      <div class="abs hd">PERSONNEL FILE · CODE: NON · CN-0002</div>
+      <div class="abs lb">CODENAME</div>
+      <div class="abs cond cn">Void</div>
+      <div class="abs fields"><span>NAME</span><b>BucDevGin</b><span class="ttl">ROLE</span><b class="ttl">Co-founder</b><span>LOCATION</span><b><i class="rd" style="width:220px"></i></b><span>CLEARANCE</span><b>LEVEL 0 <i class="rd" style="width:120px"></i></b></div>
+      <div class="abs photo"><img src="assets/codenon-logo.png" alt=""><span>FIG. 2</span></div>
+      <div class="abs stamp">CLASSIFIED</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v8-back"><div class="face c8">
+      <div class="abs hd">ATTACHMENT A · DECLASSIFIED</div>
+      <div class="abs qbox"><div class="qr" data-qr="https://codenon.pages.dev"></div></div>
+      <div class="abs fields ct"><span>MAIL</span><b>void@codenon.io</b><span>WEB</span><b>codenon.pages.dev</b><span>IG</span><b>@codenon.io</b><span>NOTES</span><b><i class="rd" style="width:190px"></i></b></div>
+      <div class="abs foot">FILE CN-0002 · TAP OR SCAN TO OPEN · DO NOT DUPLICATE</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

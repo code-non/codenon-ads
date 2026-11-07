@@ -1,0 +1,63 @@
+<style>
+  /* ---------- 27 TOPOGRAPHY: contour map of a summit at 0 m (Null) / a depression of infinite depth (Void) ---------- */
+  .c27{background:#f3efe4;color:var(--navy);--ln:rgba(217,53,43,.5);--ac:var(--tomato)}
+  .c27v{background:#0b1020;color:#e8ecf6;--ln:rgba(124,200,255,.38);--ac:var(--sky)}
+  .c27 .topo{inset:-60px;background:repeating-radial-gradient(circle at 66% 44%,transparent 0 22px,var(--ln) 22px 24px);filter:url(#topo)}
+  .c27b .topo{opacity:.45}
+  .c27 .pk{left:712px;top:262px;font-family:'JetBrains Mono';font-weight:700;font-size:15px;letter-spacing:.12em;color:var(--ac);background:inherit;padding:4px 8px}
+  .c27 .pk::before{content:'';position:absolute;left:-26px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--ac)}
+  .c27v .pk::before{width:34px;height:34px;left:-46px;top:-3px;background:#000;box-shadow:0 0 0 3px var(--ac),0 0 26px 6px rgba(124,200,255,.45)}
+  .c27 .k{left:56px;top:52px;font-family:'JetBrains Mono';font-size:14px;letter-spacing:.24em;background:inherit;padding:4px 8px 4px 0}
+  .c27 .pl{left:40px;bottom:40px;padding:18px 26px 20px 16px;background:inherit;border-radius:0 18px 0 0}
+  .c27 .pl .cond{font-size:92px}
+  .c27 .pl .r{font-family:'JetBrains Mono';font-size:16px;letter-spacing:.18em;margin-top:10px;color:var(--ac)}
+  .c27 .cd{right:52px;bottom:52px;font-family:'JetBrains Mono';font-size:13px;line-height:1.7;letter-spacing:.1em;text-align:right;background:inherit;padding:6px 0 6px 10px}
+  .c27b .cq{left:56px;top:56px;width:290px;height:290px;border-radius:12px;box-shadow:0 0 0 2px var(--ac)}
+  .c27b .tx{left:390px;top:58px;right:56px;background:inherit;padding:4px 0 10px 10px}
+  .c27b .tx .cond{font-size:70px}
+  .c27b ul{list-style:none;margin-top:22px;font-family:'JetBrains Mono';font-size:18px;line-height:1.95}
+  .c27b li span{display:inline-block;width:64px;color:var(--ac)}
+  .c27b .lg{left:56px;bottom:52px;right:56px;display:flex;gap:30px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.1em;background:inherit;padding:10px 0;border-top:2px solid currentColor}
+  .c27b .lg i{display:inline-block;width:26px;height:2px;background:var(--ac);vertical-align:middle;margin-right:8px}
+</style>
+<!-- 27 -->
+<section class="set">
+  <h2><b>27</b>Topography</h2>
+  <p>A contour map, no character. Null is a summit at exactly 0 m; Void is a depression with no bottom. The back adds the map legend and the QR.</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="topo" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency=".006" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="110" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n27-front"><div class="face c27">
+      <div class="abs topo"></div>
+      <div class="abs k">CODE: NON · SURVEY SHEET N-01</div>
+      <div class="abs pk">SUMMIT ∅ · ELEV. 0 m</div>
+      <div class="abs pl"><div class="cond fn">Alteisen</div><div class="r"><span class="ttl">FOUNDER · </span>NULL</div></div>
+      <div class="abs cd">null@codenon.io<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n27-back"><div class="face c27 c27b">
+      <div class="abs topo"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#0b1b4d" data-bg="#ffffff" data-eye="#d9352b" data-accent="#d9352b"></div>
+      <div class="abs tx"><div class="cond">You are here.</div>
+        <ul><li><span>name</span><b class="fn">Alteisen</b></li><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs lg"><span><i></i>contour · 10 m</span><span>● summit · 0 m</span><span>scan or tap to save</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v27-front"><div class="face c27 c27v">
+      <div class="abs topo"></div>
+      <div class="abs k">CODE: NON · SURVEY SHEET V-02</div>
+      <div class="abs pk">DEPRESSION ◉ · DEPTH ∞</div>
+      <div class="abs pl"><div class="cond">BucDevGin</div><div class="r"><span class="ttl">CO-FOUNDER · </span>VOID</div></div>
+      <div class="abs cd">void@codenon.io<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v27-back"><div class="face c27 c27b c27v">
+      <div class="abs topo"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#0b1020" data-bg="#ffffff" data-accent="#2340e6"></div>
+      <div class="abs tx"><div class="cond">Mind the drop.</div>
+        <ul><li><span>name</span><b>BucDevGin</b></li><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs lg"><span><i></i>contour · 10 m</span><span>◉ depth · ∞</span><span>scan or tap to save</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

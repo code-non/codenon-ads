@@ -1,0 +1,66 @@
+<style>
+  /* ---------- 18 PASSPORT ---------- */
+  .c18{color:var(--navy);
+    background:repeating-radial-gradient(circle at 28% 42%,rgba(35,64,230,.08) 0 2px,transparent 2px 9px),
+      repeating-radial-gradient(circle at 82% 70%,rgba(217,53,43,.06) 0 2px,transparent 2px 11px),linear-gradient(135deg,#edf3ff,#fdf5e3)}
+  .c18 .hd{left:56px;right:56px;top:42px;display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:18px;letter-spacing:.12em;font-weight:700;
+    border-bottom:2px solid rgba(11,27,77,.25);padding-bottom:12px}
+  .c18 .ph{left:56px;top:104px;width:200px;height:250px;border:2px solid rgba(11,27,77,.3);background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center}
+  .c18 .ph img{width:130px;height:130px;filter:grayscale(1);border-radius:12px}
+  .c18 .fl{left:292px;top:104px;right:56px;display:grid;grid-template-columns:1fr 1fr;row-gap:16px;column-gap:24px}
+  .c18 .fl small{display:block;font-family:'JetBrains Mono';font-size:15px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+  .c18 .fl b{font-size:28px;font-weight:700}
+  .c18 .mrz{left:40px;right:40px;bottom:36px;padding:14px 16px;background:rgba(255,255,255,.65);font-family:'JetBrains Mono';font-size:25px;letter-spacing:3.4px;
+    line-height:1.45;white-space:pre;color:#111}
+  .c18b .visa{left:56px;top:56px;width:330px;background:#fff;box-shadow:0 6px 18px rgba(11,27,77,.18);border-radius:8px;overflow:hidden}
+  .c18b .vh{height:44px;background:linear-gradient(100deg,var(--sky),#c9b6ff,var(--sun),var(--sky));font-family:'JetBrains Mono';font-weight:800;font-size:18px;
+    letter-spacing:.2em;display:flex;align-items:center;justify-content:center}
+  .c18b .visa .qr{width:280px;height:280px;margin:16px auto 6px;color:var(--navy);border-radius:0}
+  .c18b .vm{text-align:center;font-family:'JetBrains Mono';font-size:20px;padding-bottom:16px}
+  .c18b .st1,.c18b .st2,.c18b .st3{font-family:'JetBrains Mono';text-align:center;line-height:1.35;opacity:.85}
+  .c18b .st1{left:480px;top:66px;width:230px;height:230px;border-radius:50%;border:6px double var(--tomato);color:var(--tomato);font-size:22px;transform:rotate(-12deg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .c18b .st1 b{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:38px}
+  .c18b .st2{left:560px;top:340px;border:5px solid var(--cobalt);color:var(--cobalt);padding:12px 22px;font-size:22px;transform:rotate(7deg);border-radius:8px}
+  .c18b .st2 b{font-size:26px}
+  .c18b .st3{left:760px;top:120px;border:4px dashed #0b8577;color:#0b8577;padding:14px 18px;font-size:20px;transform:rotate(16deg);border-radius:50px}
+</style>
+<!-- 18 -->
+<section class="set">
+  <h2><b>18</b>Passport</h2>
+  <p>A passport data page issued by CODE: NON, with security-print background and a real-format machine-readable zone built from the name. The back is the visa page.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n18-front"><div class="face c18">
+      <div class="abs hd"><span>CODE: NON · PASSPORT · PASSEPORT</span><span>P · CDN · CN0000001</span></div>
+      <div class="abs ph"><img src="assets/codenon-logo.png" alt=""></div>
+      <div class="abs fl"><div><small>Surname</small><b>NULL</b></div><div><small>Given names</small><b class="fn">Alteisen</b></div>
+        <div><small>Nationality</small><b>CODE: NON</b></div><div><small>Date of issue</small><b>2026</b></div>
+        <div class="ttl"><small>Occupation</small><b>Founder</b></div><div><small>Authority</small><b>codenon.pages.dev</b></div></div>
+      <div class="abs mrz" data-mrz="NULL|{n}|CN0000001"></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n18-back"><div class="face c18 c18b">
+      <div class="abs visa"><div class="vh">VISA · CONTACT</div><div class="qr" data-qr="https://codenon.pages.dev"></div><div class="vm">null@codenon.io</div></div>
+      <div class="abs st1">ARRIVED<br><b>CODE: NON</b><br>★ 2026 ★</div>
+      <div class="abs st2">ENTRY · NULL<br><b>tap to connect</b></div>
+      <div class="abs st3">codenon.pages.dev<br>@codenon.io</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v18-front"><div class="face c18">
+      <div class="abs hd"><span>CODE: NON · PASSPORT · PASSEPORT</span><span>P · CDN · CN0000002</span></div>
+      <div class="abs ph"><img src="assets/codenon-logo.png" alt=""></div>
+      <div class="abs fl"><div><small>Surname</small><b>VOID</b></div><div><small>Given names</small><b>BucDevGin</b></div>
+        <div><small>Nationality</small><b>CODE: NON</b></div><div><small>Date of issue</small><b>2026</b></div>
+        <div class="ttl"><small>Occupation</small><b>Co-founder</b></div><div><small>Authority</small><b>codenon.pages.dev</b></div></div>
+      <div class="abs mrz" data-mrz="VOID|BucDevGin|CN0000002"></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v18-back"><div class="face c18 c18b">
+      <div class="abs visa"><div class="vh">VISA · CONTACT</div><div class="qr" data-qr="https://codenon.pages.dev"></div><div class="vm">void@codenon.io</div></div>
+      <div class="abs st1">ARRIVED<br><b>CODE: NON</b><br>★ 2026 ★</div>
+      <div class="abs st2">ENTRY · VOID<br><b>tap to connect</b></div>
+      <div class="abs st3">codenon.pages.dev<br>@codenon.io</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

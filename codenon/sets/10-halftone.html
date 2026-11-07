@@ -1,0 +1,58 @@
+<style>
+  /* ---------- 10 HALFTONE: three dot sizes stacked, each masked to a radius, so dots grow toward the centre ---------- */
+  .c10{background:var(--navy);color:var(--cream);--dot:var(--sun);--acc:var(--sun);--c:74% 46%}
+  .c10v{--dot:var(--sky);--acc:var(--sky)}
+  .c10v{--c:80% 46%}
+  .c10b{--c:100% 100%}
+  .c10 .ht,.c10 .ht::before,.c10 .ht::after{position:absolute;inset:0;background:radial-gradient(circle,var(--dot) var(--r),transparent calc(var(--r) + 3%)) 0 0/22px 22px}
+  .c10 .ht::before,.c10 .ht::after{content:""}
+  .c10 .ht{--r:16%}
+  .c10 .ht::before{--r:30%}
+  .c10 .ht::after{--r:46%}
+  .c10n .ht{-webkit-mask:radial-gradient(circle at var(--c),#000 0 330px,transparent 330px)}
+  .c10n .ht::before{-webkit-mask:radial-gradient(circle at var(--c),#000 0 230px,transparent 230px)}
+  .c10n .ht::after{-webkit-mask:radial-gradient(circle at var(--c),#000 0 130px,transparent 130px)}
+  .c10v .ht{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 120px,#000 120px 420px,transparent 420px)}
+  .c10v .ht::before{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 160px,#000 160px 400px,transparent 400px)}
+  .c10v .ht::after{-webkit-mask:radial-gradient(circle at var(--c),transparent 0 210px,#000 210px 330px,transparent 330px)}
+  .c10 .cnb{left:60px;top:56px}
+  .c10 .who{left:60px;bottom:56px}
+  .c10 .who .cond{font-size:80px}
+  .c10 .who small{display:block;font-family:'JetBrains Mono';font-size:20px;letter-spacing:.12em;margin-top:12px;color:var(--dot)}
+  .c10b .ft span:last-child{display:none}
+</style>
+<!-- 10 -->
+<section class="set">
+  <h2><b>10</b>Halftone</h2>
+  <p>Print-shop halftone dots. Null is a dot sun that fades out from the centre; Void is the same field of dots with a hole punched through the middle.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n10-front"><div class="face c10 c10n">
+      <div class="ht"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs who"><div class="cond fn">Alteisen</div><small>NULL<span class="ttl"> · FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n10-back"><div class="face bk c10 c10n c10b">
+      <div class="ht"></div>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v10-front"><div class="face c10 c10v">
+      <div class="ht"></div>
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs who"><div class="cond">BucDevGin</div><small>VOID<span class="ttl"> · CO-FOUNDER</span></small></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v10-back"><div class="face bk c10 c10b c10v">
+      <div class="ht"></div>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>tap or scan to save my contact</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

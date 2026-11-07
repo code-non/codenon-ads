@@ -1,0 +1,65 @@
+<style>
+  /* ---------- 31 RISOGRAPH: two inks, slightly misregistered, multiplied where they overlap ---------- */
+  .c31{background:#f3efe6;color:#1d3fe0;--p:#ff48b0;--b:#1d3fe0;font-family:'Archivo'}
+  .c31v{--p:#ffd400}
+  .c31::after{content:'';position:absolute;inset:0;opacity:.22;mix-blend-mode:multiply;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+  .c31 .ink{mix-blend-mode:multiply}
+  .c31 .ring{left:551px;top:40px;width:420px;height:420px;border-radius:50%;border:70px solid var(--p)}
+  .c31 .bar{left:726px;top:-60px;width:70px;height:620px;background:var(--b);transform:rotate(45deg) translate(6px,4px)}
+  .c31v .ring{border-width:26px;background:radial-gradient(circle,var(--p) 0 44%,transparent 44.5%)}
+  .c31v .bar{width:420px;height:420px;left:557px;top:46px;border-radius:50%;background:none;border:8px solid var(--b);transform:none}
+  .c31 .dots{left:420px;top:380px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,var(--b) 30%,transparent 33%) 0 0/13px 13px}
+  .c31 .nm{left:52px;top:60px;max-width:600px;font-stretch:125%;font-weight:900;font-size:56px;line-height:.95;text-transform:uppercase;color:var(--b)}
+  .c31 .nm.gh{color:var(--p);transform:translate(5px,4px)}
+  .c31 .rl{left:56px;top:136px;font-weight:700;font-size:18px;letter-spacing:.24em;text-transform:uppercase;color:var(--b)}
+  .c31 .ed{left:56px;top:178px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.14em;color:var(--b);opacity:.8}
+  .c31 .ct{left:56px;bottom:56px;font-family:'JetBrains Mono';font-size:16px;line-height:1.8;color:var(--b)}
+  .c31b .ring{left:auto;right:-150px;top:250px}
+  .c31b .cq{left:56px;top:56px;width:290px;height:290px;border-radius:6px}
+  .c31b .tx{left:400px;top:56px;right:56px}
+  .c31b .hl{position:relative;font-stretch:125%;font-weight:900;font-size:46px;line-height:1;text-transform:uppercase}
+  .c31b .hl span{position:absolute;left:5px;top:4px;color:var(--p);mix-blend-mode:multiply}
+  .c31b ul{list-style:none;margin-top:30px;font-family:'JetBrains Mono';font-size:18px;line-height:2}
+  .c31b li span{display:inline-block;width:64px;opacity:.6}
+  .c31b .ed{top:auto;bottom:56px}
+</style>
+<!-- 31 -->
+<section class="set">
+  <h2><b>31</b>Risograph</h2>
+  <p>A two-ink riso print: fluoro pink and blue (Null) or yellow and blue (Void), slightly misregistered, with a halftone and paper grain. The symbol is built from overlapping ink shapes.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n31-front"><div class="face c31">
+      <div class="abs ink ring"></div><div class="abs ink dots"></div><div class="abs ink bar"></div>
+      <div class="abs ink nm gh fn">Alteisen</div><div class="abs ink nm fn">Alteisen</div>
+      <div class="abs rl"><span class="ttl">Founder · </span>Null</div>
+      <div class="abs ed">CODE: NON · EDITION 01/02 · 2 INKS</div>
+      <div class="abs ct">null@codenon.io<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n31-back"><div class="face c31 c31b">
+      <div class="abs ink ring"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="null" data-fg="#1d3fe0" data-bg="#f3efe6" data-eye="#1d3fe0" data-accent="#ff48b0"></div>
+      <div class="abs tx"><div class="hl"><span>Printed from zero.</span>Printed from zero.</div>
+        <ul><li><span>name</span><b class="fn">Alteisen</b></li><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ed" style="left:400px">SCAN OR TAP TO SAVE · ED. 01/02</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v31-front"><div class="face c31 c31v">
+      <div class="abs ink ring"></div><div class="abs ink dots"></div><div class="abs ink bar"></div>
+      <div class="abs ink nm gh">BucDevGin</div><div class="abs ink nm">BucDevGin</div>
+      <div class="abs rl"><span class="ttl">Co-founder · </span>Void</div>
+      <div class="abs ed">CODE: NON · EDITION 02/02 · 2 INKS</div>
+      <div class="abs ct">void@codenon.io<br>codenon.pages.dev</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v31-back"><div class="face c31 c31b c31v">
+      <div class="abs ink ring"></div>
+      <div class="abs cq" data-cnqr="https://codenon.pages.dev" data-badge="void" data-fg="#1d3fe0" data-bg="#f3efe6" data-eye="#1d3fe0" data-accent="#ffd400"></div>
+      <div class="abs tx"><div class="hl"><span>Ink goes in. Nothing comes out.</span>Ink goes in. Nothing comes out.</div>
+        <ul><li><span>name</span><b>BucDevGin</b></li><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ed" style="left:400px">SCAN OR TAP TO SAVE · ED. 02/02</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

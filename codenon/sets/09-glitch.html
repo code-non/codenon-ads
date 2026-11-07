@@ -1,0 +1,56 @@
+<style>
+  /* ---------- 09 GLITCH ---------- */
+  .c9{background:#07080c;color:#fff;--acc:var(--tomato)}
+  .c9.c9v{--acc:var(--sky)}
+  .c9::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px)}
+  .c9 .cnb{left:60px;top:56px}
+  .c9 .sig{right:60px;top:74px;font-family:'JetBrains Mono';font-size:20px;color:#8b8f98;letter-spacing:.12em}
+  .c9 .sig b{color:var(--acc)}
+  .c9 .gl{left:56px;top:196px;font-size:136px;white-space:nowrap;text-shadow:-3px 0 rgba(217,53,43,.9),3px 0 rgba(124,200,255,.9)}
+  .c9 .gl::before,.c9 .gl::after{content:attr(data-t);position:absolute;left:0;top:0;text-shadow:none}
+  .c9 .gl::before{color:#fff;text-shadow:-3px 0 rgba(217,53,43,.9);clip-path:inset(30% 0 56% 0);transform:translateX(16px)}
+  .c9 .gl::after{color:#fff;text-shadow:3px 0 rgba(124,200,255,.9);clip-path:inset(68% 0 16% 0);transform:translateX(-12px)}
+  .c9v .gl::before{transform:translateX(-16px)}
+  .c9v .gl::after{transform:translateX(12px)}
+  .c9 .sub{left:60px;top:350px;font-family:'JetBrains Mono';font-size:28px;color:var(--acc)}
+  .c9 .sub .ttl{color:#8b8f98}
+  .c9 .cur{display:inline-block;width:16px;height:30px;background:var(--acc);vertical-align:-5px;margin-left:4px}
+  .c9 .hint{left:60px;bottom:56px;font-family:'JetBrains Mono';font-size:20px;color:#5b5e66}
+</style>
+<!-- 09 -->
+<section class="set">
+  <h2><b>09</b>Glitch</h2>
+  <p>Signal lost: the name split into red and blue channels with a sliced offset and scanlines. Null tears to the right, Void to the left.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n9-front"><div class="face c9">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs sig">SIGNAL: <b>NULL</b></div>
+      <div class="abs cond gl fn" data-t="Alteisen">Alteisen</div>
+      <div class="abs sub">&gt; null<i class="cur"></i> <span class="ttl">· founder</span></div>
+      <div class="abs hint">// tap to resolve</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n9-back"><div class="face bk c9 c9b">
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond fn">Alteisen</div><div class="r">NULL<span class="ttl"> · FOUNDER</span></div>
+        <ul><li><span>mail</span>null@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>signal restored</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v9-front"><div class="face c9 c9v">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs sig">SIGNAL: <b>VOID</b></div>
+      <div class="abs cond gl" data-t="BucDevGin">BucDevGin</div>
+      <div class="abs sub">&gt; void<i class="cur"></i> <span class="ttl">· co-founder</span></div>
+      <div class="abs hint">// tap to resolve</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v9-back"><div class="face bk c9 c9b c9v">
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs txt"><div class="cond">BucDevGin</div><div class="r">VOID<span class="ttl"> · CO-FOUNDER</span></div>
+        <ul><li><span>mail</span>void@codenon.io</li><li><span>web</span>codenon.pages.dev</li><li><span>ig</span>@codenon.io</li></ul></div>
+      <div class="abs ft"><span>CODE: NON</span><span>signal restored</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+  /* CODE: NON founder business cards, NFC CR80 (85.6 x 54 mm). Faces are 1011x638 = 300 dpi at trim size, no bleed.
+     Every design is a pair: n* = founder (Null), v* = co-founder (Void).
+     Shared by every set: the sheet chrome, the shared face bits and PDF export. Each design's own CSS lives in sets/NN-*.html;
+     build-sheet.js stitches them into cards.html (npm run build).
+     cards.html             -> preview sheet; the name buttons swap the founder's name everywhere
+     cards.html?n=1#n1-front -> that face alone at full size with name #1 (render-cards.sh screenshots these) */
+  html,body{width:auto;background:#141a2e}
+  body{padding:48px 40px;color:#c9ccd3}
+  .sheet-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;max-width:1100px;margin:0 auto 24px}
+  .sheet-h h1{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:48px;line-height:1;text-transform:uppercase;color:#fff}
+  .sheet-h h1 span{color:var(--sun)}
+  .sheet-h p{font-size:15px;color:#8b93ab;max-width:520px;line-height:1.5}
+  .names{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;align-items:center;max-width:1100px;margin:0 auto 30px;padding:12px 0;background:#141a2e;
+    font-family:'JetBrains Mono';font-size:14px;color:#8b93ab}
+  .names button{font:500 14px 'JetBrains Mono',monospace;color:#c9ccd3;background:#1f2740;border:1px solid #2e3858;border-radius:99px;padding:8px 14px;cursor:pointer}
+  .names button.on{background:var(--sun);color:var(--navy);border-color:var(--sun)}
+  .set{max-width:1100px;margin:0 auto 52px;border-top:1px solid #2e3858;padding-top:24px}
+  .set h2{font-family:'JetBrains Mono';font-size:16px;font-weight:500;color:#fff;margin-bottom:4px}
+  .set h2 b{color:var(--sun);margin-right:10px}
+  .set > p{font-size:14px;color:#8b93ab;margin-bottom:6px}
+  .who-l{font-family:'JetBrains Mono';font-size:13px;color:#8b93ab;letter-spacing:.1em;margin:16px 0 8px}
+  .pair{display:flex;gap:28px;flex-wrap:wrap}
+  .slot{zoom:.5}
+  .slot .face{box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .tag{font-family:'JetBrains Mono';font-size:13px;color:#5b6380;margin-top:8px;letter-spacing:.08em}
+
+  html:has(body.solo),body.solo{padding:0;background:transparent}
+  body.solo .sheet-h,body.solo .names,body.solo .set > h2,body.solo .set > p,body.solo .who-l,body.solo .tag{display:none}
+  body.solo .set,body.solo .pair{margin:0;padding:0;border:0;display:block}
+  body.solo .slot{zoom:1;display:none}
+  body.solo .slot.on{display:block}
+  body.solo .face{box-shadow:none}
+
+  /* ---------- shared face bits ---------- */
+  .face{position:relative;width:1011px;height:638px;border-radius:38px;overflow:hidden;font-family:'Figtree',system-ui,sans-serif}
+  .cond{font-family:'Archivo',system-ui,sans-serif;font-stretch:68%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.88}
+  .abs{position:absolute}
+  .cnb{display:flex;align-items:center;gap:14px;font-family:'Archivo';font-weight:800;font-size:26px;letter-spacing:.04em}
+  .cnb img{width:60px;height:60px;border-radius:12px;display:block}
+  .qr{display:block;border-radius:20px}
+  .qr svg{display:block;width:100%;height:100%}
+  /* Standard back: QR left, name + role + contacts right, footer line */
+  .bk .qr{left:60px;top:60px;width:300px;height:300px;background:#fff;color:var(--navy)}
+  .bk .txt{left:410px;top:62px;right:60px}
+  .bk .txt .cond{font-size:72px}
+  .bk .txt .r{font-family:'JetBrains Mono';font-size:22px;letter-spacing:.12em;margin-top:12px;color:var(--acc)}
+  .bk .txt ul{list-style:none;margin-top:28px;font-family:'JetBrains Mono';font-size:22px;line-height:1.8}
+  .bk .txt li span{display:inline-block;width:70px;opacity:.55}
+  .bk .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono';font-size:20px;
+    border-top:2px solid rgba(127,127,127,.3);padding-top:22px;opacity:.8}
+
+  /* ---------- titles toggle + export ---------- */
+  body.no-ttl .ttl{display:none!important}
+  .names .sp{flex:1}
+  .names label{display:flex;align-items:center;gap:8px;margin:0 6px 0 10px;cursor:pointer;color:#c9ccd3}
+  .names label input{width:16px;height:16px;accent-color:var(--sun)}
+  .names button.x{background:transparent;border-color:var(--sun);color:var(--sun)}
+  .set h2 .ex{float:right;font:500 13px 'JetBrains Mono',monospace;color:var(--sun);background:none;border:1px solid #2e3858;border-radius:99px;padding:5px 12px;cursor:pointer}
+
+  /* PDF: "card" = one face per page at real CR80 size (1011px * .3195 = 85.6mm), square corners for the printer's die-cut;
+     "sheet" = A4 proof with every pair at real size. */
+  @page card{size:85.6mm 54mm;margin:0}
+  @page sheet{size:A4;margin:12mm}
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    html,body{background:#fff!important;padding:0!important;width:auto!important}
+    .sheet-h,.names,.tag,.set > p,.ex{display:none!important}
+    .set{border:0!important;padding:0!important;margin:0!important;max-width:none!important}
+    .slot .face{box-shadow:none}
+    body.pr-card .set > h2,body.pr-card .who-l{display:none}
+    body.pr-card .pair{display:block}
+    body.pr-card .slot{page:card;zoom:.3195;break-after:page}
+    body.pr-card .face{border-radius:0}
+    body.pr-sheet .set{page:sheet;break-inside:avoid;margin-bottom:8mm!important}
+    body.pr-sheet .set > h2{font-size:11pt;color:#000;margin-bottom:2mm}
+    body.pr-sheet .who-l{font-size:7pt;color:#555;margin:1mm 0}
+    body.pr-sheet .pair{gap:5mm}
+    body.pr-sheet .slot{zoom:.3195}
+    body.pr-one .set:not(.pick){display:none!important}
+  }
+
+  /* ---------- mascots (assets/mascots.js) + branded QR (assets/cnqr.js) ---------- */
+  .msc svg,.cq svg{display:block;width:100%;height:100%}
+  .cq{border-radius:22px;overflow:hidden}
+
+
+  /* ---------- serif display type (used by several sets) ---------- */
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:.95}

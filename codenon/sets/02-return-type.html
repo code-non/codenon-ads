@@ -1,0 +1,65 @@
+<style>
+  /* ---------- 02 RETURN TYPE: the card as a function signature ---------- */
+  .c2{background:var(--navy);color:#fff;font-family:'JetBrains Mono';
+    background-image:linear-gradient(rgba(124,200,255,.07) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(124,200,255,.07) 1.5px,transparent 1.5px);background-size:26px 26px}
+  .c2 .cnb{left:60px;top:56px}
+  .c2 .cm{left:60px;top:176px;font-size:24px;color:var(--sky);opacity:.75}
+  .c2 .fnc{left:60px;top:222px;font-size:60px;font-weight:700}
+  .c2 .ret{left:50px;top:300px;font-size:150px;font-weight:800;line-height:1}
+  .c2n .ret{color:var(--sun)}
+  .c2v .ret{color:var(--sky)}
+  .c2 .ret span{margin-right:28px}
+  .c2 .obj{left:60px;bottom:56px;font-size:22px;color:var(--sky)}
+  .c2 .obj .dim{opacity:.6}
+  .c2b{background:var(--sky);color:var(--navy);font-family:'JetBrains Mono'}
+  .c2v.c2b,.c2b.alt{background:var(--sun)}
+  .c2b pre{left:60px;top:66px;font-family:'JetBrains Mono';font-size:28px;line-height:1.6}
+  .c2b pre b{font-weight:800}
+  .c2b .qr{right:60px;top:60px;width:300px;height:300px;color:var(--navy)}
+  .c2b .ft{left:60px;right:60px;bottom:52px;display:flex;justify-content:space-between;font-size:20px;border-top:2px solid rgba(11,27,77,.25);padding-top:22px}
+</style>
+<!-- 02 -->
+<section class="set">
+  <h2><b>02</b>Return type</h2>
+  <p>The person as a function signature: what you call is the name, what you get back is the role. The back returns the contact details.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n2-front"><div class="face c2 c2n">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs cm ttl">// founder</div>
+      <div class="abs fnc"><span class="fnl">alteisen</span>()</div>
+      <div class="abs ret"><span>:</span>null</div>
+      <div class="abs obj"><span class="ttl">{ role: "founder" } </span><span class="dim">// tap → save contact</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n2-back"><div class="face c2b">
+<pre class="abs"><b>return</b> {
+  name: "<span class="fn">Alteisen</span>",
+  mail: "null@codenon.io",
+  web:  "codenon.pages.dev",
+  ig:   "@codenon.io",
+};</pre>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs ft"><b>CODE: NON</b><span>// scan, or tap the front</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v2-front"><div class="face c2 c2v">
+      <div class="abs cnb"><img src="assets/codenon-logo.png" alt="">CODE: NON</div>
+      <div class="abs cm ttl">// co-founder</div>
+      <div class="abs fnc">bucdevgin()</div>
+      <div class="abs ret"><span>:</span>void</div>
+      <div class="abs obj"><span class="ttl">{ role: "co-founder" } </span><span class="dim">// tap → save contact</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v2-back"><div class="face c2b alt">
+<pre class="abs"><b>return</b> {
+  name: "BucDevGin",
+  mail: "void@codenon.io",
+  web:  "codenon.pages.dev",
+  ig:   "@codenon.io",
+};</pre>
+      <div class="abs qr" data-qr="https://codenon.pages.dev"></div>
+      <div class="abs ft"><b>CODE: NON</b><span>// scan, or tap the front</span></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
