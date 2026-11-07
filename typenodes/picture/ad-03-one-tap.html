@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad 03 · One tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .ad{background:var(--ink);color:#fff}
+  .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.6px,transparent 1.6px);background-size:30px 30px}
+  .wm{position:absolute;left:40px;top:40px;width:1000px}
+  .top{position:absolute;left:68px;right:68px;top:178px;display:flex;justify-content:space-between;align-items:center}
+  .tn{display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono';font-weight:700;font-size:26px}
+  .tn i{width:60px;height:60px;display:block}
+  .tn small{display:block;font-weight:400;font-size:17px;color:#8b8f98;margin-top:2px}
+  .live{font-family:'JetBrains Mono';font-size:18px;color:var(--acid);border:1.5px solid var(--acid);border-radius:99px;padding:8px 16px}
+  .live::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--acid);margin-right:10px;vertical-align:1px}
+
+  h1{position:absolute;left:64px;top:272px;font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:132px;
+    line-height:.86;letter-spacing:-.02em;text-transform:uppercase}
+  h1 span{color:var(--acid)}
+
+  /* NFC rings + card */
+  .rings{position:absolute;left:540px;top:820px;width:0;height:0}
+  .rings i{position:absolute;border:3px solid var(--acid);border-radius:50%;transform:translate(-50%,-50%)}
+  .rings i:nth-child(1){width:300px;height:300px;opacity:.9}
+  .rings i:nth-child(2){width:480px;height:480px;opacity:.5}
+  .rings i:nth-child(3){width:680px;height:680px;opacity:.25}
+  .rings i:nth-child(4){width:900px;height:900px;opacity:.12}
+  .card{position:absolute;left:260px;top:640px;width:560px;height:350px;border-radius:26px;transform:rotate(-8deg);
+    background:linear-gradient(135deg,#202328 0%,#121316 60%);border:1.5px solid #34373e;padding:34px 38px;
+    box-shadow:0 40px 80px rgba(0,0,0,.6)}
+  .card .row{display:flex;justify-content:space-between;align-items:center}
+  .card .m{width:64px;height:64px;display:block}
+  .card .lbl{font-family:'JetBrains Mono';font-size:17px;color:#8b8f98;letter-spacing:.1em}
+  .card .chip{width:70px;height:54px;border-radius:9px;background:linear-gradient(135deg,#d9df9c,#9aa35a);margin-top:40px}
+  .card .nm{position:absolute;left:38px;bottom:34px;font-family:'JetBrains Mono';font-size:28px;font-weight:700}
+  .card .nm small{display:block;font-size:18px;font-weight:400;color:#8b8f98;margin-top:4px}
+  .card .wave{position:absolute;right:38px;bottom:38px;width:52px;height:52px;color:#8b8f98}
+
+  .toast{position:absolute;right:64px;top:600px;background:#fff;color:var(--ink);border-radius:16px;padding:20px 24px;width:350px;
+    box-shadow:0 24px 50px rgba(0,0,0,.45);transform:rotate(3deg)}
+  .toast .t{font-family:'JetBrains Mono';font-size:15px;color:var(--muted);letter-spacing:.06em}
+  .toast b{display:block;font-size:26px;margin:6px 0 10px}
+  .stamps{display:flex;gap:8px}
+  .stamps i{width:38px;height:38px;border-radius:50%;background:var(--ink)}
+  .stamps i.r{background:var(--acid);box-shadow:inset 0 0 0 3px var(--ink)}
+  .toast2{position:absolute;left:58px;top:1000px;background:var(--acid);color:var(--ink);border-radius:14px;padding:16px 22px;
+    font-family:'JetBrains Mono';font-size:20px;font-weight:700;transform:rotate(-3deg)}
+  .toast2 small{display:block;font-weight:400;font-size:15px}
+
+  .sub{position:absolute;left:68px;right:68px;top:1110px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  .sub p{font-size:26px;line-height:1.38;color:#c9ccd3;max-width:560px}
+  .sub p b{color:#fff}
+  .url{font-family:'JetBrains Mono';font-weight:700;font-size:26px;color:var(--ink);background:var(--acid);padding:16px 22px;border-radius:10px;white-space:nowrap}
+  .foot{position:absolute;left:0;right:0;bottom:0;height:86px;border-top:1.5px solid #2a2d33;display:flex;align-items:center;
+    justify-content:space-between;padding:0 68px;color:#8b8f98;font-size:20px}
+  .foot b{color:#fff;font-family:'Pixelify Sans';font-weight:600;font-size:22px;letter-spacing:.04em}
+  .foot img{width:34px;height:34px;vertical-align:-9px;margin-right:10px}
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="grid"></div>
+  <img class="tn-wordmark wm" src="assets/typenodes-wordmark.png" alt="TYPE: NODES">
+  <div class="top">
+    <div class="tn"><i data-tn-mark></i><div>TYPE: NODES<small>by CODE: NON</small></div></div>
+    <div class="live">live now</div>
+  </div>
+
+  <h1>Remember<br>every <span>regular.</span></h1>
+
+  <div class="rings"><i></i><i></i><i></i><i></i></div>
+  <div class="card">
+    <div class="row"><i class="m" data-tn-mark></i><span class="lbl">MEMBER</span></div>
+    <div class="chip"></div>
+    <div class="nm">Aria Tanaka<small>CN-0042 · Gold</small></div>
+    <svg class="wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8.5a6 6 0 0 1 0 7"/><path d="M10 6a10 10 0 0 1 0 12"/><path d="M14 3.5a14 14 0 0 1 0 17"/></svg>
+  </div>
+  <div class="toast">
+    <div class="t">THE CORNER CAFÉ · 9:15 AM</div>
+    <b>Stamp added · reward ready</b>
+    <div class="stamps"><i></i><i></i><i></i><i></i><i class="r"></i></div>
+  </div>
+  <div class="toast2">Checked in · 112th visit<small>Iron Hour Gym · 6:58 am</small></div>
+
+  <div class="sub">
+    <p><b>Membership, loyalty and attendance in one tap.</b> Your customers tap a card. Nobody downloads an app.</p>
+    <div class="url">typenodes.com</div>
+  </div>
+  <div class="foot">
+    <span><img src="assets/codenon-logo.png" alt=""><b>CODE: NON</b></span>
+    <span>Need something only your business does? <b style="color:var(--acid)">We build it.</b></span>
+  </div>
+</div>
+<script src="assets/shared.js"></script>
+</body>
+</html>

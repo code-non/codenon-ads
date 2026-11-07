@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad 02 · The chore receipt</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .ad{background:var(--cobalt);
+    background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px);
+    background-size:54px 54px}
+  .kicker{position:absolute;left:64px;top:70px;font-family:'Pixelify Sans';font-size:28px;color:var(--sun);letter-spacing:.08em}
+  h1{position:absolute;left:64px;top:118px;width:470px;font-family:'Pixelify Sans';font-weight:700;color:#fff;
+    font-size:104px;line-height:.95}
+  h1 b{color:var(--sun);font-weight:700}
+  .lede{position:absolute;left:64px;top:560px;width:400px;color:#dfe5ff;font-size:27px;line-height:1.4;font-weight:500}
+  .lede strong{color:#fff}
+  .brand{position:absolute;left:64px;bottom:70px;display:flex;align-items:center;gap:16px;color:#fff}
+  .brand img{width:64px;height:64px}
+  .brand .pix{font-size:32px;font-weight:700;letter-spacing:.06em}
+  .brand small{display:block;font-family:'Figtree';font-size:20px;font-weight:600;color:var(--sun);letter-spacing:0}
+
+  .receipt{position:absolute;right:58px;top:-10px;width:500px;height:1290px;background:#fbfaf5;color:#1a1a1a;
+    transform:rotate(2.2deg);transform-origin:top center;padding:72px 40px 0;font-family:'JetBrains Mono',monospace;font-size:19px;
+    box-shadow:18px 22px 0 rgba(5,13,46,.45);
+    -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/28px 100%;
+            mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/28px 100%}
+  .receipt .c{text-align:center}
+  .r-logo{width:58px;height:58px;margin:0 auto 10px;filter:invert(1)}
+  .r-name{font-weight:800;font-size:28px;letter-spacing:.12em}
+  .r-sub{font-size:16px;color:#666;margin-top:4px}
+  .hr{border-top:2px dashed #999;margin:20px 0}
+  .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;line-height:1.3}
+  .row .it{flex:1}
+  .row .q{color:#777;font-size:16px}
+  .void{color:var(--tomato);font-weight:800}
+  .it.x{text-decoration:line-through;text-decoration-color:var(--tomato);text-decoration-thickness:2px}
+  .tot{font-weight:800;font-size:24px}
+  .pay h3{font-size:17px;letter-spacing:.14em;color:#666;font-weight:700;margin-bottom:12px}
+  .opt{display:flex;gap:14px;align-items:flex-start;padding:12px 14px;margin-bottom:10px;border:2px solid #1a1a1a}
+  .opt .k{font-weight:800;font-size:20px;min-width:34px;height:34px;display:grid;place-items:center;background:#1a1a1a;color:#fbfaf5}
+  .opt b{display:block;font-size:20px}
+  .opt span{font-size:16px;color:#555;line-height:1.35}
+  .opt.tn{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .opt.tn .k{background:var(--acid);color:var(--ink)}
+  .opt.tn span{color:#c9ccd3}
+  .barcode{height:64px;margin:22px 10px 8px;background:repeating-linear-gradient(90deg,#1a1a1a 0 3px,transparent 3px 5px,#1a1a1a 5px 6px,transparent 6px 10px,#1a1a1a 10px 14px,transparent 14px 16px)}
+  .thanks{font-size:16px;color:#555;line-height:1.5}
+  .stamp{position:absolute;right:60px;top:1100px;transform:rotate(-10deg);border:5px solid var(--tomato);color:var(--tomato);
+    font-family:'Pixelify Sans';font-weight:700;font-size:46px;padding:4px 18px;letter-spacing:.08em;opacity:.88;mix-blend-mode:multiply}
+  .npc{position:absolute;left:64px;top:830px;display:flex;align-items:flex-end;gap:22px}
+  .bub{background:#fff;color:var(--navy);font-size:30px;line-height:1.1;padding:16px 20px;margin-bottom:120px;position:relative;order:2}
+  .bub::after{content:"";position:absolute;left:-18px;bottom:14px;border:10px solid transparent;border-right:10px solid #fff;border-bottom:10px solid #fff}
+  .tnb{display:flex!important;align-items:center;gap:8px}
+  .tnb i{width:30px;height:30px;display:block}
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="kicker">RECEIPT #000 · YOUR OFFICE</div>
+  <h1>Nothing is the <b>end state.</b></h1>
+  <p class="lede">Every chore on this list costs your team hours, every single week. <strong>We void them.</strong> Build it custom with us, or start tapping with TYPE: NODES.</p>
+  <div class="npc"><div class="bub pix">VOID. VOID.<br>VOID. Next!</div><div data-sprite="treasurer" data-px="13"></div></div>
+  <div class="brand"><img src="assets/codenon-logo.png" alt=""><div><span class="pix">CODE: NON</span><small>@codenon.io · Message us</small></div></div>
+
+  <div class="receipt">
+    <div class="c">
+      <img class="r-logo" src="assets/codenon-logo.png" alt="">
+      <div class="r-name">CHORES DEPT.</div>
+      <div class="r-sub">things your team did by hand · this week</div>
+    </div>
+    <div class="hr"></div>
+    <div class="row"><span class="it x">Paper stamp cards</span><span class="q">×300</span><span class="void">VOID</span></div>
+    <div class="row"><span class="it x">Double-booked appointments</span><span class="q">×6</span><span class="void">VOID</span></div>
+    <div class="row"><span class="it x">Budget sheet at 11 pm</span><span class="q">×4</span><span class="void">VOID</span></div>
+    <div class="row"><span class="it x">"How many points do I have?"</span><span class="q">×∞</span><span class="void">VOID</span></div>
+    <div class="row"><span class="it x">Leave forms on paper</span><span class="q">×12</span><span class="void">VOID</span></div>
+    <div class="row"><span class="it x">Guessing stock levels</span><span class="q">×daily</span><span class="void">VOID</span></div>
+    <div class="hr"></div>
+    <div class="row tot"><span>CHORES LEFT</span><span>0</span></div>
+    <div class="row"><span>Hours given back</span><span>all of them</span></div>
+    <div class="hr"></div>
+    <div class="pay">
+      <h3>CHOOSE PAYMENT METHOD</h3>
+      <div class="opt"><div class="k">A</div><div><b>Custom build</b><span>We design and build the system around how your team works.</span></div></div>
+      <div class="opt tn"><div class="k">B</div><div><b class="tnb"><i data-tn-mark></i>TYPE: NODES</b><span>Membership, loyalty and check-ins. One tap. No app.</span></div></div>
+    </div>
+    <div class="barcode"></div>
+    <div class="c thanks">thank you, come again<br>(but only once)</div>
+    <div class="stamp">VOID</div>
+  </div>
+</div>
+<script src="assets/shared.js"></script>
+</body>
+</html>

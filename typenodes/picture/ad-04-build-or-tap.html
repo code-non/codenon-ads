@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad 04 · Build or Tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .ad{background:var(--ink)}
+  /* diagonal split, fighting-game select screen */
+  .left{position:absolute;inset:0;background:var(--cobalt);clip-path:polygon(0 0,62% 0,38% 100%,0 100%);
+    background-image:linear-gradient(rgba(255,255,255,.1) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.1) 2px,transparent 2px);
+    background-size:45px 45px;background-color:var(--cobalt)}
+  .right{position:absolute;inset:0;clip-path:polygon(62% 0,100% 0,100% 100%,38% 100%);
+    background-image:radial-gradient(rgba(182,242,74,.16) 1.6px,transparent 1.6px);background-size:26px 26px}
+  .seam{position:absolute;left:50%;top:-20px;width:14px;height:1400px;background:var(--sun);transform:translateX(-50%) rotate(10.2deg)}
+
+  .p1{position:absolute;left:64px;top:64px;color:#fff;font-family:'Pixelify Sans';font-weight:700;font-size:30px;letter-spacing:.1em}
+  .p1 b{background:var(--sun);color:var(--navy);padding:4px 12px;margin-right:12px}
+  .p2{position:absolute;right:64px;top:64px;color:#fff;font-family:'JetBrains Mono';font-weight:700;font-size:22px;letter-spacing:.02em;text-align:right}
+  .p2 b{background:var(--acid);color:var(--ink);padding:4px 12px;margin-left:12px}
+
+  .big{position:absolute;font-family:'Archivo';font-stretch:62%;font-weight:900;line-height:.8;text-transform:uppercase;letter-spacing:-.02em}
+  .big.l{left:56px;top:140px;font-size:230px;color:#fff}
+  .big.l span{color:var(--sun)}
+  .big.r{right:56px;top:790px;font-size:230px;color:#fff;text-align:right}
+  .big.r span{color:var(--acid)}
+
+  .ldesc{position:absolute;left:64px;top:550px;width:380px;color:#dfe5ff;font-size:25px;line-height:1.4;font-weight:500}
+  .ldesc b{color:#fff;display:block;font-family:'Pixelify Sans';font-size:36px;margin-bottom:8px;line-height:1.05}
+  .rdesc{position:absolute;right:64px;top:520px;width:380px;color:#c9ccd3;font-size:25px;line-height:1.4;text-align:right}
+  .rdesc b{color:#fff;display:block;font-family:'JetBrains Mono';font-size:30px;margin-bottom:10px;line-height:1.15}
+
+  .spr{position:absolute}
+  .s1{left:64px;top:880px}
+  .s2{left:220px;top:932px}
+  .tnmark{position:absolute;right:90px;top:250px;width:210px;height:210px}
+
+  .vs{position:absolute;left:50%;top:675px;transform:translate(-50%,-50%) rotate(-8deg);background:var(--tomato);color:#fff;
+    font-family:'Archivo';font-stretch:62%;font-weight:900;font-size:110px;line-height:1;padding:10px 26px 4px;
+    box-shadow:10px 10px 0 var(--navy)}
+  .vs small{position:absolute;left:0;right:0;bottom:-40px;text-align:center;font-family:'Pixelify Sans';font-size:24px;font-weight:600;
+    background:var(--sun);color:var(--navy);padding:4px}
+
+  .bar{position:absolute;left:0;right:0;bottom:0;height:150px;background:var(--sun);display:flex;align-items:center;justify-content:space-between;padding:0 64px;color:var(--navy)}
+  .bar .h{font-family:'Pixelify Sans';font-weight:700;font-size:42px;line-height:1.05}
+  .bar .h small{display:block;font-family:'Figtree';font-weight:600;font-size:21px;margin-top:6px}
+  .bar .who{display:flex;align-items:center;gap:14px;font-family:'Pixelify Sans';font-weight:700;font-size:28px}
+  .bar .who img{width:62px;height:62px}
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="left"></div><div class="right"></div><div class="seam"></div>
+  <div class="p1"><b>OPTION 1</b>CODE: NON</div>
+  <div class="p2">TYPE: NODES<b>OPTION 2</b></div>
+
+  <div class="big l">Build<br><span>it.</span></div>
+  <div class="ldesc"><b>Custom software, made for you.</b>Appointments, finances, HR, POS, records. Shaped around your workflow, not a template.</div>
+  <div class="s1 spr" data-sprite="scheduler" data-px="12"></div>
+  <div class="s2 spr" data-sprite="merchant" data-px="9"></div>
+
+  <i class="tnmark" data-tn-mark></i>
+  <div class="rdesc"><b>Already built.<br>Already tapping.</b>Membership, points, stamps and check-ins for gyms, cafés, shops and libraries.</div>
+  <div class="big r">Tap<br><span>it.</span></div>
+
+  <div class="vs">OR<small>your choice</small></div>
+
+  <div class="bar">
+    <div class="h">Either way, the clipboard retires.<small>Message @codenon.io · typenodes.com</small></div>
+    <div class="who"><img src="assets/codenon-logo.png" alt=""></div>
+  </div>
+</div>
+<script src="assets/shared.js"></script>
+</body>
+</html>

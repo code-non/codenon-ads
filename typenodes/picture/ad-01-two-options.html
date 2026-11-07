@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad 01 · Two options</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  .ad{background:linear-gradient(180deg,var(--sky) 0%,#b6e1ff 58%,var(--sky2) 74%)}
+  /* pixel clouds */
+  .cloud{position:absolute;background:#fff;height:24px}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:#fff}
+  .cloud::before{left:24px;right:24px;top:-24px;height:24px}
+  .cloud::after{left:48px;right:72px;top:-48px;height:24px}
+  .c1{left:430px;top:226px;width:216px}
+  .c2{right:-40px;top:96px;width:264px}
+  .sun{position:absolute;right:170px;top:170px;width:60px;height:60px;background:var(--sun);
+    box-shadow:0 -12px 0 0 var(--sun),0 12px 0 0 var(--sun),-12px 0 0 0 var(--sun),12px 0 0 0 var(--sun)}
+
+  .top{position:absolute;left:72px;right:72px;top:64px;display:flex;align-items:center;gap:16px}
+  .top img{width:56px;height:56px;image-rendering:pixelated}
+  .top .pix{font-size:30px;font-weight:700;color:var(--navy);letter-spacing:.06em}
+
+  h1{position:absolute;left:72px;right:72px;top:292px;font-family:'Pixelify Sans',monospace;font-weight:700;
+    font-size:96px;line-height:.98;color:var(--navy);letter-spacing:-.005em}
+  h1 em{font-style:normal;color:var(--cobalt)}
+  h1 s{text-decoration:none;position:relative;white-space:nowrap}
+  h1 s::after{content:"";position:absolute;left:-6px;right:-6px;top:52%;height:12px;background:var(--tomato)}
+
+  .paths{position:absolute;left:66px;right:66px;top:560px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+  .card{position:relative;padding:34px 30px 30px;height:430px}
+  .card .tag{position:absolute;top:-30px;left:24px;font-family:'Pixelify Sans';font-weight:700;font-size:24px;
+    padding:8px 14px;letter-spacing:.06em}
+  .a{background:#fff;color:var(--navy)}
+  .a .tag{background:var(--sun);color:var(--navy)}
+  .b{background:var(--ink);color:#fff;--c:var(--ink)}
+  .b .tag{background:var(--acid);color:var(--ink)}
+  .card h2{font-family:'Pixelify Sans';font-size:46px;line-height:1;margin:6px 0 16px}
+  .b h2{font-family:'JetBrains Mono';font-weight:700;font-size:40px;letter-spacing:-.01em}
+  .card p{font-size:23px;line-height:1.38;font-weight:500}
+  .b p{color:#c9ccd3}
+  .card .spr{position:absolute;right:22px;bottom:22px}
+  .chips{position:absolute;left:30px;bottom:30px;display:flex;flex-direction:column;gap:8px}
+  .chips span{font-size:18px;font-weight:700;letter-spacing:.02em}
+  .a .chips span::before{content:"✓ ";color:var(--teal)}
+  .b .chips span{font-family:'JetBrains Mono';font-weight:500;font-size:17px;color:var(--acid)}
+  .b .chips span::before{content:"> ";color:#5b5e66}
+  .or{position:absolute;left:50%;top:205px;transform:translate(-50%,-50%);z-index:2;width:72px;height:72px;
+    background:var(--tomato);color:#fff;display:grid;place-items:center;font-family:'Pixelify Sans';font-weight:700;font-size:30px}
+
+  .ground{position:absolute;left:0;right:0;bottom:0;height:300px;background:var(--grass);border-top:18px solid var(--grass2)}
+  .ground::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;
+    background:repeating-linear-gradient(90deg,var(--dirt) 0 48px,var(--dirt2) 48px 96px)}
+
+  .dialog{position:absolute;left:66px;right:66px;bottom:66px;height:170px;background:var(--navy);color:#fff;--c:#fff;
+    padding:28px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .dialog .who{font-family:'Pixelify Sans';color:var(--sun);font-size:24px;letter-spacing:.06em}
+  .dialog .q{font-family:'Pixelify Sans';font-size:38px;line-height:1.1;margin-top:4px}
+  .dialog .q b{color:var(--sun)}
+  .dialog .cta{text-align:right;font-weight:700;font-size:22px;line-height:1.4}
+  .dialog .cta span{display:block;font-family:'Pixelify Sans';font-size:30px;color:var(--sun)}
+  .blink{display:inline-block;width:18px;height:18px;background:var(--sun);margin-left:12px;
+    clip-path:polygon(0 0,100% 50%,0 100%)}
+  .tnh{display:flex;align-items:center;gap:12px;margin:0 0 18px!important}
+  .tnh i{width:58px;height:58px;flex:none;display:block}
+  .tnh span{font-family:"JetBrains Mono";font-weight:700;font-size:40px;letter-spacing:-.01em}
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="sun"></div>
+
+  <div class="top"><img src="assets/codenon-logo.png" alt=""><span class="pix">CODE: NON</span></div>
+
+  <h1>Two ways to stop<br>doing it <s>by hand.</s></h1>
+
+  <div class="paths">
+    <div class="card a notch drop">
+      <div class="tag">OPTION 1</div>
+      <h2>Custom software</h2>
+      <p>Tell us what your team repeats every day. We build the system around how you actually work.</p>
+      <div class="chips"><span>Appointments</span><span>Money &amp; budgets</span><span>HR · POS · Records</span></div>
+      <div class="spr" data-sprite="herald" data-px="11"></div>
+    </div>
+    <div class="or notch" style="--c:var(--navy)">OR</div>
+    <div class="card b notch drop">
+      <div class="tag">OPTION 2</div>
+      <h2 class="tnh"><i data-tn-mark></i><span>TYPE: NODES</span></h2>
+      <p>Ready-made membership, loyalty and attendance. One tap of a card at the counter.</p>
+      <div class="chips"><span>no app to install</span><span>points + stamps</span><span>check-ins</span></div>
+      <div class="spr" data-sprite="wizard" data-px="11"></div>
+    </div>
+  </div>
+
+  <div class="ground"></div>
+  <div class="dialog notch">
+    <div>
+      <div class="who">CODE: NON</div>
+      <div class="q">Which one fits <b>your business?</b></div>
+    </div>
+    <div class="cta"><span>@codenon.io</span>Message us to start</div>
+  </div>
+</div>
+<script src="assets/shared.js"></script>
+</body>
+</html>
