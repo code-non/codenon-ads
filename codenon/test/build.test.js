@@ -10,7 +10,6 @@ const files = fs.readdirSync(SETS).filter((f) => /^\d{2}-.+\.html$/.test(f)).sor
 const html = build();
 
 test('every set file is stitched in once, in number order', () => {
-  assert.ok(files.length >= 35, 'expected one file per design');
   const order = [...html.matchAll(/<!-- (\d{2}) -->\n<section class="set">/g)].map((m) => m[1]);
   assert.deepStrictEqual(order, files.map((f) => f.slice(0, 2)));
 });

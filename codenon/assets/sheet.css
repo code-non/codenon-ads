@@ -4,25 +4,35 @@
      build-sheet.js stitches them into cards.html (npm run build).
      cards.html             -> preview sheet; the name buttons swap the founder's name everywhere
      cards.html?n=1#n1-front -> that face alone at full size with name #1 (render-cards.sh screenshots these) */
-  html,body{width:auto;background:#141a2e}
-  body{padding:48px 40px;color:#c9ccd3}
+  html,body{width:auto;background:#0d0d0f}
+  body{padding:clamp(24px,5vw,64px) clamp(16px,4vw,48px);color:#c9c7c2}
   .sheet-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;max-width:1100px;margin:0 auto 24px}
-  .sheet-h h1{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:48px;line-height:1;text-transform:uppercase;color:#fff}
-  .sheet-h h1 span{color:var(--sun)}
-  .sheet-h p{font-size:15px;color:#8b93ab;max-width:520px;line-height:1.5}
-  .names{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;align-items:center;max-width:1100px;margin:0 auto 30px;padding:12px 0;background:#141a2e;
-    font-family:'JetBrains Mono';font-size:14px;color:#8b93ab}
-  .names button{font:500 14px 'JetBrains Mono',monospace;color:#c9ccd3;background:#1f2740;border:1px solid #2e3858;border-radius:99px;padding:8px 14px;cursor:pointer}
-  .names button.on{background:var(--sun);color:var(--navy);border-color:var(--sun)}
-  .set{max-width:1100px;margin:0 auto 52px;border-top:1px solid #2e3858;padding-top:24px}
-  .set h2{font-family:'JetBrains Mono';font-size:16px;font-weight:500;color:#fff;margin-bottom:4px}
-  .set h2 b{color:var(--sun);margin-right:10px}
-  .set > p{font-size:14px;color:#8b93ab;margin-bottom:6px}
-  .who-l{font-family:'JetBrains Mono';font-size:13px;color:#8b93ab;letter-spacing:.1em;margin:16px 0 8px}
+  .sheet-h h1{font-family:'Archivo';font-stretch:68%;font-weight:900;font-size:clamp(34px,6vw,56px);line-height:.95;text-transform:uppercase;color:#f2efe9}
+  .sheet-h h1 span{display:block;font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;font-stretch:100%;text-transform:none;color:#c8a46a;letter-spacing:-.01em}
+  .sheet-h p{font-size:15px;color:#85827c;max-width:520px;line-height:1.6}
+  .names{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;align-items:center;max-width:1100px;margin:0 auto 30px;padding:12px 0;background:#0d0d0f;
+    font-family:'JetBrains Mono';font-size:14px;color:#85827c}
+  .names button{font:500 14px 'JetBrains Mono',monospace;color:#c9c7c2;background:#18181b;border:1px solid #2c2c31;border-radius:99px;padding:8px 14px;cursor:pointer;transition:border-color .2s,color .2s}
+  .names button:hover{border-color:#c8a46a;color:#f2efe9}
+  .names button.on{background:#c8a46a;color:#0d0d0f;border-color:#c8a46a}
+  .set{max-width:1100px;margin:0 auto 64px;border-top:1px solid #26262a;padding-top:24px}
+  .set h2{font-family:'Bodoni Moda',serif;font-size:26px;font-weight:400;color:#f2efe9;margin-bottom:6px}
+  .set h2 b{font-family:'JetBrains Mono';font-size:13px;font-weight:500;color:#c8a46a;margin-right:14px;vertical-align:middle}
+  .set > p{font-size:14px;color:#85827c;margin-bottom:6px;max-width:760px;line-height:1.55}
+  .who-l{font-family:'JetBrains Mono';font-size:12px;color:#6d6a65;letter-spacing:.16em;margin:18px 0 10px}
   .pair{display:flex;gap:28px;flex-wrap:wrap}
   .slot{zoom:.5}
   .slot .face{box-shadow:0 30px 60px rgba(0,0,0,.45)}
-  .tag{font-family:'JetBrains Mono';font-size:13px;color:#5b6380;margin-top:8px;letter-spacing:.08em}
+  .tag{font-family:'JetBrains Mono';font-size:13px;color:#56544f;margin-top:8px;letter-spacing:.08em}
+  /* Responsive sheet: cards scale down with the viewport (renders use body.solo, so they stay full size). */
+  @media (max-width:1100px){body:not(.solo) .slot{zoom:.42}}
+  @media (max-width:760px){body:not(.solo) .slot{zoom:.36}.pair{gap:16px}}
+  @media (max-width:420px){body:not(.solo) .slot{zoom:.33}}
+  /* Hover: the card lifts toward the light. Screen only, never in renders or print. */
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    body:not(.solo) .slot .face{transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s}
+    body:not(.solo) .slot:hover .face{transform:translateY(-10px);box-shadow:0 50px 90px rgba(0,0,0,.6)}
+  }
 
   html:has(body.solo),body.solo{padding:0;background:transparent}
   body.solo .sheet-h,body.solo .names,body.solo .set > h2,body.solo .set > p,body.solo .who-l,body.solo .tag{display:none}
@@ -52,10 +62,10 @@
   /* ---------- titles toggle + export ---------- */
   body.no-ttl .ttl{display:none!important}
   .names .sp{flex:1}
-  .names label{display:flex;align-items:center;gap:8px;margin:0 6px 0 10px;cursor:pointer;color:#c9ccd3}
-  .names label input{width:16px;height:16px;accent-color:var(--sun)}
-  .names button.x{background:transparent;border-color:var(--sun);color:var(--sun)}
-  .set h2 .ex{float:right;font:500 13px 'JetBrains Mono',monospace;color:var(--sun);background:none;border:1px solid #2e3858;border-radius:99px;padding:5px 12px;cursor:pointer}
+  .names label{display:flex;align-items:center;gap:8px;margin:0 6px 0 10px;cursor:pointer;color:#c9c7c2}
+  .names label input{width:16px;height:16px;accent-color:#c8a46a}
+  .names button.x{background:transparent;border-color:#c8a46a;color:#c8a46a}
+  .set h2 .ex{float:right;font:500 13px 'JetBrains Mono',monospace;color:#c8a46a;background:none;border:1px solid #2c2c31;border-radius:99px;padding:5px 12px;cursor:pointer}
 
   /* PDF: "card" = one face per page at real CR80 size (1011px * .3195 = 85.6mm), square corners for the printer's die-cut;
      "sheet" = A4 proof with every pair at real size. */
@@ -84,5 +94,6 @@
   .cq{border-radius:22px;overflow:hidden}
 
 
-  /* ---------- serif display type (used by several sets) ---------- */
+  /* ---------- display type shared by the v2 collection ---------- */
   .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:.95}
+  .didone{font-family:'Bodoni Moda',Didot,'Times New Roman',serif;font-optical-sizing:auto}

@@ -19,6 +19,6 @@ function pages(query) {
   return (fs.readFileSync(out, 'latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
 }
 
-test('exporting one design prints its four faces on a single page', { skip: !BROWSER && 'no Edge/Chrome' }, () => {
-  for (const n of [1, 19, SETS]) assert.strictEqual(pages('print=one&only=' + n), 1, 'set ' + n);
+test('exporting one design prints its four faces on a single page', { skip: (!BROWSER && 'no Edge/Chrome') || (!SETS && 'no sets yet') }, () => {
+  for (const n of [...new Set([1, Math.ceil(SETS / 2), SETS])]) assert.strictEqual(pages('print=one&only=' + n), 1, 'set ' + n);
 });

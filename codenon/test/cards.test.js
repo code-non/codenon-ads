@@ -1,6 +1,8 @@
-// Structure of the card sheet: every set is a full Null/Void pair, and the type-only sets carry no character art.
+// Structure of the card sheet: every set in sets/ is a full Null/Void pair with a QR on each back.
 const test = require('node:test');
 const assert = require('node:assert');
+const fs = require('node:fs');
+const path = require('node:path');
 const { build } = require('../build-sheet.js');
 
 const HTML = build();
@@ -20,35 +22,41 @@ function face(src, id) {
   return src.slice(start, next < 0 ? undefined : next);
 }
 
-for (const n of [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]) {
-  test(`set ${n} is a type-only Null/Void pair with a QR on each back`, () => {
+const NUMS = fs.readdirSync(path.join(__dirname, '../sets')).filter((f) => /^\d{2}-.+\.html$/.test(f)).map((f) => +f.slice(0, 2));
+
+for (const n of NUMS) {
+  test(`set ${n} is a Null/Void pair with a QR on each back`, () => {
     const src = set(n);
     for (const who of ['n', 'v']) {
       face(src, `${who}${n}-front`);
-      assert.match(face(src, `${who}${n}-back`), /data-cnqr="https:\/\//, `${who}${n}-back has no QR`);
-    }
-    assert.ok(!src.includes('data-mascot'), 'set should not use character art');
-  });
-}
-
-for (const n of [41, 42, 43, 44, 45]) {
-  test(`set ${n} is a minimal character pair: mascot on each front, QR on each back`, () => {
-    const src = set(n);
-    for (const who of ['n', 'v']) {
-      assert.match(face(src, `${who}${n}-front`), new RegExp(`data-mascot="${who === 'n' ? 'null' : 'void'}`), `${who}${n}-front has no character`);
-      assert.match(face(src, `${who}${n}-back`), /data-cnqr="https:\/\//, `${who}${n}-back has no QR`);
+      assert.match(face(src, `${who}${n}-back`), /data-cnqr="https:\/\/|data-qr="https:\/\//, `${who}${n}-back has no QR`);
     }
   });
 }
 
-for (const n of [46, 47, 48, 49, 50]) {
-  test(`set ${n} is an elegant type-only pair using the shared gmail on both cards`, () => {
+// v2 "Absence, engineered" collection: twenty-two character-free pairs, shared mail on both cards, full contact block on each back.
+test('the v2 collection has its twenty-two designs', () => assert.deepStrictEqual(NUMS, Array.from({ length: 22 }, (_, i) => i + 1)));
+
+for (const n of NUMS) {
+  test(`set ${n} is character-free and carries the full contact block on both backs`, () => {
     const src = set(n);
-    assert.ok(!src.includes('data-mascot'), 'set should not use character art');
-    assert.ok(!/(null|void)@codenon\.io/.test(src), 'old placeholder mail still present');
+    assert.ok(!src.includes('data-mascot') && !src.includes('data-badge'), 'no character art in v2');
+    assert.ok(!/(null|void)@codenon\.io/.test(src), 'old placeholder mail');
     for (const who of ['n', 'v']) {
-      assert.match(face(src, `${who}${n}-back`), /data-cnqr="https:\/\//, `${who}${n}-back has no QR`);
-      assert.match(face(src, `${who}${n}-front`) + face(src, `${who}${n}-back`), /codenon\.null@gmail\.com/, `${who}${n} has no mail`);
+      const back = face(src, `${who}${n}-back`);
+      for (const bit of ['codenon.null@gmail.com', 'codenon.pages.dev', '@codenon.io']) assert.ok(back.includes(bit), `${who}${n}-back missing ${bit}`);
+      assert.ok(back.includes('data-cnqr="https://codenon-wormhole.pages.dev"'), `${who}${n}-back QR must point to the wormhole`);
     }
   });
 }
+
+// Identity batch (11+): every face carries the vector CODE: NON mark (assets/cnmark.js), never the low-res PNG.
+for (const n of NUMS.filter((n) => n >= 11)) {
+  test(`set ${n} puts the vector mark on all four faces`, () => {
+    const src = set(n);
+    for (const id of [`n${n}-front`, `n${n}-back`, `v${n}-front`, `v${n}-back`]) assert.match(face(src, id), /data-cnmark="(lines|solid|outline)"/, id + ' has no mark');
+    assert.ok(!src.includes('codenon-logo.png'), 'use the vector mark, not the PNG');
+  });
+}
+
+test('the sheet loads the vector mark script', () => assert.ok(HTML.includes('<script src="assets/cnmark.js"></script>')));
