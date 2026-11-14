@@ -1,0 +1,85 @@
+<style>
+  /* ---------- 10 PLATFORM: transit wayfinding. Platform 0, a line whose last stop is a hollow ring; the back is the departures board ---------- */
+  .c10{--bg:#f2f2ee;--ink:#121212;--mu:#77776f;--ln:#f5a300;--led:#ffb21a;background:var(--bg);color:var(--ink);font-family:'Figtree'}
+  .c10v{--bg:#0f1012;--ink:#f2f2ee;--mu:#75767c;--ln:#8a6cff;--led:#a894ff}
+  .c10 .ro{left:64px;top:60px;width:150px;height:150px;border-radius:50%;background:var(--ln);color:#121212;display:grid;place-items:center;
+    font-weight:800;font-size:104px;line-height:1;letter-spacing:-.04em}
+  .c10v .ro{color:#fff}
+  .c10 .pf{left:244px;top:68px;font-weight:700;font-size:60px;line-height:1;letter-spacing:-.03em}
+  .c10 .pf small{display:block;margin-top:14px;font-weight:500;font-size:22px;letter-spacing:0;color:var(--mu)}
+  .c10 .ar{right:64px;top:60px;font-weight:700;font-size:96px;line-height:1}
+  .c10 .tk{left:64px;right:64px;top:334px;height:10px;border-radius:5px;background:var(--ln)}
+  .c10 .st{top:318px;width:42px;height:42px;border-radius:50%;background:var(--bg);border:8px solid var(--ink)}
+  .c10 .st.on{background:var(--ln);border-color:var(--ink)}
+  .c10 .st.end{border-color:var(--ln)}
+  .c10 .sl{top:278px;font-weight:600;font-size:17px;transform:translateX(-50%);white-space:nowrap}
+  .c10 .sl.dim{color:var(--mu)}
+  .c10 .nm{left:62px;bottom:116px;font-weight:700;font-size:58px;line-height:1;letter-spacing:-.035em}
+  .c10 .rl{left:64px;bottom:84px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.26em;color:var(--mu)}
+  .c10 .ml{right:64px;bottom:84px;font-size:16px;font-weight:500}
+  .c10 .ft{left:64px;right:64px;bottom:50px;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.26em;color:var(--mu);display:flex;justify-content:space-between}
+  .c10b{--bg:#0b0b0c;--ink:#f2f2ee;--mu:#5d5d62}
+  .c10b .bd{left:56px;right:340px;top:56px;bottom:56px;border-radius:14px;background:#141416;box-shadow:inset 0 0 0 2px #232327;padding:26px 30px;
+    font-family:'JetBrains Mono';color:var(--led);text-shadow:0 0 10px color-mix(in srgb,var(--led) 55%,transparent)}
+  .c10b .bd .h{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.24em;color:var(--mu);text-shadow:none;padding-bottom:12px;border-bottom:1px solid #2a2a2e}
+  .c10b .bd .r{display:grid;grid-template-columns:90px 1fr;font-size:17px;line-height:1;padding:24px 0;border-bottom:1px dashed #2a2a2e}
+  .c10b .bd .r span{color:var(--mu);text-shadow:none;font-size:12px;letter-spacing:.2em;padding-top:3px}
+  .c10b .bd .r.big{font-size:34px;font-weight:700;padding:30px 0}
+  .c10b .cq{right:64px;top:110px;width:236px;height:236px;border-radius:12px}
+  .c10b .ql{right:64px;top:362px;width:236px;text-align:center;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.2em;color:var(--mu)}
+</style>
+<!-- 10 -->
+<section class="set">
+  <h2><b>10</b>Platform</h2>
+  <p>Transit wayfinding, as clear as a station sign. Platform 0, an arrow pointing off the card, and a line map where you are one stop from the end and the last station is a hollow ring: nothing. Null is a white enamel sign with an amber line; Void is a black sign on the violet line. The back is the departures board, glowing in the line's colour, with the QR as the ticket.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n10-front"><div class="face c10">
+      <div class="abs ro">0</div>
+      <div class="abs pf">Platform<small>CODE: NON · departures to nowhere</small></div>
+      <div class="abs ar">←</div>
+      <div class="abs tk"></div>
+      <div class="abs st" style="left:64px"></div><div class="abs sl dim" style="left:85px">CODE: NON</div>
+      <div class="abs st on" style="left:420px"></div><div class="abs sl" style="left:441px">Null · you are here</div>
+      <div class="abs st" style="left:690px"></div><div class="abs sl dim" style="left:711px">Void</div>
+      <div class="abs st end" style="left:905px"></div><div class="abs sl dim" style="left:926px">∅</div>
+      <div class="abs nm fn">Alteisen</div>
+      <div class="abs rl"><span class="ttl">FOUNDER · </span>NULL</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+      <div class="abs ft"><span>NULL LINE</span><span>codenon.pages.dev</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n10-back"><div class="face c10 c10b">
+      <div class="abs bd"><div class="h"><span>NEXT DEPARTURE</span><span>PLATFORM 0</span></div>
+        <div class="r big"><span>00:00</span>Nothing</div>
+        <div class="r"><span>NAME</span><b class="fn">Alteisen</b></div><div class="r"><span>MAIL</span>codenon.null@gmail.com</div>
+        <div class="r"><span>WEB</span>codenon.pages.dev</div><div class="r"><span>IG</span>@codenon.io</div></div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#0b0b0c" data-bg="#f2f2ee"></div>
+      <div class="abs ql">TAP OR SCAN TO BOARD</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v10-front"><div class="face c10 c10v">
+      <div class="abs ro">0</div>
+      <div class="abs pf">Platform<small>CODE: NON · departures to nowhere</small></div>
+      <div class="abs ar">←</div>
+      <div class="abs tk"></div>
+      <div class="abs st" style="left:64px"></div><div class="abs sl dim" style="left:85px">CODE: NON</div>
+      <div class="abs st" style="left:420px"></div><div class="abs sl dim" style="left:441px">Null</div>
+      <div class="abs st on" style="left:690px"></div><div class="abs sl" style="left:711px">Void · you are here</div>
+      <div class="abs st end" style="left:905px"></div><div class="abs sl dim" style="left:926px">∅</div>
+      <div class="abs nm">BucDevGin</div>
+      <div class="abs rl"><span class="ttl">CO-FOUNDER · </span>VOID</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+      <div class="abs ft"><span>VOID LINE</span><span>codenon.pages.dev</span></div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v10-back"><div class="face c10 c10b c10v">
+      <div class="abs bd"><div class="h"><span>NEXT DEPARTURE</span><span>PLATFORM 0</span></div>
+        <div class="r big"><span>00:00</span>Nothing</div>
+        <div class="r"><span>NAME</span><b>BucDevGin</b></div><div class="r"><span>MAIL</span>codenon.null@gmail.com</div>
+        <div class="r"><span>WEB</span>codenon.pages.dev</div><div class="r"><span>IG</span>@codenon.io</div></div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#0b0b0c" data-bg="#f2f2ee"></div>
+      <div class="abs ql">TAP OR SCAN TO BOARD</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

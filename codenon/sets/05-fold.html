@@ -1,0 +1,74 @@
+<style>
+  /* ---------- 05 FOLD: a corner of the card folded away, revealing the coloured sheet beneath; the missing corner is the idea ---------- */
+  .c05{--bg:#f2eee7;--ink:#1b1a18;--un:#c65a3a;--fa:#fffdf9;--fb:#e1d8ca;--sh:rgba(70,40,20,.3);--ac:#c65a3a;--mu:rgba(27,26,24,.5);
+    background:linear-gradient(200deg,#f7f4ee,var(--bg));color:var(--ink);font-family:'Archivo'}
+  .c05v{--bg:#1b1c21;--ink:#ecebe6;--un:#08080a;--fa:#3b3c43;--fb:#24252b;--sh:rgba(0,0,0,.65);--ac:#c9a45c;--mu:rgba(236,235,230,.5);background:linear-gradient(200deg,#202127,var(--bg))}
+  .c05 .un{left:0;top:0;width:380px;height:380px;background:var(--un);clip-path:polygon(0 0,100% 0,0 100%)}
+  .c05 .un i{position:absolute;left:56px;top:46px;font-style:normal;font-weight:900;font-size:58px;color:var(--bg)}
+  .c05v .un i{left:60px;top:60px;width:64px;height:64px;border-radius:50%;border:2px solid var(--ac);font-size:0}
+  .c05 .fw{left:0;top:0;width:380px;height:380px;filter:drop-shadow(10px 12px 14px var(--sh))}
+  .c05 .fw div{position:absolute;inset:0;background:linear-gradient(135deg,var(--fa) 50%,var(--fb));clip-path:polygon(100% 0,100% 100%,0 100%)}
+  .c05 .tr{right:64px;top:58px;font-weight:800;font-size:16px;letter-spacing:.16em}
+  .c05 .nm{right:62px;bottom:136px;max-width:560px;text-align:right;font-stretch:112%;font-weight:800;font-size:64px;line-height:.95;letter-spacing:-.02em}
+  .c05 .rl{right:64px;bottom:100px;font-family:'JetBrains Mono';font-size:13px;letter-spacing:.22em;color:var(--ac)}
+  .c05 .ml{right:64px;bottom:58px;font-family:'JetBrains Mono';font-size:13px;color:var(--mu)}
+  .c05 .fg{left:64px;bottom:58px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:19px;color:var(--mu)}
+  .c05b .un{left:auto;top:auto;right:0;bottom:0;clip-path:polygon(100% 0,100% 100%,0 100%)}
+  .c05b .un i{left:auto;top:auto;right:56px;bottom:40px}
+  .c05v.c05b .un i{right:60px;bottom:60px}
+  .c05b .fw{left:auto;top:auto;right:0;bottom:0;filter:drop-shadow(-10px -12px 14px var(--sh))}
+  .c05b .fw div{background:linear-gradient(315deg,var(--fa) 50%,var(--fb));clip-path:polygon(0 0,100% 0,0 100%)}
+  .c05b .cq{left:64px;top:64px;width:220px;height:220px;border-radius:12px}
+  .c05b .ql{left:64px;top:300px;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.24em;color:var(--mu)}
+  .c05b .ct{left:330px;top:58px}
+  .c05b .ct div{margin-bottom:14px}
+  .c05b .ct span{display:block;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.24em;color:var(--mu)}
+  .c05b .ct b{font-weight:600;font-size:23px}
+</style>
+<!-- 05 -->
+<section class="set">
+  <h2><b>05</b>Fold</h2>
+  <p>Paper as architecture. One corner of the card is folded back, its underside catching the light and casting a real shadow, and it reveals a second sheet underneath: terracotta with ∅ for Null, black with a gold ring for Void. On the back the fold moves to the opposite corner.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n5-front"><div class="face c05">
+      <div class="abs un"><i>∅</i></div>
+      <div class="abs fw"><div></div></div>
+      <div class="abs tr">CODE: NON</div>
+      <div class="abs nm fn">Alteisen</div>
+      <div class="abs rl"><span class="ttl">FOUNDER — </span>NULL</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+      <div class="abs fg">the corner we left out.</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n5-back"><div class="face c05 c05b">
+      <div class="abs un"><i>∅</i></div>
+      <div class="abs fw"><div></div></div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#1b1a18" data-bg="#f6f3ed" data-eye="#c65a3a"></div>
+      <div class="abs ql">TAP · OR SCAN</div>
+      <div class="abs ct"><div><span>NAME</span><b class="fn">Alteisen</b></div><div><span>MAIL</span><b>codenon.null@gmail.com</b></div>
+        <div><span>WEB</span><b>codenon.pages.dev</b></div><div><span>INSTAGRAM</span><b>@codenon.io</b></div></div>
+      <div class="abs fg">CODE: NON — fold, unfold.</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v5-front"><div class="face c05 c05v">
+      <div class="abs un"><i></i></div>
+      <div class="abs fw"><div></div></div>
+      <div class="abs tr">CODE: NON</div>
+      <div class="abs nm">BucDevGin</div>
+      <div class="abs rl"><span class="ttl">CO-FOUNDER — </span>VOID</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+      <div class="abs fg">the corner that fell in.</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v5-back"><div class="face c05 c05b c05v">
+      <div class="abs un"><i></i></div>
+      <div class="abs fw"><div></div></div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#1b1c21" data-bg="#ecebe6" data-eye="#9c7a36"></div>
+      <div class="abs ql">TAP · OR SCAN</div>
+      <div class="abs ct"><div><span>NAME</span><b>BucDevGin</b></div><div><span>MAIL</span><b>codenon.null@gmail.com</b></div>
+        <div><span>WEB</span><b>codenon.pages.dev</b></div><div><span>INSTAGRAM</span><b>@codenon.io</b></div></div>
+      <div class="abs fg">CODE: NON — fold, unfold.</div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+<style>
+  /* ---------- 12 SCANLINE: the logo's own scanlines become the card. A giant mark bleeds off the edge, the whole card ruled at its rhythm ---------- */
+  .c12{--bg:#f3f2ee;--ink:#0e0e0e;--mu:#86847e;background:var(--bg);color:var(--ink);font-family:'Figtree'}
+  .c12v{--bg:#0b0b0b;--ink:#f3f2ee;--mu:#77756f}
+  .c12 .sc{inset:0;opacity:.07;background:repeating-linear-gradient(180deg,var(--ink) 0 10.6px,transparent 10.6px 17px)}
+  .c12 .mk{left:470px;top:-36px;width:620px;height:646px}
+  .c12 .tl{left:64px;top:58px;font-family:'Archivo';font-weight:800;font-size:24px;letter-spacing:.06em;background:var(--bg);padding:4px 8px 4px 0}
+  .c12 .nm{left:62px;bottom:146px;font-weight:700;font-size:60px;line-height:1;letter-spacing:-.035em;background:var(--bg);padding:6px 12px 8px 0}
+  .c12 .rl{left:64px;bottom:108px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.26em;color:var(--mu);background:var(--bg);padding:4px 10px 4px 0}
+  .c12 .ml{left:64px;bottom:58px;font-family:'JetBrains Mono';font-size:14px;background:var(--bg);padding:4px 10px 4px 0}
+  .c12b .mk{left:-170px;top:-36px}
+  .c12b .pn{left:500px;right:0;top:0;bottom:0;background:var(--bg)}
+  .c12b .tl{left:560px}
+  .c12b .cq{left:560px;top:130px;width:190px;height:190px;border-radius:10px}
+  .c12b .qt{left:776px;right:64px;top:136px;font-size:24px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+  .c12b .qt small{display:block;margin-top:12px;font-family:'JetBrains Mono';font-weight:400;font-size:10px;letter-spacing:.22em;color:var(--mu)}
+  .c12b .ct{left:560px;right:64px;bottom:56px;font-family:'JetBrains Mono';font-size:14px;line-height:2.05}
+  .c12b .ct div{display:grid;grid-template-columns:62px 1fr}
+  .c12b .ct span{color:var(--mu)}
+</style>
+<!-- 12 -->
+<section class="set">
+  <h2><b>12</b>Scanline</h2>
+  <p>The logo is already drawn in scanlines, so the card takes them on. A giant mark bleeds off the right edge and the whole card is faintly ruled at exactly the same rhythm, so the mark looks cut from the card rather than printed on it. Null is ink on paper; Void is paper on black. On the back the mark moves to the other edge and a clean panel carries the QR and contacts.</p>
+  <div class="who-l">FOUNDER · NULL</div>
+  <div class="pair">
+    <div class="slot" id="n12-front"><div class="face c12">
+      <div class="abs sc"></div>
+      <div class="abs mk" data-cnmark="lines" data-fg="#0e0e0e" data-bg="#f3f2ee"></div>
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs nm fn">Alteisen</div>
+      <div class="abs rl"><span class="ttl">FOUNDER · </span>NULL</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="n12-back"><div class="face c12 c12b">
+      <div class="abs sc"></div>
+      <div class="abs mk" data-cnmark="lines" data-fg="#0e0e0e" data-bg="#f3f2ee"></div>
+      <div class="abs pn"></div>
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#0e0e0e" data-bg="#f3f2ee"></div>
+      <div class="abs qt">Tap the card,<br>or scan.<small>SAVES THE CONTACT</small></div>
+      <div class="abs ct"><div><span>name</span><b class="fn">Alteisen</b></div><div><span>mail</span>codenon.null@gmail.com</div>
+        <div><span>web</span>codenon.pages.dev</div><div><span>ig</span>@codenon.io</div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+  <div class="who-l">CO-FOUNDER · VOID</div>
+  <div class="pair">
+    <div class="slot" id="v12-front"><div class="face c12 c12v">
+      <div class="abs sc"></div>
+      <div class="abs mk" data-cnmark="lines" data-fg="#f3f2ee" data-bg="#0b0b0b"></div>
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs nm">BucDevGin</div>
+      <div class="abs rl"><span class="ttl">CO-FOUNDER · </span>VOID</div>
+      <div class="abs ml">codenon.null@gmail.com</div>
+    </div><div class="tag">FRONT</div></div>
+    <div class="slot" id="v12-back"><div class="face c12 c12b c12v">
+      <div class="abs sc"></div>
+      <div class="abs mk" data-cnmark="lines" data-fg="#f3f2ee" data-bg="#0b0b0b"></div>
+      <div class="abs pn"></div>
+      <div class="abs tl">CODE: NON</div>
+      <div class="abs cq" data-cnqr="https://codenon-wormhole.pages.dev" data-fg="#0b0b0b" data-bg="#f3f2ee"></div>
+      <div class="abs qt">Tap the card,<br>or scan.<small>SAVES THE CONTACT</small></div>
+      <div class="abs ct"><div><span>name</span><b>BucDevGin</b></div><div><span>mail</span>codenon.null@gmail.com</div>
+        <div><span>web</span>codenon.pages.dev</div><div><span>ig</span>@codenon.io</div></div>
+    </div><div class="tag">BACK</div></div>
+  </div>
+</section>
